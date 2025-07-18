@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { Search, Filter, Grid, Map, Star, Heart, MapPin } from 'lucide-react';
 import { getAllPhotographers } from '../data/photographers';
 
@@ -13,9 +13,30 @@ const PhotographerListingPage = () => {
     rating: '',
     availability: '',
   });
+  const [searchParams] = useSearchParams();
 
   const photographers = getAllPhotographers();
 
+  // Initialize filters from URL params
+  React.useEffect(() => {
+    const locationParam = searchParams.get('location');
+    const specialtyParam = searchParams.get('specialty');
+    const budgetParam = searchParams.get('budget');
+    
+    if (locationParam || specialtyParam || budgetParam) {
+      setFilters(prev => ({
+        ...prev,
+        location: locationParam || '',
+        specialty: specialtyParam || '',
+        priceRange: budgetParam || '',
+      }));
+      
+      // Set search term to location if provided
+      if (locationParam) {
+        setSearchTerm(locationParam);
+      }
+    }
+  }, [searchParams]);
   const getAvailabilityColor = (availability: string) => {
     switch (availability) {
       case 'Available Now':
@@ -37,17 +58,47 @@ const PhotographerListingPage = () => {
                          );
     
     const matchesSpecialty = !filters.specialty || 
-                            photographer.specialties.includes(filters.specialty);
+                            photographer.specialties.some(specialty => 
+                              specialty.toLowerCase().includes(filters.specialty.toLowerCase())
+                            );
     
     const matchesLocation = !filters.location || 
                            photographer.location.toLowerCase().includes(filters.location.toLowerCase());
     
     const matchesAvailability = !filters.availability || 
                                photographer.availability === filters.availability;
+    
+    const matchesBudget = !filters.priceRange || (() => {
+      const hourlyRate = parseInt(photographer.hourlyRate.replace(/[^0-9]/g, ''));
+      switch (filters.priceRange) {
+        case '0-50':
+          return hourlyRate >= 0 && hourlyRate <= 50;
+        case '50-100':
+          return hourlyRate > 50 && hourlyRate <= 100;
+        case '100-200':
+          return hourlyRate > 100 && hourlyRate <= 200;
+        case '200+':
+          return hourlyRate > 200;
+        default:
+          return true;
+      }
+    })();
 
-    return matchesSearch && matchesSpecialty && matchesLocation && matchesAvailability;
+    return matchesSearch && matchesSpecialty && matchesLocation && matchesAvailability && matchesBudget;
   });
 
+  const handleClearFilters = () => {
+    setSearchTerm('');
+    setFilters({
+      specialty: '',
+      location: '',
+      priceRange: '',
+      rating: '',
+      availability: '',
+    });
+    // Clear URL params
+    window.history.replaceState({}, '', '/photographers');
+  };
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
@@ -126,16 +177,33 @@ const PhotographerListingPage = () => {
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 >
                   <option value="">All Specialties</option>
-                  <option value="Wedding">Wedding</option>
-                  <option value="Portrait">Portrait</option>
-                  <option value="Commercial">Commercial</option>
-                  <option value="Event">Event</option>
-                  <option value="Fashion">Fashion</option>
-                  <option value="Family">Family</option>
-                  <option value="Product">Product</option>
+                  <option value="wedding">Wedding</option>
+                  <option value="portrait">Portrait</option>
+                  <option value="commercial">Commercial</option>
+                  <option value="event">Event</option>
+                  <option value="fashion">Fashion</option>
+                  <option value="family">Family</option>
+                  <option value="product">Product</option>
                 </select>
               </div>
 
+              {/* Price Range Filter */}
+              <div className="mb-6">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Price Range
+                </label>
+                <select
+                  value={filters.priceRange}
+                  onChange={(e) => setFilters({...filters, priceRange: e.target.value})}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                >
+                  <option value="">Any Price</option>
+                  <option value="0-50">$0 - $50/hour</option>
+                  <option value="50-100">$50 - $100/hour</option>
+                  <option value="100-200">$100 - $200/hour</option>
+                  <option value="200+">$200+/hour</option>
+                </select>
+              </div>
               {/* Location Filter */}
               <div className="mb-6">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -169,16 +237,7 @@ const PhotographerListingPage = () => {
 
               {/* Clear Filters */}
               <button
-                onClick={() => {
-                  setSearchTerm('');
-                  setFilters({
-                    specialty: '',
-                    location: '',
-                    priceRange: '',
-                    rating: '',
-                    availability: '',
-                  });
-                }}
+                onClick={handleClearFilters}
                 className="w-full text-blue-600 hover:text-blue-700 font-medium py-2"
               >
                 Clear All Filters
@@ -192,6 +251,11 @@ const PhotographerListingPage = () => {
             <div className="flex items-center justify-between mb-6">
               <p className="text-gray-600">
                 {filteredPhotographers.length} photographer{filteredPhotographers.length !== 1 ? 's' : ''} found
+               {(searchParams.get('location') || searchParams.get('specialty') || searchParams.get('budget')) && (
+                 <span className="ml-2 text-blue-600">
+                   (filtered from search)
+                 </span>
+               )}
               </p>
               <select className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                 <option>Sort by: Relevance</option>
@@ -302,16 +366,7 @@ const PhotographerListingPage = () => {
                 <h3 className="text-lg font-medium text-gray-900 mb-2">No photographers found</h3>
                 <p className="text-gray-600 mb-4">Try adjusting your search criteria or filters</p>
                 <button
-                  onClick={() => {
-                    setSearchTerm('');
-                    setFilters({
-                      specialty: '',
-                      location: '',
-                      priceRange: '',
-                      rating: '',
-                      availability: '',
-                    });
-                  }}
+                  onClick={handleClearFilters}
                   className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
                 >
                   Clear All Filters

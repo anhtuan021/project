@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Search, MapPin, Camera, Palette, Heart, Users, Shirt, Star, ArrowRight, Lightbulb, Edit3, Sparkles, BarChart3, CheckCircle, Headphones } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { getAllPhotographers } from '../data/photographers';
@@ -9,9 +9,25 @@ const HomePage = () => {
   const [searchStyle, setSearchStyle] = useState('');
   const [searchBudget, setSearchBudget] = useState('');
   const { t } = useLanguage();
+  const navigate = useNavigate();
 
   const topPhotographers = getAllPhotographers().slice(0, 4);
 
+  const handleSearch = () => {
+    const searchParams = new URLSearchParams();
+    
+    if (searchLocation.trim()) {
+      searchParams.set('location', searchLocation.trim());
+    }
+    if (searchStyle) {
+      searchParams.set('specialty', searchStyle);
+    }
+    if (searchBudget) {
+      searchParams.set('budget', searchBudget);
+    }
+    
+    navigate(`/photographers?${searchParams.toString()}`);
+  };
   const aiFeatures = [
     {
       icon: <Lightbulb className="h-8 w-8 text-blue-600" />,
@@ -91,9 +107,12 @@ const HomePage = () => {
                     <option value="200+">$200+</option>
                   </select>
                 </div>
-                <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 flex items-center justify-center">
+                <button 
+                  onClick={handleSearch}
+                  className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 flex items-center justify-center"
+                >
                   <Search className="h-5 w-5 mr-2" />
-                  Search
+                  {t('home.search.button')}
                 </button>
               </div>
             </div>
