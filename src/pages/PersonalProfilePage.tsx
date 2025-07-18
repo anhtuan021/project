@@ -1,24 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Edit, Star } from 'lucide-react';
+import { Edit, Star, Calendar, MapPin, Clock, User } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import { useAuth } from '../contexts/AuthContext';
 
 const PersonalProfilePage = () => {
   const [selectedTab, setSelectedTab] = useState('upcoming');
   const [bookingHistory, setBookingHistory] = useState([]);
 
-  const { language, t } = useLanguage();
-
-  const user = {
-    name: 'Nguyễn Văn A',
-    email: 'nguyenvana@email.com',
-    avatar: 'https://images.pexels.com/photos/3763188/pexels-photo-3763188.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop',
-    joinDate: 'Tham gia từ tháng 3, 2024'
-  };
+  const { t } = useLanguage();
+  const { user } = useAuth();
 
   // Lấy dữ liệu booking từ localStorage khi component mount
   useEffect(() => {
     const bookings = JSON.parse(localStorage.getItem('userBookings') || '[]');
+    console.log('Loaded bookings:', bookings); // Debug log
     setBookingHistory(bookings.reverse()); // Đảo chiều để booking mới nhất lên trên
   }, []);
 
@@ -88,11 +84,11 @@ const PersonalProfilePage = () => {
 
   const getStatusColor = (status) => {
     switch (status) {
-      case 'completed':
+      case 'Completed':
         return 'text-green-600 bg-green-100';
-      case 'upcoming':
+      case 'Confirmed':
         return 'text-blue-600 bg-blue-100';
-      case 'cancelled':
+      case 'Cancelled':
         return 'text-red-600 bg-red-100';
       default:
         return 'text-gray-600 bg-gray-100';
@@ -101,16 +97,39 @@ const PersonalProfilePage = () => {
 
   const getStatusText = (status) => {
     switch (status) {
-      case 'completed':
-        return 'Đã hoàn thành';
-      case 'upcoming':
-        return 'Sắp tới';
-      case 'cancelled':
-        return 'Đã hủy';
+      case 'Completed':
+        return t('profile.status.completed');
+      case 'Confirmed':
+        return t('profile.status.upcoming');
+      case 'Cancelled':
+        return t('profile.status.cancelled');
       default:
         return status;
     }
   };
+
+  const formatDate = (dateString) => {
+    if (!dateString) return 'N/A';
+    try {
+      const date = new Date(dateString);
+      return date.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric'
+      });
+    } catch (error) {
+      return dateString;
+    }
+  };
+
+  // Filter bookings based on selected tab
+  const filteredBookings = bookingHistory.filter(booking => {
+    if (selectedTab === 'upcoming') {
+      return booking.status === 'Confirmed';
+    } else {
+      return booking.status === 'Completed';
+    }
+  });
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -120,14 +139,14 @@ const PersonalProfilePage = () => {
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center space-x-6">
               <img
-                src={user.avatar}
-                alt={user.name}
+                src={user?.avatar || 'https://images.pexels.com/photos/3763188/pexels-photo-3763188.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop'}
+                alt={user?.name || 'User'}
                 className="w-24 h-24 rounded-full object-cover"
               />
               <div>
-                <h1 className="text-2xl font-bold text-gray-900 mb-1">{user.name}</h1>
-                <p className="text-gray-600 mb-2">{user.email}</p>
-                <p className="text-sm text-gray-500">{user.joinDate}</p>
+                <h1 className="text-2xl font-bold text-gray-900 mb-1">{user?.name || 'User'}</h1>
+                <p className="text-gray-600 mb-2">{user?.email || 'user@example.com'}</p>
+                <p className="text-sm text-gray-500">{t('profile.joinedSince')} March 2024</p>
               </div>
             </div>
             <Link
@@ -170,55 +189,92 @@ const PersonalProfilePage = () => {
           {/* Booking History */}
           <div className="p-8">
             <h2 className="text-xl font-bold text-gray-900 mb-6">{t('profile.bookingHistory')}</h2>
-            <div className="space-y-4">
-              {bookingHistory
-                .filter(booking =>
-                  selectedTab === 'upcoming'
-                    ? booking.status === 'upcoming'
-                    : booking.status === 'completed'
-                )
-                .map((booking) => (
-                  <div key={booking.id} className="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:shadow-md transition-shadow">
-                    <div className="flex items-center space-x-4">
-                      <img
-                        src={booking.photographer?.image || booking.image}
-                        alt={booking.photographer?.name || booking.type}
-                        className="w-16 h-16 rounded-lg object-cover"
-                      />
-                      <div>
-                        <h3 className="font-medium text-gray-900">
-                          {booking.photographyType || booking.type}
-                        </h3>
-                        <p className="text-gray-600">
-                          {booking.photographer?.name || booking.photographer}
-                        </p>
-                        <p className="text-sm text-gray-500">
-                          {booking.bookingDetails?.date || booking.date}
-                        </p>
+            
+            {filteredBookings.length > 0 ? (
+              <div className="space-y-4">
+                {filteredBookings.map((booking) => (
+                  <div key={booking.id} className="border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow">
+                    <div className="flex items-start justify-between">
+                      <div className="flex items-start space-x-4">
+                        <img
+                          src={booking.photographer?.image || 'https://images.pexels.com/photos/3763188/pexels-photo-3763188.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'}
+                          alt={booking.photographer?.name || 'Photographer'}
+                          className="w-16 h-16 rounded-lg object-cover"
+                        />
+                        <div className="flex-1">
+                          <div className="flex items-center justify-between mb-2">
+                            <h3 className="text-lg font-semibold text-gray-900">
+                              {booking.photographyType || 'Photography Session'}
+                            </h3>
+                            <span className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(booking.status)}`}>
+                              {getStatusText(booking.status)}
+                            </span>
+                          </div>
+                          
+                          <div className="flex items-center text-gray-600 mb-2">
+                            <User className="h-4 w-4 mr-2" />
+                            <span className="font-medium">{booking.photographer?.name || 'Photographer'}</span>
+                          </div>
+                          
+                          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-gray-600">
+                            <div className="flex items-center">
+                              <Calendar className="h-4 w-4 mr-2" />
+                              <span>{formatDate(booking.bookingDetails?.date)}</span>
+                            </div>
+                            <div className="flex items-center">
+                              <Clock className="h-4 w-4 mr-2" />
+                              <span>{booking.bookingDetails?.time || 'N/A'}</span>
+                            </div>
+                            <div className="flex items-center">
+                              <MapPin className="h-4 w-4 mr-2" />
+                              <span className="truncate">{booking.bookingDetails?.location || 'N/A'}</span>
+                            </div>
+                          </div>
+                          
+                          <div className="flex items-center justify-between mt-4">
+                            <div className="text-sm text-gray-500">
+                              <span>Duration: {booking.bookingDetails?.duration || 'N/A'} hours</span>
+                              <span className="mx-2">•</span>
+                              <span>Reference: {booking.reference}</span>
+                            </div>
+                            <div className="text-lg font-bold text-blue-600">
+                              ${booking.totalCost || 0}
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                    <div className="flex items-center space-x-4">
-                      <span className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(booking.status)}`}>
-                        {getStatusText(booking.status)}
-                      </span>
+                    
+                    <div className="flex justify-end mt-4 pt-4 border-t border-gray-100">
                       <button className="text-blue-600 hover:text-blue-700 text-sm font-medium">
                         {t('profile.viewDetails')}
                       </button>
                     </div>
                   </div>
-                ))
-              }
-              {bookingHistory.filter(
-                booking =>
-                  selectedTab === 'upcoming'
-                    ? booking.status === 'upcoming'
-                    : booking.status === 'completed'
-                ).length === 0 && (
-                <div className="text-center text-gray-500 py-8">
-                  {t('profile.noBookingHistory')}
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-12">
+                <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Calendar className="h-8 w-8 text-gray-400" />
                 </div>
-              )}
-            </div>
+                <h3 className="text-lg font-medium text-gray-900 mb-2">
+                  {selectedTab === 'upcoming' ? 'No Upcoming Bookings' : 'No Completed Bookings'}
+                </h3>
+                <p className="text-gray-500 mb-6">
+                  {selectedTab === 'upcoming' 
+                    ? 'You don\'t have any upcoming photography sessions.' 
+                    : 'You haven\'t completed any photography sessions yet.'
+                  }
+                </p>
+                <Link
+                  to="/photographers"
+                  className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+                >
+                  Find Photographers
+                </Link>
+              </div>
+            )}
           </div>
         </div>
 
