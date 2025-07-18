@@ -19,6 +19,7 @@ import {
 import { useAuth } from "../contexts/AuthContext";
 import { useLanguage } from "../contexts/LanguageContext";
 import { getPhotographerById } from "../data/photographers";
+import { initializeSampleData } from "../utils/sampleData";
 
 const PhotographerDashboard = () => {
   const [selectedTab, setSelectedTab] = useState("overview");
