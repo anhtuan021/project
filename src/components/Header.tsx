@@ -198,11 +198,17 @@ const Header = () => {
                     </span>
                   </div>
                   <Link
-                    to="/profile"
+                    to={
+                      user?.userType === "photographer"
+                        ? "/photographer-dashboard"
+                        : "/profile"
+                    }
                     className="block text-gray-700 hover:text-blue-600 transition-colors"
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    {t("header.profile")}
+                    {user?.userType === "photographer"
+                      ? "Dashboard"
+                      : t("header.profile")}
                   </Link>
                   <button
                     onClick={() => {
