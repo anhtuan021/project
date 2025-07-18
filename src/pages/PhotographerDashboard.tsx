@@ -36,6 +36,9 @@ const PhotographerDashboard = () => {
 
   // Load booking requests from localStorage
   useEffect(() => {
+    // Initialize sample data first
+    initializeSampleData();
+
     const allBookings = JSON.parse(
       localStorage.getItem("userBookings") || "[]",
     );
