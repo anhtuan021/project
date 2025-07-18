@@ -1,8 +1,16 @@
-import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Camera, Menu, X, Globe, User, LogOut, ChevronDown } from 'lucide-react';
-import { useAuth } from '../contexts/AuthContext';
-import { useLanguage } from '../contexts/LanguageContext';
+import React, { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import {
+  Camera,
+  Menu,
+  X,
+  Globe,
+  User,
+  LogOut,
+  ChevronDown,
+} from "lucide-react";
+import { useAuth } from "../contexts/AuthContext";
+import { useLanguage } from "../contexts/LanguageContext";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -12,10 +20,10 @@ const Header = () => {
   const { language, setLanguage, t } = useLanguage();
 
   const navigation = [
-    { name: t('header.findPhotographers'), href: '/photographers' },
-    { name: t('header.booking'), href: '/booking' },
-    { name: t('header.aiFeatures'), href: '/ai-tools' },
-    { name: t('header.support'), href: '/support' }, 
+    { name: t("header.findPhotographers"), href: "/photographers" },
+    { name: t("header.booking"), href: "/booking" },
+    { name: t("header.aiFeatures"), href: "/ai-tools" },
+    { name: t("header.support"), href: "/support" },
   ];
 
   const isActive = (path: string) => location.pathname === path;
@@ -26,7 +34,7 @@ const Header = () => {
   };
 
   const toggleLanguage = () => {
-    setLanguage(language === 'en' ? 'vi' : 'en');
+    setLanguage(language === "en" ? "vi" : "en");
   };
 
   return (
@@ -38,7 +46,9 @@ const Header = () => {
             <div className="bg-gradient-to-r from-blue-600 to-indigo-600 p-2 rounded-lg">
               <Camera className="h-6 w-6 text-white" />
             </div>
-            <span className="text-xl font-bold text-gray-900">SnapMatch AI</span>
+            <span className="text-xl font-bold text-gray-900">
+              SnapMatch AI
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -49,8 +59,8 @@ const Header = () => {
                 to={item.href}
                 className={`text-sm font-medium transition-colors duration-200 ${
                   isActive(item.href)
-                    ? 'text-blue-600'
-                    : 'text-gray-700 hover:text-blue-600'
+                    ? "text-blue-600"
+                    : "text-gray-700 hover:text-blue-600"
                 }`}
               >
                 {item.name}
@@ -60,20 +70,23 @@ const Header = () => {
 
           {/* Right side actions */}
           <div className="hidden md:flex items-center space-x-4">
-            <button 
+            <button
               onClick={toggleLanguage}
               className="flex items-center space-x-2 text-sm text-gray-600 hover:text-blue-600 transition-colors"
             >
               <Globe className="h-4 w-4" />
-              <span>{language === 'en' ? 'English 🇺🇸' : 'Tiếng Việt 🇻🇳'}</span>
+              <span>{language === "en" ? "English 🇺🇸" : "Tiếng Việt 🇻🇳"}</span>
             </button>
-            
+
             {isAuthenticated ? (
               <div className="flex items-center space-x-4">
                 <span className="text-sm text-gray-600">
-                  {t('header.welcome')}, <span className="font-medium text-gray-900">{user?.name}</span>
+                  {t("header.welcome")},{" "}
+                  <span className="font-medium text-gray-900">
+                    {user?.name}
+                  </span>
                 </span>
-                
+
                 {/* User Menu */}
                 <div className="relative">
                   <button
@@ -87,23 +100,29 @@ const Header = () => {
                     />
                     <ChevronDown className="h-4 w-4" />
                   </button>
-                  
+
                   {isUserMenuOpen && (
                     <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-50">
                       <Link
-                        to="/profile"
+                        to={
+                          user?.userType === "photographer"
+                            ? "/photographer-dashboard"
+                            : "/profile"
+                        }
                         className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                         onClick={() => setIsUserMenuOpen(false)}
                       >
                         <User className="h-4 w-4 mr-2" />
-                        {t('header.profile')}
+                        {user?.userType === "photographer"
+                          ? "Dashboard"
+                          : t("header.profile")}
                       </Link>
                       <button
                         onClick={handleLogout}
                         className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                       >
                         <LogOut className="h-4 w-4 mr-2" />
-                        {t('header.logout')}
+                        {t("header.logout")}
                       </button>
                     </div>
                   )}
@@ -111,17 +130,17 @@ const Header = () => {
               </div>
             ) : (
               <>
-                <Link 
+                <Link
                   to="/login"
                   className="text-gray-700 hover:text-blue-600 transition-colors"
                 >
-                  {t('header.login')}
+                  {t("header.login")}
                 </Link>
-                <Link 
+                <Link
                   to="/signup"
                   className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
                 >
-                  {t('header.signup')}
+                  {t("header.signup")}
                 </Link>
               </>
             )}
@@ -155,7 +174,7 @@ const Header = () => {
                 {item.name}
               </Link>
             ))}
-            
+
             <div className="pt-4 border-t border-gray-200">
               {isAuthenticated ? (
                 <div className="space-y-3">
@@ -164,7 +183,9 @@ const Header = () => {
                     className="flex items-center space-x-2 text-gray-700 hover:text-blue-600 transition-colors"
                   >
                     <Globe className="h-4 w-4" />
-                    <span>{language === 'en' ? 'English 🇺🇸' : 'Tiếng Việt 🇻🇳'}</span>
+                    <span>
+                      {language === "en" ? "English 🇺🇸" : "Tiếng Việt 🇻🇳"}
+                    </span>
                   </button>
                   <div className="flex items-center space-x-3">
                     <img
@@ -172,14 +193,22 @@ const Header = () => {
                       alt={user?.name}
                       className="w-8 h-8 rounded-full object-cover"
                     />
-                    <span className="text-sm text-gray-900">{t('header.welcome')}, {user?.name}</span>
+                    <span className="text-sm text-gray-900">
+                      {t("header.welcome")}, {user?.name}
+                    </span>
                   </div>
                   <Link
-                    to="/profile"
+                    to={
+                      user?.userType === "photographer"
+                        ? "/photographer-dashboard"
+                        : "/profile"
+                    }
                     className="block text-gray-700 hover:text-blue-600 transition-colors"
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    {t('header.profile')}
+                    {user?.userType === "photographer"
+                      ? "Dashboard"
+                      : t("header.profile")}
                   </Link>
                   <button
                     onClick={() => {
@@ -188,7 +217,7 @@ const Header = () => {
                     }}
                     className="block text-gray-700 hover:text-blue-600 transition-colors"
                   >
-                    {t('header.logout')}
+                    {t("header.logout")}
                   </button>
                 </div>
               ) : (
@@ -198,21 +227,21 @@ const Header = () => {
                     className="flex items-center space-x-2 text-gray-700 hover:text-blue-600 transition-colors"
                   >
                     <Globe className="h-4 w-4" />
-                    <span>{language === 'en' ? 'EN' : 'VI'}</span>
+                    <span>{language === "en" ? "EN" : "VI"}</span>
                   </button>
-                  <Link 
+                  <Link
                     to="/login"
                     className="text-gray-700 hover:text-blue-600 transition-colors"
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    {t('header.login')}
+                    {t("header.login")}
                   </Link>
-                  <Link 
+                  <Link
                     to="/signup"
                     className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    {t('header.signup')}
+                    {t("header.signup")}
                   </Link>
                 </div>
               )}
