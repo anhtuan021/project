@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Lightbulb, Edit3, Upload, Sparkles, Palette, Eye, Download, Wand2 } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const AIToolsPage = () => {
+  const { t } = useLanguage();
   const [selectedTool, setSelectedTool] = useState('concept');
   const [conceptInput, setConceptInput] = useState('');
   const [generatedConcepts, setGeneratedConcepts] = useState([]);
@@ -114,10 +116,10 @@ const AIToolsPage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="text-center">
             <h1 className="text-3xl font-bold text-gray-900 mb-4">
-              AI-Powered Photography Tools
+              {t('aiTools.title')}
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Transform your photography workflow with our intelligent tools
+              {t('aiTools.subtitle')}
             </p>
           </div>
         </div>

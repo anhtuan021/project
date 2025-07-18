@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-// ... các import khác
+import { Check, MapPin, Calendar, Clock, User } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const BookingInvoicePage = () => {
+  const { t } = useLanguage();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -38,14 +40,13 @@ const BookingInvoicePage = () => {
         <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
           <div className="bg-gradient-to-r from-green-50 to-blue-50 p-8 text-center">
             <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
-              {/* icon Check */}
-              <svg /* icon here */></svg>
+              <Check className="h-8 w-8 text-white" />
             </div>
             <h1 className="text-3xl font-bold text-gray-900 mb-2">
-              Your Booking is Confirmed!
+              {t('invoice.confirmed')}
             </h1>
             <p className="text-gray-600">
-              Booking Reference: <span className="font-medium">{reference}</span>
+              {t('invoice.reference')}: <span className="font-medium">{reference}</span>
             </p>
           </div>
 

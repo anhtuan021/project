@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { Star, MapPin, Clock, Check, Camera, Users, Award, MessageCircle, Calendar, Shield } from 'lucide-react';
 import { getPhotographerById } from '../data/photographers';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const PhotographerProfilePage = () => {
+  const { t } = useLanguage();
   const [selectedTab, setSelectedTab] = useState('all');
   const { id } = useParams();
 
@@ -13,13 +15,13 @@ const PhotographerProfilePage = () => {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">Photographer Not Found</h1>
-          <p className="text-gray-600 mb-6">The photographer you're looking for doesn't exist.</p>
+          <h1 className="text-2xl font-bold text-gray-900 mb-4">{t('photographerProfile.notFound')}</h1>
+          <p className="text-gray-600 mb-6">{t('photographerProfile.notFoundDesc')}</p>
           <Link
             to="/photographers"
             className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
           >
-            Back to Photographers
+            {t('photographerProfile.backToPhotographers')}
           </Link>
         </div>
       </div>

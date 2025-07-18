@@ -3,8 +3,10 @@ import { Link, useSearchParams, useNavigate } from 'react-router-dom';
 import { Camera, Calendar, User, Users, Shirt, Heart, ArrowLeft, ArrowRight, MapPin, Clock } from 'lucide-react';
 import { getPhotographerById, getAllPhotographers } from '../data/photographers';
 import { useAuth } from '../contexts/AuthContext';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const BookingPage = () => {
+  const { t } = useLanguage();
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedPhotographyType, setSelectedPhotographyType] = useState('');
   const [budgetRange, setBudgetRange] = useState([100, 1000]);
@@ -125,13 +127,13 @@ const BookingPage = () => {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">Authentication Required</h1>
-          <p className="text-gray-600 mb-6">Please log in to book a photographer</p>
+          <h1 className="text-2xl font-bold text-gray-900 mb-4">{t('booking.authRequired')}</h1>
+          <p className="text-gray-600 mb-6">{t('booking.loginRequired')}</p>
           <Link
             to="/login"
             className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
           >
-            Go to Login
+            {t('booking.goToLogin')}
           </Link>
         </div>
       </div>

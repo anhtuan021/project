@@ -15,8 +15,10 @@ import {
   Globe,
   ChevronDown
 } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const SupportPage = () => {
+  const { t } = useLanguage();
   const [message, setMessage] = useState('');
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState('English');
@@ -100,7 +102,7 @@ const SupportPage = () => {
           {/* Sidebar */}
           <div className="lg:col-span-1">
             <div className="bg-white rounded-xl shadow-sm p-6 mb-6">
-              <h2 className="text-xl font-bold text-gray-900 mb-6">Support Center</h2>
+              <h2 className="text-xl font-bold text-gray-900 mb-6">{t('support.title')}</h2>
               
               <div className="space-y-2">
                 {supportCategories.map((category) => (

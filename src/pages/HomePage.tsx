@@ -59,11 +59,11 @@ const HomePage = () => {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16">
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-              Find Your Perfect
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600"> Photographer</span>
+              {t('home.hero.title')}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600"> {t('home.hero.titleHighlight')}</span>
             </h1>
             <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-              Connect with talented photographers worldwide. Book sessions, get AI-enhanced photos, and create memories that last forever.
+              {t('home.hero.subtitle')}
             </p>
             
             {/* Search Bar */}
@@ -73,7 +73,7 @@ const HomePage = () => {
                   <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
                   <input
                     type="text"
-                    placeholder="Location"
+                    placeholder={t('home.search.location')}
                     value={searchLocation}
                     onChange={(e) => setSearchLocation(e.target.value)}
                     className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
@@ -86,7 +86,7 @@ const HomePage = () => {
                     onChange={(e) => setSearchStyle(e.target.value)}
                     className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none"
                   >
-                    <option value="">Photography Style</option>
+                    <option value="">{t('home.search.style')}</option>
                     <option value="portrait">Portrait</option>
                     <option value="wedding">Wedding</option>
                     <option value="landscape">Landscape</option>
@@ -100,7 +100,7 @@ const HomePage = () => {
                     onChange={(e) => setSearchBudget(e.target.value)}
                     className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none"
                   >
-                    <option value="">Budget Range</option>
+                    <option value="">{t('home.search.budget')}</option>
                     <option value="0-50">$0 - $50</option>
                     <option value="50-100">$50 - $100</option>
                     <option value="100-200">$100 - $200</option>
@@ -121,19 +121,19 @@ const HomePage = () => {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
               <div className="text-center">
                 <div className="text-3xl font-bold text-blue-600 mb-2">10K+</div>
-                <div className="text-gray-600">Photographers</div>
+                <div className="text-gray-600">{t('home.stats.photographers')}</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-purple-600 mb-2">50K+</div>
-                <div className="text-gray-600">Photos Taken</div>
+                <div className="text-gray-600">{t('home.stats.photos')}</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-pink-600 mb-2">25K+</div>
-                <div className="text-gray-600">Happy Clients</div>
+                <div className="text-gray-600">{t('home.stats.clients')}</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-green-600 mb-2">4.9</div>
-                <div className="text-gray-600">Average Rating</div>
+                <div className="text-gray-600">{t('home.stats.rating')}</div>
               </div>
             </div>
           </div>
@@ -144,9 +144,9 @@ const HomePage = () => {
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Featured Photographers</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">{t('home.featured.title')}</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Discover talented photographers from around the world, each bringing their unique style and expertise to capture your special moments.
+              {t('home.featured.subtitle')}
             </p>
           </div>
           

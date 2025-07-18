@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { Search, Filter, Grid, Map, Star, Heart, MapPin } from 'lucide-react';
 import { getAllPhotographers } from '../data/photographers';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const PhotographerListingPage = () => {
+  const { t } = useLanguage();
   const [viewMode, setViewMode] = useState<'grid' | 'map'>('grid');
   const [searchTerm, setSearchTerm] = useState('');
   const [filters, setFilters] = useState({
@@ -106,8 +108,8 @@ const PhotographerListingPage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">Find Photographers</h1>
-              <p className="text-gray-600 mt-1">Discover talented photographers in your area</p>
+              <h1 className="text-3xl font-bold text-gray-900">{t('photographers.title')}</h1>
+              <p className="text-gray-600 mt-1">{t('photographers.subtitle')}</p>
             </div>
             
             {/* View Toggle */}
@@ -121,7 +123,7 @@ const PhotographerListingPage = () => {
                 }`}
               >
                 <Grid size={16} />
-                Grid
+                {t('photographers.grid')}
               </button>
               <button
                 onClick={() => setViewMode('map')}
@@ -132,7 +134,7 @@ const PhotographerListingPage = () => {
                 }`}
               >
                 <Map size={16} />
-                Map
+                {t('photographers.map')}
               </button>
             </div>
           </div>

@@ -259,19 +259,19 @@ const PersonalProfilePage = () => {
                   <Calendar className="h-8 w-8 text-gray-400" />
                 </div>
                 <h3 className="text-lg font-medium text-gray-900 mb-2">
-                  {selectedTab === 'upcoming' ? 'No Upcoming Bookings' : 'No Completed Bookings'}
+                  {selectedTab === 'upcoming' ? t('profile.noUpcoming') : t('profile.noCompleted')}
                 </h3>
                 <p className="text-gray-500 mb-6">
                   {selectedTab === 'upcoming' 
-                    ? 'You don\'t have any upcoming photography sessions.' 
-                    : 'You haven\'t completed any photography sessions yet.'
+                    ? t('profile.noUpcomingDesc')
+                    : t('profile.noCompletedDesc')
                   }
                 </p>
                 <Link
                   to="/photographers"
                   className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
                 >
-                  Find Photographers
+                  {t('profile.findPhotographers')}
                 </Link>
               </div>
             )}

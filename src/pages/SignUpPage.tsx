@@ -86,15 +86,15 @@ const SignUpPage = () => {
         <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-blue-600 to-indigo-700 p-12 items-center justify-center">
           <div className="max-w-md text-white">
             <h1 className="text-4xl font-bold mb-6">
-              {language === 'vi' ? 'Tham gia thế giới sáng tạo của SnapMatch AI' : 'Join the creative world of SnapMatch AI'}
+              {t('signup.leftSide.title')}
             </h1>
             <p className="text-xl text-blue-100 mb-8">
-              {language === 'vi' ? 'Biến ý tưởng của bạn thành hiện thực với sự sáng tạo được hỗ trợ bởi AI' : 'Transform your ideas into reality with AI-powered creativity'}
+              {t('signup.leftSide.subtitle')}
             </p>
             
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center">
               <h2 className="text-2xl font-bold mb-4 text-blue-100">
-                {language === 'vi' ? 'Tạo ra những thiết kế tuyệt vời với SnapMatch AI' : 'Create amazing designs with SnapMatch AI'}
+                {t('signup.leftSide.feature')}
               </h2>
             </div>
           </div>
