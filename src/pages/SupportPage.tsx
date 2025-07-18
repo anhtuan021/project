@@ -27,62 +27,62 @@ const SupportPage = () => {
     {
       id: 'getting-started',
       icon: HelpCircle,
-      title: 'Getting Started',
-      description: 'Learn the basics of SnapMatch AI'
+      title: t('support.gettingStarted'),
+      description: t('support.gettingStartedDesc')
     },
     {
       id: 'account-settings',
       icon: Settings,
-      title: 'Account Settings',
-      description: 'Manage your account preferences'
+      title: t('support.accountSettings'),
+      description: t('support.accountSettingsDesc')
     },
     {
       id: 'matching-process',
       icon: Users,
-      title: 'Matching Process',
-      description: 'How our AI matching works'
+      title: t('support.matchingProcess'),
+      description: t('support.matchingProcessDesc')
     },
     {
       id: 'pricing-plans',
       icon: CreditCard,
-      title: 'Pricing & Plans',
-      description: 'Billing and subscription info'
+      title: t('support.pricingPlans'),
+      description: t('support.pricingPlansDesc')
     },
     {
       id: 'faq',
       icon: FileText,
-      title: 'FAQ',
-      description: 'Frequently asked questions'
+      title: t('support.faq'),
+      description: t('support.faqDesc')
     }
   ];
 
   const helpfulResources = [
-    { title: 'Getting Started Guide', href: '#' },
-    { title: 'Account Security', href: '#' },
-    { title: 'Privacy Settings', href: '#' },
-    { title: 'Payment Methods', href: '#' },
-    { title: 'Terms of Service', href: '#' }
+    { title: t('support.gettingStartedGuide'), href: '#' },
+    { title: t('support.accountSecurity'), href: '#' },
+    { title: t('support.privacySettings'), href: '#' },
+    { title: t('support.paymentMethods'), href: '#' },
+    { title: t('support.termsOfService'), href: '#' }
   ];
 
   const quickActions = [
-    'How do I book?',
-    'What\'s the price range?',
-    'How does the AI matching work?',
-    'Account setup help'
+    t('support.quickActions.booking'),
+    t('support.quickActions.price'),
+    t('support.quickActions.matching'),
+    t('support.quickActions.setup')
   ];
 
   const chatMessages = [
     {
       id: 1,
       type: 'bot',
-      message: "Hello! I'm your SnapMatch AI assistant. How can I help you today?",
+      message: t('support.aiGreeting'),
       time: '9:41 AM',
       avatar: 'https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
     },
     {
       id: 2,
       type: 'user',
-      message: "I'd like to know more about the AI matching process.",
+      message: t('support.userMessage'),
       time: '9:42 AM'
     }
   ];
@@ -122,7 +122,7 @@ const SupportPage = () => {
 
             {/* Contact Information */}
             <div className="bg-white rounded-xl shadow-sm p-6">
-              <h3 className="font-semibold text-gray-900 mb-4">Contact Information</h3>
+              <h3 className="font-semibold text-gray-900 mb-4">{t('support.contactInfo')}</h3>
               <div className="space-y-3">
                 <div className="flex items-center space-x-3 text-sm text-gray-600">
                   <Mail className="h-4 w-4" />
@@ -147,14 +147,14 @@ const SupportPage = () => {
                     <span className="text-white font-medium text-sm">AI</span>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900">Chat with SnapMatch AI</h3>
+                    <h3 className="font-semibold text-gray-900">{t('support.chatWithAI')}</h3>
                     <div className="flex items-center space-x-2 text-sm text-gray-500">
                       <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                      <span>Online</span>
+                      <span>{t('support.online')}</span>
                     </div>
                   </div>
                 </div>
-                <p className="text-sm text-gray-500 mt-2">Usually responds in 1 minute</p>
+                <p className="text-sm text-gray-500 mt-2">{t('support.respondsIn')}</p>
               </div>
 
               {/* Chat Messages */}
@@ -213,7 +213,7 @@ const SupportPage = () => {
                       type="text"
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
-                      placeholder="Type your message here..."
+                      placeholder={t('support.typeMessage')}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
                     />
@@ -235,7 +235,7 @@ const SupportPage = () => {
           {/* Right Sidebar */}
           <div className="lg:col-span-1">
             <div className="bg-white rounded-xl shadow-sm p-6 mb-6">
-              <h3 className="font-semibold text-gray-900 mb-4">Helpful Resources</h3>
+              <h3 className="font-semibold text-gray-900 mb-4">{t('support.helpfulResources')}</h3>
               <div className="space-y-3">
                 {helpfulResources.map((resource, index) => (
                   <Link
@@ -250,12 +250,12 @@ const SupportPage = () => {
             </div>
 
             <div className="bg-white rounded-xl shadow-sm p-6">
-              <h3 className="font-semibold text-gray-900 mb-4">Need More Help?</h3>
+              <h3 className="font-semibold text-gray-900 mb-4">{t('support.needMoreHelp')}</h3>
               <p className="text-gray-600 text-sm mb-4">
-                Can't find what you're looking for? Contact our support team.
+                {t('support.cantFind')}
               </p>
               <button className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 transition-colors font-medium">
-                Contact Support
+                {t('support.contactSupport')}
               </button>
             </div>
           </div>
@@ -267,9 +267,9 @@ const SupportPage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-6 text-sm text-gray-600">
-              <Link to="#" className="hover:text-blue-600 transition-colors">Privacy Policy</Link>
-              <Link to="#" className="hover:text-blue-600 transition-colors">Terms of Service</Link>
-              <Link to="#" className="hover:text-blue-600 transition-colors">Help Center</Link>
+              <Link to="#" className="hover:text-blue-600 transition-colors">{t('support.privacyPolicy')}</Link>
+              <Link to="#" className="hover:text-blue-600 transition-colors">{t('support.termsOfService')}</Link>
+              <Link to="#" className="hover:text-blue-600 transition-colors">{t('support.helpCenter')}</Link>
             </div>
             <div className="flex items-center space-x-4">
               <span className="text-sm text-gray-500">© 2024 SnapMatch AI. All rights reserved.</span>

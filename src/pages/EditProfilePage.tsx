@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Camera, ChevronDown, Sun, Moon, MessageCircle, HelpCircle } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const EditProfilePage = () => {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     fullName: 'Lily Emily',
     email: 'Lily.Emily@example.com',
@@ -74,14 +76,14 @@ const EditProfilePage = () => {
                 onClick={handlePhotoChange}
                 className="mt-3 text-blue-600 hover:text-blue-700 text-sm font-medium"
               >
-                Change Photo
+                {t('editProfile.changePhoto')}
               </button>
             </div>
 
             {/* Full Name */}
             <div>
               <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-2">
-                Full Name
+                {t('editProfile.fullName')}
               </label>
               <input
                 id="fullName"
@@ -96,7 +98,7 @@ const EditProfilePage = () => {
             {/* Email Address */}
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                Email Address
+                {t('editProfile.email')}
               </label>
               <input
                 id="email"
@@ -111,7 +113,7 @@ const EditProfilePage = () => {
             {/* Phone Number */}
             <div>
               <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
-                Phone Number (Optional)
+                {t('editProfile.phone')}
               </label>
               <div className="flex">
                 <select className="px-3 py-3 border border-gray-300 rounded-l-lg bg-gray-50 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
@@ -134,21 +136,21 @@ const EditProfilePage = () => {
             {/* Password */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Password
+                {t('editProfile.password')}
               </label>
               <button
                 type="button"
                 onClick={handlePasswordChange}
                 className="text-blue-600 hover:text-blue-700 text-sm font-medium"
               >
-                Change Password
+                {t('editProfile.changePassword')}
               </button>
             </div>
 
             {/* Language */}
             <div>
               <label htmlFor="language" className="block text-sm font-medium text-gray-700 mb-2">
-                Language
+                {t('editProfile.language')}
               </label>
               <div className="relative">
                 <select
@@ -158,10 +160,10 @@ const EditProfilePage = () => {
                   onChange={handleInputChange}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none"
                 >
-                  <option value="en">English</option>
-                  <option value="vi">Vietnamese</option>
-                  <option value="es">Spanish</option>
-                  <option value="fr">French</option>
+                  <option value="en">{t('editProfile.english')}</option>
+                  <option value="vi">{t('editProfile.vietnamese')}</option>
+                  <option value="es">{t('editProfile.spanish')}</option>
+                  <option value="fr">{t('editProfile.french')}</option>
                 </select>
                 <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400 pointer-events-none" />
               </div>
@@ -170,12 +172,12 @@ const EditProfilePage = () => {
             {/* Theme */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-3">
-                Theme
+                {t('editProfile.theme')}
               </label>
               <div className="flex items-center justify-between p-4 border border-gray-300 rounded-lg">
                 <div className="flex items-center space-x-3">
                   <Sun className="h-5 w-5 text-gray-600" />
-                  <span className="text-gray-900">Light</span>
+                  <span className="text-gray-900">{t('editProfile.light')}</span>
                 </div>
                 <label className="relative inline-flex items-center cursor-pointer">
                   <input
@@ -195,14 +197,14 @@ const EditProfilePage = () => {
                 type="submit"
                 className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 transition-colors font-medium"
               >
-                Save Changes
+                {t('editProfile.saveChanges')}
               </button>
               <button
                 type="button"
                 onClick={handleCancel}
                 className="w-full bg-gray-100 text-gray-700 py-3 px-4 rounded-lg hover:bg-gray-200 transition-colors font-medium"
               >
-                Cancel
+                {t('editProfile.cancel')}
               </button>
             </div>
           </form>
@@ -211,11 +213,11 @@ const EditProfilePage = () => {
           <div className="flex items-center justify-between mt-8 pt-6 border-t border-gray-200">
             <div className="flex items-center space-x-2 text-gray-600">
               <HelpCircle className="h-5 w-5" />
-              <span className="text-sm">Need assistance?</span>
+              <span className="text-sm">{t('editProfile.needAssistance')}</span>
             </div>
             <button className="flex items-center space-x-2 text-blue-600 hover:text-blue-700 transition-colors">
               <MessageCircle className="h-5 w-5" />
-              <span className="text-sm font-medium">Chat with AI Support</span>
+              <span className="text-sm font-medium">{t('editProfile.chatSupport')}</span>
             </button>
           </div>
 
@@ -225,7 +227,7 @@ const EditProfilePage = () => {
               <div className="w-5 h-5 bg-white rounded-full flex items-center justify-center">
                 <span className="text-green-500 text-xs">✓</span>
               </div>
-              <span>Profile updated successfully!</span>
+              <span>{t('editProfile.success')}</span>
               <button
                 onClick={() => setShowSuccessMessage(false)}
                 className="ml-2 text-white hover:text-gray-200"
