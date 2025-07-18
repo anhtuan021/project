@@ -108,8 +108,8 @@ const PhotographerListingPage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">{t('photographers.title')}</h1>
-              <p className="text-gray-600 mt-1">{t('photographers.subtitle')}</p>
+              <h1 className="text-3xl font-bold text-gray-900">{t('listing.title')}</h1>
+              <p className="text-gray-600 mt-1">{t('listing.subtitle')}</p>
             </div>
             
             {/* View Toggle */}
@@ -123,7 +123,7 @@ const PhotographerListingPage = () => {
                 }`}
               >
                 <Grid size={16} />
-                {t('photographers.grid')}
+                {t('listing.grid')}
               </button>
               <button
                 onClick={() => setViewMode('map')}
@@ -134,7 +134,7 @@ const PhotographerListingPage = () => {
                 }`}
               >
                 <Map size={16} />
-                {t('photographers.map')}
+                {t('listing.map')}
               </button>
             </div>
           </div>

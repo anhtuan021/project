@@ -50,7 +50,7 @@ export const photographers: Photographer[] = [
     image: 'https://images.pexels.com/photos/3763188/pexels-photo-3763188.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop',
     about: 'Award-winning photographer specializing in weddings and portraits. With over 8 years of experience, I create timeless images that tell your unique story through a modern lens. Based in New York City, I work with both natural and studio lighting.',
     specialties: ['Wedding Photography', 'Portrait Photography', 'Fashion Photography'],
-    hourlyRate: '$75/hour',
+    hourlyRate: '$5/hour',
     availability: 'Available Now',
     description: 'Award-winning photographer specializing in weddings and portraits. Based in New York City.',
     portfolioItems: [
@@ -95,7 +95,7 @@ export const photographers: Photographer[] = [
     image: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop',
     about: 'Creative commercial photographer with 6+ years of experience. I specialize in commercial and event photography, bringing creativity and professionalism to every project. Available nationwide for assignments.',
     specialties: ['Commercial Photography', 'Event Photography', 'Product Photography'],
-    hourlyRate: '$85/hour',
+    hourlyRate: '$8/hour',
     availability: 'Available Tomorrow',
     description: 'Creative commercial photographer with 6+ years of experience. Available nationwide.',
     portfolioItems: [
@@ -139,7 +139,7 @@ export const photographers: Photographer[] = [
     image: 'https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop',
     about: 'Fashion and portrait photographer based in Los Angeles. With 5 years of experience, I specialize in creating stunning fashion editorials and captivating portraits that showcase individual style and personality.',
     specialties: ['Portrait Photography', 'Fashion Photography', 'Editorial Photography'],
-    hourlyRate: '$90/hour',
+    hourlyRate: '$9/hour',
     availability: 'Available Next Week',
     description: 'Specializing in portrait and fashion photography. Based in Los Angeles.',
     portfolioItems: [
@@ -182,7 +182,7 @@ export const photographers: Photographer[] = [
     image: 'https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop',
     about: 'Experienced wedding and event photographer with 10 years in the industry. Based in Las Vegas, I capture the magic of your special moments with a blend of traditional and contemporary styles.',
     specialties: ['Wedding Photography', 'Event Photography', 'Couple Photography'],
-    hourlyRate: '$70/hour',
+    hourlyRate: '$7/hour',
     availability: 'Available Now',
     description: 'Experienced wedding and event photographer. Based in Las Vegas.',
     portfolioItems: [
@@ -225,7 +225,7 @@ export const photographers: Photographer[] = [
     image: 'https://images.pexels.com/photos/3184639/pexels-photo-3184639.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop',
     about: 'Family and portrait photographer with a passion for natural light photography. With 7 years of experience, I specialize in capturing authentic family moments and beautiful portraits in natural settings.',
     specialties: ['Portrait Photography', 'Family Photography', 'Children Photography'],
-    hourlyRate: '$80/hour',
+    hourlyRate: '$3/hour',
     availability: 'Available Tomorrow',
     description: 'Family and portrait photographer with a passion for natural light.',
     portfolioItems: [
@@ -268,7 +268,7 @@ export const photographers: Photographer[] = [
     image: 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop',
     about: 'Commercial and product photographer based in Berlin. With 6 years of experience, I help brands showcase their products through compelling visual storytelling and high-quality commercial photography.',
     specialties: ['Commercial Photography', 'Product Photography', 'Brand Photography'],
-    hourlyRate: '$65/hour',
+    hourlyRate: '$5/hour',
     availability: 'Available Next Week',
     description: 'Commercial and product photographer based in Berlin.',
     portfolioItems: [
