@@ -28,8 +28,12 @@ const LoginPage = () => {
           email.includes("photographer") ||
           email === "lily@photographer.com" ||
           email === "michael@photographer.com";
+        
+        const isAdmin = email === "admin@snapmatch.ai";
 
-        if (isPhotographer) {
+        if (isAdmin) {
+          navigate("/admin"); // Redirect admin to admin dashboard
+        } else if (isPhotographer) {
           navigate("/photographer-dashboard"); // Redirect photographers to dashboard
         } else {
           navigate("/"); // Redirect customers to homepage

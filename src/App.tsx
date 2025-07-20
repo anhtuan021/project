@@ -16,6 +16,7 @@ import SignUpPage from "./pages/SignUpPage";
 import EditProfilePage from "./pages/EditProfilePage";
 import BookingInvoicePage from "./pages/BookingInvoicePage";
 import PhotographerDashboard from "./pages/PhotographerDashboard";
+import AdminDashboard from "./pages/AdminDashboard";
 
 function App() {
   return (
@@ -63,6 +64,10 @@ function App() {
                         <Route
                           path="/edit-profile"
                           element={<EditProfilePage />}
+                        />
+                        <Route
+                          path="/admin"
+                          element={<AdminDashboard />}
                         />
                       </Routes>
                     </main>

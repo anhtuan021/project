@@ -4,12 +4,15 @@ import { Edit, Star, Calendar, MapPin, Clock, User } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useAuth } from '../contexts/AuthContext';
 import BookingDetailsModal from '../components/BookingDetailsModal';
+import FeedbackModal from '../components/FeedbackModal';
 
 const PersonalProfilePage = () => {
   const [selectedTab, setSelectedTab] = useState('upcoming');
   const [bookingHistory, setBookingHistory] = useState([]);
   const [selectedBooking, setSelectedBooking] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showFeedbackModal, setShowFeedbackModal] = useState(false);
+  const [feedbackBooking, setFeedbackBooking] = useState(null);
 
   const { t } = useLanguage();
   const { user } = useAuth();
@@ -150,6 +153,21 @@ const PersonalProfilePage = () => {
     setIsModalOpen(true);
   };
 
+  const handleLeaveFeedback = (booking: any) => {
+    setFeedbackBooking(booking);
+    setShowFeedbackModal(true);
+  };
+
+  const handleSubmitFeedback = (feedback: any) => {
+    // Save feedback to localStorage (in real app, send to API)
+    const existingFeedbacks = JSON.parse(localStorage.getItem('feedbacks') || '[]');
+    existingFeedbacks.push(feedback);
+    localStorage.setItem('feedbacks', JSON.stringify(existingFeedbacks));
+    
+    // Show success message
+    alert('Cảm ơn bạn đã đánh giá! Feedback của bạn đã được gửi thành công.');
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -265,6 +283,14 @@ const PersonalProfilePage = () => {
                     </div>
                     
                     <div className="flex justify-end mt-4 pt-4 border-t border-gray-100">
+                      {booking.status === 'Completed' && (
+                        <button 
+                          onClick={() => handleLeaveFeedback(booking)}
+                          className="text-green-600 hover:text-green-700 text-sm font-medium mr-4"
+                        >
+                          Đánh giá
+                        </button>
+                      )}
                       <button 
                         onClick={() => handleViewDetails(booking)}
                         className="text-blue-600 hover:text-blue-700 text-sm font-medium"
@@ -349,6 +375,14 @@ const PersonalProfilePage = () => {
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         userType="customer"
+      />
+
+      {/* Feedback Modal */}
+      <FeedbackModal
+        booking={feedbackBooking}
+        isOpen={showFeedbackModal}
+        onClose={() => setShowFeedbackModal(false)}
+        onSubmit={handleSubmitFeedback}
       />
     </div>
   );

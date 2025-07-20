@@ -53,7 +53,22 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
-      // Mock user data - trong thực tế sẽ lấy từ API
+      // Check for admin login
+      if (email === 'admin@snapmatch.ai' && password === 'admin123') {
+        const adminData: User = {
+          id: 'admin',
+          name: 'Admin User',
+          email: email,
+          avatar: 'https://images.pexels.com/photos/3763188/pexels-photo-3763188.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop',
+          userType: 'admin' as any,
+        };
+        
+        setUser(adminData);
+        setIsAuthenticated(true);
+        localStorage.setItem('user', JSON.stringify(adminData));
+        return true;
+      }
+      
       // Check if it's a photographer email (for demo purposes)
       const isPhotographer =
         email.includes("photographer") ||
