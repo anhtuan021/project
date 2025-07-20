@@ -3,10 +3,13 @@ import { Link } from 'react-router-dom';
 import { Edit, Star, Calendar, MapPin, Clock, User } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useAuth } from '../contexts/AuthContext';
+import BookingDetailsModal from '../components/BookingDetailsModal';
 
 const PersonalProfilePage = () => {
   const [selectedTab, setSelectedTab] = useState('upcoming');
   const [bookingHistory, setBookingHistory] = useState([]);
+  const [selectedBooking, setSelectedBooking] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { t } = useLanguage();
   const { user } = useAuth();
@@ -131,6 +134,22 @@ const PersonalProfilePage = () => {
     }
   });
 
+  const handleViewDetails = (booking: any) => {
+    // Add sample customer info and additional details for demo
+    const enhancedBooking = {
+      ...booking,
+      customerInfo: {
+        name: user?.name || 'Khách hàng',
+        email: user?.email || 'customer@example.com',
+        phone: '+84 123 456 789'
+      },
+      conceptRequirements: 'Chụp ảnh tự nhiên, phong cách hiện đại với ánh sáng tự nhiên. Tập trung vào cảm xúc và khoảnh khắc chân thực.',
+      specialNotes: booking.bookingDetails?.notes || 'Vui lòng đến đúng giờ. Mang theo trang phục dự phòng. Liên hệ trước 30 phút nếu có thay đổi.'
+    };
+    setSelectedBooking(enhancedBooking);
+    setIsModalOpen(true);
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -246,7 +265,10 @@ const PersonalProfilePage = () => {
                     </div>
                     
                     <div className="flex justify-end mt-4 pt-4 border-t border-gray-100">
-                      <button className="text-blue-600 hover:text-blue-700 text-sm font-medium">
+                      <button 
+                        onClick={() => handleViewDetails(booking)}
+                        className="text-blue-600 hover:text-blue-700 text-sm font-medium"
+                      >
                         {t('profile.viewDetails')}
                       </button>
                     </div>
@@ -320,6 +342,14 @@ const PersonalProfilePage = () => {
           </div>
         </div>
       </div>
+
+      {/* Booking Details Modal */}
+      <BookingDetailsModal
+        booking={selectedBooking}
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        userType="customer"
+      />
     </div>
   );
 };

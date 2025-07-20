@@ -20,11 +20,14 @@ import { useAuth } from "../contexts/AuthContext";
 import { useLanguage } from "../contexts/LanguageContext";
 import { getPhotographerById } from "../data/photographers";
 import { initializeSampleData } from "../utils/sampleData";
+import BookingDetailsModal from "../components/BookingDetailsModal";
 
 const PhotographerDashboard = () => {
   const [selectedTab, setSelectedTab] = useState("overview");
   const [bookingRequests, setBookingRequests] = useState([]);
   const [concepts, setConcepts] = useState([]);
+  const [selectedBooking, setSelectedBooking] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { user } = useAuth();
   const { t } = useLanguage();
@@ -95,6 +98,22 @@ const PhotographerDashboard = () => {
     } catch (error) {
       return dateString;
     }
+  };
+
+  const handleViewDetails = (booking: any) => {
+    // Add sample customer info and additional details for demo
+    const enhancedBooking = {
+      ...booking,
+      customerInfo: {
+        name: 'Nguyễn Văn A',
+        email: 'customer@example.com',
+        phone: '+84 123 456 789'
+      },
+      conceptRequirements: 'Chụp ảnh cưới phong cách vintage, tông màu ấm. Muốn có những khoảnh khắc tự nhiên và lãng mạn. Ưu tiên ánh sáng golden hour.',
+      specialNotes: booking.bookingDetails?.notes || 'Cô dâu có thể bị dị ứng với một số loại hoa. Vui lòng chuẩn bị backup location trong trường hợp thời tiết xấu.'
+    };
+    setSelectedBooking(enhancedBooking);
+    setIsModalOpen(true);
   };
 
   const sampleConcepts =
@@ -495,7 +514,13 @@ const PhotographerDashboard = () => {
                             <MessageSquare className="h-4 w-4" />
                             <span>Nhắn tin</span>
                           </button>
-                          <button className="text-blue-600 hover:text-blue-700 text-sm font-medium">
+                          <button 
+                            onClick={() => handleViewDetails(booking)}
+                            className="text-blue-600 hover:text-blue-700 text-sm font-medium"
+                          >
+                            onClick={() => handleViewDetails(booking)}
+                            className="text-blue-600 hover:text-blue-700 text-sm font-medium"
+                          >
                             Xem chi tiết
                           </button>
                         </div>
@@ -577,6 +602,14 @@ const PhotographerDashboard = () => {
           </div>
         </div>
       </div>
+
+      {/* Booking Details Modal */}
+      <BookingDetailsModal
+        booking={selectedBooking}
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        userType="photographer"
+      />
     </div>
   );
 };

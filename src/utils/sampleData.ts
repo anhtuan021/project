@@ -14,6 +14,13 @@ export const initializeSampleData = () => {
       },
       totalCost: 800,
       reference: "WED-001",
+      customerInfo: {
+        name: "Nguyễn Văn A",
+        email: "customer@example.com",
+        phone: "+84 123 456 789"
+      },
+      conceptRequirements: "Chụp ảnh cưới phong cách vintage, tông màu ấm. Muốn có những khoảnh khắc tự nhiên và lãng mạn.",
+      specialNotes: "Cô dâu có thể bị dị ứng với một số loại hoa. Vui lòng chuẩn bị backup location."
     },
     {
       id: "booking_002",
@@ -28,6 +35,13 @@ export const initializeSampleData = () => {
       },
       totalCost: 300,
       reference: "POR-002",
+      customerInfo: {
+        name: "Trần Thị B",
+        email: "tran.b@example.com", 
+        phone: "+84 987 654 321"
+      },
+      conceptRequirements: "Chụp ảnh chân dung nghệ thuật, phong cách hiện đại với ánh sáng studio.",
+      specialNotes: "Khách hàng muốn có nhiều góc chụp khác nhau và hiệu ứng ánh sáng đẹp."
     },
     {
       id: "booking_003",
@@ -42,6 +56,13 @@ export const initializeSampleData = () => {
       },
       totalCost: 450,
       reference: "FAM-003",
+      customerInfo: {
+        name: "Lê Văn C",
+        email: "le.c@example.com",
+        phone: "+84 555 123 456"
+      },
+      conceptRequirements: "Chụp ảnh gia đình ngoài trời, tự nhiên và ấm áp trong môi trường công viên.",
+      specialNotes: "Có 2 trẻ nhỏ (3 và 5 tuổi), cần kiên nhẫn và có kinh nghiệm chụp ảnh trẻ em."
     },
   ];
 
