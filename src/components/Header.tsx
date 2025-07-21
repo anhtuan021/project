@@ -186,6 +186,7 @@ const Header = () => {
           <div className="px-4 py-3 space-y-3">
             {navigation.map((item) => (
               <Link
+
                 {user?.userType === 'photographer' && (
                   <div className="flex items-center justify-between">
                     <span className="text-gray-700">Thông báo</span>
