@@ -4,38 +4,40 @@ import { Camera, Instagram, Facebook, Twitter, Linkedin } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 
 const Footer = () => {
+  const { t } = useLanguage();
+
   const footerSections = [
     {
-      title: 'Quick Links',
+      title: t('footer.quickLinks'),
       links: [
-        { name: 'Find Photographers', href: '/photographers' },
-        { name: 'AI Features', href: '/ai-tools' },
+        { name: t('footer.findPhotographers'), href: '/photographers' },
+        { name: t('footer.aiFeatures'), href: '/ai-tools' },
       ],
     },
     {
-      title: 'Resources',
+      title: t('footer.resources'),
       links: [
-        { name: 'Blog', href: '#' },
-        { name: 'Photography Tips', href: '#' },
-        { name: 'Success Stories', href: '#' },
-        { name: 'Help Center', href: '#' },
+        { name: t('footer.blog'), href: '#' },
+        { name: t('footer.photographyTips'), href: '#' },
+        { name: t('footer.successStories'), href: '#' },
+        { name: t('footer.helpCenter'), href: '#' },
       ],
     },
     {
-      title: 'Support',
+      title: t('footer.support'),
       links: [
-        { name: 'Help Center', href: '#' },
-        { name: 'Terms of Service', href: '#' },
-        { name: 'Privacy Policy', href: '#' },
-        { name: 'Contact Us', href: '#' },
+        { name: t('footer.helpCenter'), href: '#' },
+        { name: t('footer.termsOfService'), href: '#' },
+        { name: t('footer.privacyPolicy'), href: '#' },
+        { name: t('footer.contactUs'), href: '#' },
       ],
     },
     {
-      title: 'Connect',
+      title: t('footer.connect'),
       links: [
-        { name: 'support@snapmatch.ai', href: 'mailto:support@snapmatch.ai' },
-        { name: '+84 (777) 123-45555', href: 'tel:+151234572567' },
-        { name: 'Viet Nam, Quy Nhon City', href: '#' },
+        { name: t('footer.email'), href: 'mailto:support@snapmatch.ai' },
+        { name: t('footer.phone'), href: 'tel:+151234572567' },
+        { name: t('footer.address'), href: '#' },
       ],
     },
   ];
@@ -60,8 +62,8 @@ const Footer = () => {
               </div>
               <span className="text-xl font-bold">SnapMatch AI</span>
             </Link>
-            <p className="text-gray-400 text-sm mb-6">
-              Connecting photographers and clients through AI-powered matching.
+                        <p className="text-gray-400 text-sm mb-6">
+              {t('footer.description')}
             </p>
             <div className="flex space-x-4">
               {socialLinks.map((social) => (
@@ -99,8 +101,8 @@ const Footer = () => {
 
         {/* Bottom section */}
         <div className="border-t border-gray-800 mt-12 pt-8 text-center">
-          <p className="text-gray-400 text-sm">
-            © 2024 SnapMatch AI. All rights reserved.
+                    <p className="text-gray-400 text-sm">
+            {t('footer.copyright')}
           </p>
         </div>
       </div>
