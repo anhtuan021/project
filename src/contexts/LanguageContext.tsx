@@ -582,33 +582,7 @@ const translations = {
     'booking.hoursText': 'hours',
     'booking.hoursMultiplier': 'hours ×',
 
-    // AI Tools Page Additional
-    'aiTools.conceptGenerator': 'Concept Generator',
-    'aiTools.conceptGeneratorDesc': 'Generate creative photography concepts from text',
-    'aiTools.autoEditingTool': 'Auto-Editing Tool',
-    'aiTools.autoEditingToolDesc': 'AI-powered photo editing and enhancement',
-    'aiTools.styleMatcher': 'Style Matcher',
-    'aiTools.styleMatcherDesc': 'Find photographers with matching aesthetics',
-    'aiTools.aiTools': 'AI Tools',
-    'aiTools.dragDropPhoto': 'Drag and drop your photo here',
-    'aiTools.orBrowseFiles': 'or browse files',
-    'aiTools.browseFiles': 'Browse Files',
-    'aiTools.enhancedPreview': 'Enhanced photo will appear here',
-    'aiTools.uploadReference': 'Upload a reference photo',
-    'aiTools.styleTags.wedding': '#Wedding',
-    'aiTools.styleTags.portrait': '#Portrait',
-    'aiTools.styleTags.vintage': '#Vintage',
-    'aiTools.styleTags.modern': '#Modern',
-    'aiTools.styleTags.romantic': '#Romantic',
-    'aiTools.styleTags.elegant': '#Elegant',
-
-    // Photographer Listing Additional
-    'listing.found': 'found',
-    'listing.verified': 'Verified',
-    'listing.mapComingSoon': 'Map view coming soon',
-    'listing.mapDescription': 'Interactive map with photographer locations',
-    'listing.noResults': 'No photographers found',
-    'listing.noResultsDesc': 'Try adjusting your search criteria or filters',
+    
 
     // Photographer Profile Additional
     'photographerProfile.allWork': 'All Work',
@@ -683,8 +657,8 @@ const translations = {
     'home.stats.rating': 'Đánh Giá Trung Bình',
     'home.featured.title': 'Nhiếp Ảnh Gia Nổi Bật',
     'home.featured.subtitle': 'Khám phá các nhiếp ảnh gia tài năng từ khắp nơi trên thế giới, mỗi người mang đến phong cách và chuyên môn độc đáo để ghi lại những khoảnh khắc đặc biệt của bạn.',
-    'home.aiPowered.title': 'Nhiếp Ảnh Được Hỗ Trợ B���i AI',
-    'home.aiPowered.subtitle': 'Trải nghiệm tương lai của nhiếp ảnh với các công cụ AI tiên tiến giúp nâng cao mọi khía cạnh trong hành trình ch��p ảnh của bạn.',
+    'home.aiPowered.title': 'Nhiếp Ảnh Được Hỗ Trợ Bởi AI',
+    'home.aiPowered.subtitle': 'Trải nghiệm tương lai của nhiếp ảnh với các c��ng cụ AI tiên tiến giúp nâng cao mọi khía cạnh trong hành trình ch��p ảnh của bạn.',
     'home.categories.title': 'Danh Mục Nhiếp Ảnh',
     'home.categories.subtitle': 'Tìm nhiếp ảnh gia hoàn hảo cho bất kỳ dịp nào hoặc sở thích phong cách.',
     'home.howItWorks.title': 'Cách Thức Hoạt Động',
@@ -819,7 +793,7 @@ const translations = {
     'listing.viewProfile': 'Xem Hồ Sơ',
     'listing.bookNow': 'Đặt Ngay',
     'listing.mapComingSoon': 'Chế độ xem bản đồ sắp ra mắt',
-    'listing.mapDescription': 'Bản đồ tương tác với vị trí nhi���p ảnh gia',
+    'listing.mapDescription': 'Bản đồ tương tác với vị trí nhiếp ảnh gia',
     'listing.noResults': 'Không tìm thấy nhiếp ảnh gia',
     'listing.noResultsDesc': 'Thử điều chỉnh tiêu chí tìm kiếm hoặc bộ lọc',
     
@@ -842,7 +816,7 @@ const translations = {
     'photographerProfile.allWork': 'Tất Cả Tác Phẩm',
     'photographerProfile.clientReviews': 'Đánh Giá Khách Hàng',
     'photographerProfile.notFound': 'Không Tìm Thấy Nhiếp Ảnh Gia',
-    'photographerProfile.notFoundDesc': 'Nhi���p ảnh gia bạn đang tìm không tồn tại.',
+    'photographerProfile.notFoundDesc': 'Nhiếp ảnh gia bạn đang tìm không tồn tại.',
     'photographerProfile.backToPhotographers': 'Quay Lại Danh Sách Nhiếp Ảnh Gia',
     
     // Booking Page
@@ -913,7 +887,7 @@ const translations = {
     'aiTools.enhancedPreview': 'Ảnh được nâng cấp sẽ xuất hiện ở đây',
     'aiTools.brightness': 'Độ Sáng',
     'aiTools.contrast': 'Độ Tương Phản',
-    'aiTools.saturation': 'Đ�� Bão Hòa',
+    'aiTools.saturation': 'Độ Bão Hòa',
     'aiTools.autoEnhance': 'Nâng Cấp Tự Động',
     'aiTools.uploadReference': 'Tải ảnh tham khảo lên',
     'aiTools.matchedPhotographers': 'Nhiếp Ảnh Gia Phù Hợp',
@@ -1013,9 +987,9 @@ const translations = {
     'dashboard.settings': 'Cài Đặt',
     'dashboard.totalBookings': 'Tổng Booking',
     'dashboard.completed': 'Hoàn Thành',
-    'dashboard.totalIncome': 'T���ng Thu Nhập',
+    'dashboard.totalIncome': 'Tổng Thu Nhập',
     'dashboard.averageRating': 'Đánh Giá TB',
-    'dashboard.responseRate': 'Tỷ Lệ Phản Hồi',
+    'dashboard.responseRate': 'T�� Lệ Phản Hồi',
     'dashboard.overview': 'Tổng Quan',
     'dashboard.manageBookings': 'Quản Lý Booking',
     'dashboard.conceptPortfolio': 'Concept & Portfolio',
@@ -1124,7 +1098,7 @@ const translations = {
     'bookingModal.close': 'Đóng',
 
     // Feedback Modal
-    'feedback.title': '��ánh Giá Dịch Vụ',
+    'feedback.title': 'Đánh Giá Dịch Vụ',
     'feedback.rateQuality': 'Đánh giá chất lượng dịch vụ',
     'feedback.veryUnsatisfied': 'Rất không hài lòng',
     'feedback.unsatisfied': 'Không hài lòng',
@@ -1148,7 +1122,7 @@ const translations = {
     'notifications.newMessage': 'Tin nhắn mới',
     'notifications.newMessageDesc': 'Trần Thị B đã gửi tin nhắn về buổi chụp ảnh gia đình',
     'notifications.newReview': 'Đánh giá mới',
-    'notifications.newReviewDesc': 'Lê Văn C đã đánh giá 5 sao cho buổi chụp ảnh chân dung',
+    'notifications.newReviewDesc': 'Lê Văn C đã đánh giá 5 sao cho buổi chụp ��nh chân dung',
     'notifications.paymentSuccess': 'Thanh toán thành công',
     'notifications.paymentSuccessDesc': 'Bạn đã nhận được $300 từ booking #POR-002',
     'notifications.systemUpdate': 'Cập nhật hệ thống',
