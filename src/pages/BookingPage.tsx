@@ -146,8 +146,8 @@ const BookingPage = () => {
         {/* Progress Bar */}
         <div className="mb-8">
           <div className="flex items-center justify-between mb-4">
-            <h1 className="text-3xl font-bold text-gray-900">Book a Photographer</h1>
-            <span className="text-gray-600">Step {currentStep} of {totalSteps}</span>
+                        <h1 className="text-3xl font-bold text-gray-900">{t('booking.title')}</h1>
+            <span className="text-gray-600">{t('booking.step')} {currentStep} {t('booking.of')} {totalSteps}</span>
           </div>
           <div className="w-full bg-gray-200 rounded-full h-2">
             <div 
