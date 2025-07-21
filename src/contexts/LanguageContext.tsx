@@ -627,13 +627,13 @@ const translations = {
     'home.topPhotographers': 'Nhiếp Ảnh Gia Hàng Đầu Gần Bạn',
     'home.aiFeatures': 'Trải Nghiệm Chụp Ảnh Được Hỗ Trợ Bởi AI',
     'home.aiSubtitle': 'Biến đổi quy trình chụp ảnh của bạn với các công cụ thông minh được thiết kế để nâng cao mọi khía cạnh của quá trình sáng tạo',
-    'home.cta.title': 'S���n Sàng Biến Đổi Trải Nghiệm Chụp Ảnh?',
+    'home.cta.title': 'Sẵn Sàng Biến Đổi Trải Nghiệm Chụp Ảnh?',
     'home.cta.subtitle': 'Tham gia cùng hàng nghìn khách hàng và nhiếp ảnh gia hài lòng tin tưởng SnapMatch AI',
     'home.cta.findPhotographer': 'Tìm Nhiếp Ảnh Gia',
     'home.cta.joinPhotographer': 'Tham Gia Với Tư Cách Nhiếp Ảnh Gia',
     'home.hero.title': 'Tìm Nhiếp Ảnh Gia',
     'home.hero.titleHighlight': 'Hoàn Hảo',
-    'home.hero.subtitle': 'Kết nối với các nhiếp ảnh gia tài năng trên toàn thế giới. Đặt lịch chụp, nhận ảnh được nâng cấp bởi AI và tạo ra những kỷ niệm vĩnh cửu.',
+    'home.hero.subtitle': 'K���t nối với các nhiếp ảnh gia tài năng trên toàn thế giới. Đặt lịch chụp, nhận ảnh được nâng cấp bởi AI và tạo ra những kỷ niệm vĩnh cửu.',
     'home.stats.photographers': 'Nhiếp Ảnh Gia',
     'home.stats.photos': 'Ảnh Đã Chụp',
     'home.stats.clients': 'Khách Hàng Hài Lòng',
@@ -726,7 +726,7 @@ const translations = {
     'editProfile.title': 'Chỉnh Sửa Hồ Sơ',
     'editProfile.changePhoto': 'Thay Đổi Ảnh',
     'editProfile.fullName': 'Họ và Tên',
-    'editProfile.email': 'Địa Ch��� Email',
+    'editProfile.email': 'Địa Chỉ Email',
     'editProfile.phone': 'Số Điện Thoại (Tùy chọn)',
     'editProfile.password': 'Mật Khẩu',
     'editProfile.changePassword': 'Thay Đổi Mật Khẩu',
@@ -831,7 +831,7 @@ const translations = {
         'booking.portraitPhotography': 'Chụp Ảnh Chân Dung',
     'booking.portraitDesc': 'Ảnh chân dung chuyên nghiệp và cá nhân',
     'booking.eventPhotography': 'Chụp Ảnh Sự Kiện',
-    'booking.eventDesc': 'Ghi lại các sự kiện đặc biệt và lễ kỷ niệm',
+    'booking.eventDesc': 'Ghi lại các sự kiện đặc biệt và l�� kỷ niệm',
     'booking.weddingPhotography': 'Chụp Ảnh Cưới',
     'booking.weddingDesc': 'Ghi lại ngày quan trọng nhất của bạn',
     'booking.fashionPhotography': 'Chụp Ảnh Thời Trang',
@@ -1026,7 +1026,7 @@ const translations = {
     'admin.photographerManagement': 'Quản Lý Nhiếp Ảnh Gia',
     'admin.rating': 'Đánh Giá',
     'admin.revenue': 'Doanh Thu',
-    'admin.monthlyFee': 'Phí Th��ng',
+    'admin.monthlyFee': 'Phí Tháng',
     'admin.paymentManagement': 'Quản Lý Thanh Toán',
     'admin.paymentStatus': 'Trạng Thái Thanh Toán',
     'admin.lastPayment': 'Thanh Toán Cuối',
@@ -1166,7 +1166,7 @@ const translations = {
     'booking.photographyTypes.weddingDesc': 'Ghi lại ngày quan trọng nhất của bạn',
     'booking.photographyTypes.fashion': 'Chụp Ảnh Thời Trang',
     'booking.photographyTypes.fashionDesc': 'Chụp ảnh thời trang và phong cách sống chuyên nghiệp',
-    'booking.hours.1': '1 giờ',
+    'booking.hours.1': '1 gi��',
     'booking.hours.2': '2 giờ',
     'booking.hours.3': '3 giờ',
     'booking.hours.4': '4 giờ',
@@ -1182,12 +1182,7 @@ const translations = {
 
     
 
-    // Support Page Additional
-    'support.popularConcepts': 'Concept Phổ Biến',
-    'support.faqTitle': 'Câu Hỏi Thường Gặp',
-    'support.chatPlaceholder': 'Nhập câu hỏi của bạn hoặc chọn concept phía trên...',
-    'support.aiGreeting': 'Xin chào! Tôi là trợ lý AI SnapMatch của bạn. Tôi có thể giúp gì cho bạn hôm nay?',
-    'support.userQuestion': 'Tôi muốn biết thêm về quy trình ghép đôi AI.',
+    
 
     // Edit Profile Additional
     'editProfile.phoneCountryCode.us': '+1',
