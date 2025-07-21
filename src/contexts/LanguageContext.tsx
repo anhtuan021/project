@@ -584,24 +584,7 @@ const translations = {
 
     
 
-    // Photographer Profile Additional
-    'photographerProfile.allWork': 'All Work',
-    'photographerProfile.bookNow': 'Book Now',
-    'photographerProfile.message': 'Message',
-    'photographerProfile.projectsCompleted': 'Projects Completed',
-    'photographerProfile.yearsExperience': 'years',
-    'photographerProfile.available': 'Available',
-    'photographerProfile.busy': 'Busy',
-    'photographerProfile.equipment': 'Equipment',
-    'photographerProfile.about': 'About',
-    'photographerProfile.specialties': 'Specialties',
-    'photographerProfile.portfolio': 'Portfolio',
-    'photographerProfile.clientReviews': 'Client Reviews',
-
-    // Invoice Additional
-    'invoice.professionalPhotographer': 'Professional Photographer',
-    'invoice.hoursText': 'hours',
-    'invoice.backToBookings': 'Go back to My Bookings',
+    
 
     // Support Page Additional
     'support.popularConcepts': 'Popular Concepts',
@@ -657,8 +640,8 @@ const translations = {
     'home.stats.rating': 'Đánh Giá Trung Bình',
     'home.featured.title': 'Nhiếp Ảnh Gia Nổi Bật',
     'home.featured.subtitle': 'Khám phá các nhiếp ảnh gia tài năng từ khắp nơi trên thế giới, mỗi người mang đến phong cách và chuyên môn độc đáo để ghi lại những khoảnh khắc đặc biệt của bạn.',
-    'home.aiPowered.title': 'Nhiếp ���nh Được Hỗ Trợ Bởi AI',
-    'home.aiPowered.subtitle': 'Trải nghiệm tương lai của nhiếp ảnh với các công cụ AI tiên tiến giúp nâng cao mọi khía cạnh trong hành trình ch��p ảnh của bạn.',
+    'home.aiPowered.title': 'Nhiếp Ảnh Được Hỗ Trợ Bởi AI',
+    'home.aiPowered.subtitle': 'Trải nghi���m tương lai của nhiếp ảnh với các công cụ AI tiên tiến giúp nâng cao mọi khía cạnh trong hành trình ch��p ảnh của bạn.',
     'home.categories.title': 'Danh Mục Nhiếp Ảnh',
     'home.categories.subtitle': 'Tìm nhiếp ảnh gia hoàn hảo cho bất kỳ dịp nào hoặc sở thích phong cách.',
     'home.howItWorks.title': 'Cách Thức Hoạt Động',
@@ -928,7 +911,7 @@ const translations = {
     'support.paymentMethods': 'Phương Thức Thanh Toán',
     'support.termsOfService': 'Điều Khoản Dịch Vụ',
     'support.privacyPolicy': 'Chính Sách Bảo Mật',
-    'support.helpCenter': 'Trung Tâm Tr�� Giúp',
+    'support.helpCenter': 'Trung Tâm Trợ Giúp',
             'support.howToBook': 'Làm thế nào để ��ặt lịch?',
         'support.priceRange': 'Khoảng giá là bao nhiêu?',
         'support.aiMatching': 'AI ghép đôi hoạt động như thế nào?',
@@ -1153,7 +1136,7 @@ const translations = {
     'home.testimonials.client2': 'Michael Chen',
         'home.testimonials.review2': 'Dịch vụ chuyên nghiệp và kết quả đáng kinh ngạc. Công cụ chỉnh sửa AI đã tiết kiệm cho tôi hàng giờ làm việc. Rất được khuyến khích!',
     'home.testimonials.client3': 'Emily Davis',
-    'home.testimonials.review3': 'Nền tảng này giúp việc tìm và đặt nhiếp ảnh gia trở nên dễ dàng. Toàn bộ quá trình diễn ra mượt mà và không căng thẳng.',
+    'home.testimonials.review3': 'Nền tảng này giúp việc tìm và đặt nhiếp ảnh gia trở nên dễ dàng. Toàn bộ quá trình diễn ra mượt mà và không căng th���ng.',
 
     // Additional HomePage content
     'home.search.styles.portrait': 'Chân Dung',
@@ -1201,14 +1184,14 @@ const translations = {
     'photographerProfile.allWork': 'Tất Cả Tác Phẩm',
     'photographerProfile.bookNow': 'Đặt Ngay',
     'photographerProfile.message': 'Nhắn Tin',
-    'photographerProfile.projectsCompleted': 'Dự Án Hoàn Thành',
+    'photographerProfile.projectsCompleted': 'Dự ��n Hoàn Thành',
     'photographerProfile.yearsExperience': 'năm',
     'photographerProfile.available': 'Có Sẵn',
     'photographerProfile.busy': 'Bận',
     'photographerProfile.equipment': 'Thiết Bị',
     'photographerProfile.about': 'Giới Thiệu',
     'photographerProfile.specialties': 'Chuyên Môn',
-    'photographerProfile.portfolio': 'Danh Mục Tác Ph���m',
+    'photographerProfile.portfolio': 'Danh Mục Tác Phẩm',
     'photographerProfile.clientReviews': 'Đánh Giá Khách Hàng',
 
     // Invoice Additional
