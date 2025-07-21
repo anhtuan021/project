@@ -299,32 +299,32 @@ const HomePage = () => {
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">What Our Clients Say</h2>
+                        <h2 className="text-3xl font-bold text-gray-900 mb-4">{t('home.testimonials.title')}</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Don't just take our word for it. Here's what our satisfied clients have to say about their experience.
+              {t('home.testimonials.subtitle')}
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                name: 'Sarah Johnson',
-                role: 'Bride',
-                content: 'The photographer captured our wedding day perfectly. The AI-enhanced photos were stunning!',
+                                name: t('home.testimonials.realClient1'),
+                role: t('home.testimonials.realClient1Role'),
+                content: t('home.testimonials.realReview1'),
                 rating: 5,
                 image: 'https://images.pexels.com/photos/3763188/pexels-photo-3763188.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
               },
               {
-                name: 'Mark Thompson',
-                role: 'Business Owner',
-                content: 'Professional headshots for my team were delivered quickly with amazing quality.',
+                                name: t('home.testimonials.realClient2'),
+                role: t('home.testimonials.realClient2Role'),
+                content: t('home.testimonials.realReview2'),
                 rating: 5,
                 image: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
               },
               {
-                name: 'Emily Chen',
-                role: 'Event Planner',
-                content: 'I regularly book photographers through this platform. Always reliable and talented!',
+                                name: t('home.testimonials.realClient3'),
+                role: t('home.testimonials.realClient3Role'),
+                content: t('home.testimonials.realReview3'),
                 rating: 5,
                 image: 'https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
               }
