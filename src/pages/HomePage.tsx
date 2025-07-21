@@ -197,9 +197,9 @@ const HomePage = () => {
       <section className="py-16 bg-gradient-to-r from-blue-50 to-purple-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">AI-Powered Photography</h2>
+                        <h2 className="text-3xl font-bold text-gray-900 mb-4">{t('home.aiPowered.title')}</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Experience the future of photography with our cutting-edge AI tools that enhance every aspect of your photo journey.
+              {t('home.aiPowered.subtitle')}
             </p>
           </div>
           
@@ -219,20 +219,20 @@ const HomePage = () => {
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Photography Categories</h2>
+                        <h2 className="text-3xl font-bold text-gray-900 mb-4">{t('home.categories.title')}</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Find the perfect photographer for any occasion or style preference.
+              {t('home.categories.subtitle')}
             </p>
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
             {[
-              { icon: <Heart className="h-8 w-8" />, name: 'Wedding', color: 'text-red-500' },
-              { icon: <Users className="h-8 w-8" />, name: 'Portrait', color: 'text-blue-500' },
-              { icon: <Camera className="h-8 w-8" />, name: 'Event', color: 'text-green-500' },
-              { icon: <Palette className="h-8 w-8" />, name: 'Fashion', color: 'text-purple-500' },
-              { icon: <MapPin className="h-8 w-8" />, name: 'Travel', color: 'text-orange-500' },
-              { icon: <Shirt className="h-8 w-8" />, name: 'Product', color: 'text-pink-500' },
+                            { icon: <Heart className="h-8 w-8" />, name: t('home.categories.wedding'), color: 'text-red-500' },
+              { icon: <Users className="h-8 w-8" />, name: t('home.categories.portrait'), color: 'text-blue-500' },
+              { icon: <Camera className="h-8 w-8" />, name: t('home.categories.event'), color: 'text-green-500' },
+              { icon: <Palette className="h-8 w-8" />, name: t('home.categories.fashion'), color: 'text-purple-500' },
+              { icon: <MapPin className="h-8 w-8" />, name: t('home.categories.travel'), color: 'text-orange-500' },
+              { icon: <Shirt className="h-8 w-8" />, name: t('home.categories.product'), color: 'text-pink-500' },
             ].map((category, index) => (
               <Link
                 key={index}
