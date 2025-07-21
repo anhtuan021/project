@@ -325,13 +325,13 @@ const PhotographerDashboard = () => {
                 {/* Recent Bookings */}
                 <div>
                   <div className="flex items-center justify-between mb-6">
-                    <h2 className="text-xl font-bold text-gray-900">
-                      Booking gần đây
+                                        <h2 className="text-xl font-bold text-gray-900">
+                      {t('dashboard.recentBookings')}
                     </h2>
                     {bookingRequests.filter(b => b.status === 'Pending').length > 0 && (
                       <div className="flex items-center space-x-2">
                         <span className="bg-red-100 text-red-800 text-xs font-medium px-2 py-1 rounded-full">
-                          {bookingRequests.filter(b => b.status === 'Pending').length} booking chờ xử lý
+                                                    {bookingRequests.filter(b => b.status === 'Pending').length} {t('dashboard.pendingBookings')}
                         </span>
                       </div>
                     )}
