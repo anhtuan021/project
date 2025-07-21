@@ -241,7 +241,7 @@ const PhotographerDashboard = () => {
           <div className="bg-white rounded-xl shadow-sm p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-500 mb-1">Tổng thu nhập</p>
+                                <p className="text-sm text-gray-500 mb-1">{t('dashboard.totalIncome')}</p>
                 <p className="text-2xl font-bold text-gray-900">
                   ${analytics.totalEarnings}
                 </p>
@@ -255,7 +255,7 @@ const PhotographerDashboard = () => {
           <div className="bg-white rounded-xl shadow-sm p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-500 mb-1">Đánh giá TB</p>
+                                <p className="text-sm text-gray-500 mb-1">{t('dashboard.averageRating')}</p>
                 <p className="text-2xl font-bold text-gray-900">
                   {analytics.averageRating}
                 </p>
@@ -269,7 +269,7 @@ const PhotographerDashboard = () => {
           <div className="bg-white rounded-xl shadow-sm p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-500 mb-1">Tỷ lệ phản hồi</p>
+                                <p className="text-sm text-gray-500 mb-1">{t('dashboard.responseRate')}</p>
                 <p className="text-2xl font-bold text-gray-900">
                   {analytics.responseRate}%
                 </p>
