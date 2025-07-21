@@ -199,7 +199,7 @@ const AdminDashboard = () => {
           <div className="bg-white rounded-xl shadow-sm p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-500 mb-1">Tổng người dùng</p>
+                                <p className="text-sm text-gray-500 mb-1">{t('admin.totalUsers')}</p>
                 <p className="text-2xl font-bold text-gray-900">{analytics.totalUsers}</p>
               </div>
               <div className="bg-blue-100 p-3 rounded-lg">
@@ -211,7 +211,7 @@ const AdminDashboard = () => {
           <div className="bg-white rounded-xl shadow-sm p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-500 mb-1">Nhiếp ảnh gia</p>
+                                <p className="text-sm text-gray-500 mb-1">{t('admin.photographers')}</p>
                 <p className="text-2xl font-bold text-gray-900">{analytics.totalPhotographers}</p>
               </div>
               <div className="bg-purple-100 p-3 rounded-lg">
@@ -223,7 +223,7 @@ const AdminDashboard = () => {
           <div className="bg-white rounded-xl shadow-sm p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-500 mb-1">Tổng booking</p>
+                                <p className="text-sm text-gray-500 mb-1">{t('admin.totalBookings')}</p>
                 <p className="text-2xl font-bold text-gray-900">{analytics.totalBookings}</p>
               </div>
               <div className="bg-green-100 p-3 rounded-lg">
@@ -235,7 +235,7 @@ const AdminDashboard = () => {
           <div className="bg-white rounded-xl shadow-sm p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-500 mb-1">Doanh thu/tháng</p>
+                                <p className="text-sm text-gray-500 mb-1">{t('admin.monthlyRevenue')}</p>
                 <p className="text-2xl font-bold text-gray-900">${analytics.monthlyRevenue}</p>
               </div>
               <div className="bg-yellow-100 p-3 rounded-lg">
@@ -247,7 +247,7 @@ const AdminDashboard = () => {
           <div className="bg-white rounded-xl shadow-sm p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-500 mb-1">Chờ thanh toán</p>
+                                <p className="text-sm text-gray-500 mb-1">{t('admin.pendingPayments')}</p>
                 <p className="text-2xl font-bold text-gray-900">{analytics.pendingPayments}</p>
               </div>
               <div className="bg-red-100 p-3 rounded-lg">
@@ -577,7 +577,7 @@ const AdminDashboard = () => {
                         <span className="font-semibold text-gray-900">$100</span>
                       </div>
                       <div className="flex items-center justify-between border-t pt-4">
-                        <span className="text-gray-900 font-semibold">Tổng cộng</span>
+                        <span className="text-gray-900 font-semibold">Tổng c��ng</span>
                         <span className="font-bold text-green-600">${analytics.monthlyRevenue}</span>
                       </div>
                     </div>
