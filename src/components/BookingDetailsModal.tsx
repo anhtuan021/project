@@ -55,8 +55,8 @@ const BookingDetailsModal: React.FC<BookingDetailsModalProps> = ({
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-200">
           <div>
-            <h2 className="text-2xl font-bold text-gray-900">Chi tiết booking</h2>
-            <p className="text-gray-600">Mã booking: {booking.reference}</p>
+                        <h2 className="text-2xl font-bold text-gray-900">{t('bookingModal.title')}</h2>
+            <p className="text-gray-600">{t('bookingModal.code')}: {booking.reference}</p>
           </div>
           <button
             onClick={onClose}
@@ -73,7 +73,7 @@ const BookingDetailsModal: React.FC<BookingDetailsModalProps> = ({
               {/* Status */}
               <div className="bg-gray-50 rounded-lg p-4">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium text-gray-700">Trạng thái</span>
+                                    <span className="text-sm font-medium text-gray-700">{t('bookingModal.status')}</span>
                   <span className={`px-3 py-1 rounded-full text-sm font-medium ${getStatusColor(booking.status)}`}>
                     {booking.status}
                   </span>
@@ -84,7 +84,7 @@ const BookingDetailsModal: React.FC<BookingDetailsModalProps> = ({
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center">
                   <Camera className="h-5 w-5 mr-2 text-blue-600" />
-                  Loại chụp ảnh
+                                    {t('bookingModal.type')}
                 </h3>
                 <p className="text-gray-700 bg-blue-50 p-3 rounded-lg">
                   {booking.photographyType || 'Photography Session'}
@@ -95,7 +95,7 @@ const BookingDetailsModal: React.FC<BookingDetailsModalProps> = ({
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center">
                   <Calendar className="h-5 w-5 mr-2 text-blue-600" />
-                  Thời gian
+                                    {t('bookingModal.time')}
                 </h3>
                 <div className="space-y-2">
                   <div className="flex items-center text-gray-700">
@@ -107,8 +107,8 @@ const BookingDetailsModal: React.FC<BookingDetailsModalProps> = ({
                     <span>{booking.bookingDetails?.time || 'N/A'}</span>
                   </div>
                   <div className="flex items-center text-gray-700">
-                    <span className="text-sm text-gray-500 mr-2">Thời lượng:</span>
-                    <span>{booking.bookingDetails?.duration || 'N/A'} giờ</span>
+                                        <span className="text-sm text-gray-500 mr-2">{t('bookingModal.duration')}</span>
+                    <span>{booking.bookingDetails?.duration || 'N/A'} {t('common.hours')}</span>
                   </div>
                 </div>
               </div>
@@ -117,7 +117,7 @@ const BookingDetailsModal: React.FC<BookingDetailsModalProps> = ({
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center">
                   <MapPin className="h-5 w-5 mr-2 text-blue-600" />
-                  Địa điểm
+                                    {t('bookingModal.location')}
                 </h3>
                 <p className="text-gray-700 bg-gray-50 p-3 rounded-lg">
                   {booking.bookingDetails?.location || 'N/A'}
@@ -126,14 +126,14 @@ const BookingDetailsModal: React.FC<BookingDetailsModalProps> = ({
 
               {/* Cost */}
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Chi phí</h3>
+                                <h3 className="text-lg font-semibold text-gray-900 mb-3">{t('bookingModal.cost')}</h3>
                 <div className="bg-green-50 p-4 rounded-lg">
                   <div className="flex justify-between items-center">
-                    <span className="text-gray-700">Tổng chi phí:</span>
+                                        <span className="text-gray-700">{t('bookingModal.totalCost')}</span>
                     <span className="text-2xl font-bold text-green-600">${booking.totalCost || 0}</span>
                   </div>
                   <p className="text-sm text-gray-500 mt-1">
-                    {booking.bookingDetails?.duration || 0} giờ × ${Math.round((booking.totalCost || 0) / (booking.bookingDetails?.duration || 1))}/giờ
+                                        {booking.bookingDetails?.duration || 0} {t('bookingModal.hoursMultiplier')} ${Math.round((booking.totalCost || 0) / (booking.bookingDetails?.duration || 1))}{t('bookingModal.perHour')}
                   </p>
                 </div>
               </div>
@@ -146,12 +146,12 @@ const BookingDetailsModal: React.FC<BookingDetailsModalProps> = ({
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center">
                     <User className="h-5 w-5 mr-2 text-blue-600" />
-                    Thông tin khách hàng
+                                        {t('bookingModal.customerInfo')}
                   </h3>
                   <div className="bg-gray-50 p-4 rounded-lg space-y-3">
                     <div className="flex items-center">
                       <User className="h-4 w-4 mr-2 text-gray-500" />
-                      <span className="text-gray-700">{booking.customerInfo?.name || 'Khách hàng'}</span>
+                                            <span className="text-gray-700">{booking.customerInfo?.name || t('bookingModal.customer')}</span>
                     </div>
                     <div className="flex items-center">
                       <Mail className="h-4 w-4 mr-2 text-gray-500" />
@@ -170,7 +170,7 @@ const BookingDetailsModal: React.FC<BookingDetailsModalProps> = ({
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center">
                     <Camera className="h-5 w-5 mr-2 text-blue-600" />
-                    Thông tin nhiếp ảnh gia
+                                        {t('bookingModal.photographerInfo')}
                   </h3>
                   <div className="bg-gray-50 p-4 rounded-lg">
                     <div className="flex items-center space-x-4 mb-3">
@@ -180,11 +180,11 @@ const BookingDetailsModal: React.FC<BookingDetailsModalProps> = ({
                         className="w-12 h-12 rounded-full object-cover"
                       />
                       <div>
-                        <h4 className="font-medium text-gray-900">{booking.photographer?.name || 'Nhiếp ảnh gia'}</h4>
+                                                <h4 className="font-medium text-gray-900">{booking.photographer?.name || t('bookingModal.photographer')}</h4>
                         <div className="flex items-center text-sm text-gray-600">
                           <span>★ {booking.photographer?.rating || 4.9}</span>
                           <span className="mx-1">•</span>
-                          <span>({booking.photographer?.reviews || 0} đánh giá)</span>
+                                                    <span>({booking.photographer?.reviews || 0} {t('bookingModal.ratings')})</span>
                         </div>
                       </div>
                     </div>
@@ -200,7 +200,7 @@ const BookingDetailsModal: React.FC<BookingDetailsModalProps> = ({
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center">
                   <FileText className="h-5 w-5 mr-2 text-blue-600" />
-                  Concept yêu cầu
+                                    {t('bookingModal.conceptRequest')}
                 </h3>
                 <div className="bg-yellow-50 p-4 rounded-lg">
                   <p className="text-gray-700">
@@ -211,7 +211,7 @@ const BookingDetailsModal: React.FC<BookingDetailsModalProps> = ({
 
               {/* Notes */}
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Ghi chú & Lưu ý</h3>
+                                <h3 className="text-lg font-semibold text-gray-900 mb-3">{t('bookingModal.notesReminders')}</h3>
                 <div className="bg-gray-50 p-4 rounded-lg">
                   <p className="text-gray-700">
                     {booking.bookingDetails?.notes || booking.specialNotes || 'Vui lòng đến đúng giờ. Mang theo trang phục dự phòng. Liên hệ trước 30 phút nếu có thay đổi.'}
@@ -221,18 +221,18 @@ const BookingDetailsModal: React.FC<BookingDetailsModalProps> = ({
 
               {/* Additional Services */}
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Dịch vụ bổ sung</h3>
+                                <h3 className="text-lg font-semibold text-gray-900 mb-3">{t('bookingModal.additionalServices')}</h3>
                 <div className="space-y-2">
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
-                    <span className="text-gray-700">Chỉnh sửa ảnh cơ bản</span>
-                    <span className="text-green-600 font-medium">Bao gồm</span>
+                                        <span className="text-gray-700">{t('bookingModal.basicEditing')}</span>
+                    <span className="text-green-600 font-medium">{t('bookingModal.included')}</span>
                   </div>
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
-                    <span className="text-gray-700">Giao ảnh online</span>
-                    <span className="text-green-600 font-medium">Bao gồm</span>
+                                        <span className="text-gray-700">{t('bookingModal.onlineDelivery')}</span>
+                    <span className="text-green-600 font-medium">{t('bookingModal.included')}</span>
                   </div>
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
-                    <span className="text-gray-700">In ảnh (20 tấm)</span>
+                                        <span className="text-gray-700">{t('bookingModal.printing')}</span>
                     <span className="text-blue-600 font-medium">+$50</span>
                   </div>
                 </div>
@@ -244,29 +244,29 @@ const BookingDetailsModal: React.FC<BookingDetailsModalProps> = ({
           <div className="flex justify-end space-x-3 mt-8 pt-6 border-t border-gray-200">
             {userType === 'photographer' && booking.status === 'Pending' && (
               <>
-                <button className="px-6 py-2 border border-red-300 text-red-700 rounded-lg hover:bg-red-50 transition-colors">
-                  Từ chối
+                                <button className="px-6 py-2 border border-red-300 text-red-700 rounded-lg hover:bg-red-50 transition-colors">
+                  {t('bookingModal.reject')}
                 </button>
                 <button className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
-                  Chấp nhận
+                  {t('bookingModal.accept')}
                 </button>
               </>
             )}
             {userType === 'photographer' && booking.status === 'Confirmed' && (
-              <button className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-                Liên hệ khách hàng
+                            <button className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                {t('bookingModal.contactCustomer')}
               </button>
             )}
             {userType === 'customer' && booking.status === 'Confirmed' && (
-              <button className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-                Liên hệ nhiếp ảnh gia
+                            <button className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                {t('bookingModal.contactPhotographer')}
               </button>
             )}
             <button
               onClick={onClose}
               className="px-6 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors"
             >
-              Đóng
+                            {t('bookingModal.close')}
             </button>
           </div>
         </div>

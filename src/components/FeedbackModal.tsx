@@ -28,7 +28,7 @@ const FeedbackModal: React.FC<FeedbackModalProps> = ({
     const feedback = {
       id: Date.now().toString(),
       bookingId: booking.id,
-      customerName: 'Khách hàng', // In real app, get from auth context
+            customerName: t('bookingModal.customer'), // In real app, get from auth context
       photographerName: booking.photographer?.name || 'Photographer',
       photographerId: booking.photographer?.id,
       rating,
@@ -50,7 +50,7 @@ const FeedbackModal: React.FC<FeedbackModalProps> = ({
       <div className="bg-white rounded-2xl shadow-xl max-w-md w-full">
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-200">
-          <h2 className="text-xl font-bold text-gray-900">Đánh giá dịch vụ</h2>
+                    <h2 className="text-xl font-bold text-gray-900">{t('feedback.title')}</h2>
           <button
             onClick={onClose}
             className="p-2 hover:bg-gray-100 rounded-full transition-colors"
@@ -75,8 +75,8 @@ const FeedbackModal: React.FC<FeedbackModalProps> = ({
 
           {/* Rating */}
           <div className="mb-6">
-            <label className="block text-sm font-medium text-gray-700 mb-3">
-              Đánh giá chất lượng dịch vụ
+                        <label className="block text-sm font-medium text-gray-700 mb-3">
+              {t('feedback.rateQuality')}
             </label>
             <div className="flex items-center space-x-1">
               {[1, 2, 3, 4, 5].map((star) => (
@@ -98,26 +98,26 @@ const FeedbackModal: React.FC<FeedbackModalProps> = ({
                 </button>
               ))}
             </div>
-            <p className="text-sm text-gray-500 mt-2">
-              {rating === 1 && 'Rất không hài lòng'}
-              {rating === 2 && 'Không hài lòng'}
-              {rating === 3 && 'Bình thường'}
-              {rating === 4 && 'Hài lòng'}
-              {rating === 5 && 'Rất hài lòng'}
+                        <p className="text-sm text-gray-500 mt-2">
+              {rating === 1 && t('feedback.veryUnsatisfied')}
+              {rating === 2 && t('feedback.unsatisfied')}
+              {rating === 3 && t('feedback.neutral')}
+              {rating === 4 && t('feedback.satisfied')}
+              {rating === 5 && t('feedback.verySatisfied')}
             </p>
           </div>
 
           {/* Comment */}
           <div className="mb-6">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Nhận xét chi tiết (tùy chọn)
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+              {t('feedback.detailedComments')}
             </label>
             <textarea
               value={comment}
               onChange={(e) => setComment(e.target.value)}
               rows={4}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
-              placeholder="Chia sẻ trải nghiệm của bạn về dịch vụ chụp ảnh..."
+                            placeholder={t('feedback.placeholder')}
             />
           </div>
 
@@ -128,13 +128,13 @@ const FeedbackModal: React.FC<FeedbackModalProps> = ({
               onClick={onClose}
               className="flex-1 px-4 py-2 text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
             >
-              Hủy
+                            {t('feedback.cancel')}
             </button>
             <button
               type="submit"
               className="flex-1 px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors"
             >
-              Gửi đánh giá
+                            {t('feedback.submit')}
             </button>
           </div>
         </form>

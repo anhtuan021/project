@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Bell, X, Check, Clock, MessageSquare, Calendar, Star, AlertCircle } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface Notification {
   id: string;
@@ -20,6 +21,7 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ photographerId 
   const [isOpen, setIsOpen] = useState(false);
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [unreadCount, setUnreadCount] = useState(0);
+  const { t } = useLanguage();
 
   useEffect(() => {
     // Load notifications from localStorage or API
@@ -37,9 +39,9 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ photographerId 
       {
         id: '1',
         type: 'booking',
-        title: 'Booking mới',
-        message: 'Nguyễn Văn A đã đặt lịch chụp ảnh cưới vào ngày 15/02/2024',
-        time: '5 phút trước',
+                title: t('notifications.newBooking'),
+        message: t('notifications.newBookingDesc'),
+        time: `5 ${t('notifications.timeAgo.minutes')}`,
         read: false,
         priority: 'high',
         actionUrl: '/photographer-dashboard?tab=bookings'
@@ -47,36 +49,36 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ photographerId 
       {
         id: '2',
         type: 'message',
-        title: 'Tin nhắn mới',
-        message: 'Trần Thị B đã gửi tin nhắn về buổi chụp ảnh gia đình',
-        time: '15 phút trước',
+                title: t('notifications.newMessage'),
+        message: t('notifications.newMessageDesc'),
+        time: `15 ${t('notifications.timeAgo.minutes')}`,
         read: false,
         priority: 'medium'
       },
       {
         id: '3',
         type: 'review',
-        title: 'Đánh giá mới',
-        message: 'Lê Văn C đã đánh giá 5 sao cho buổi chụp ảnh chân dung',
-        time: '1 giờ trước',
+                title: t('notifications.newReview'),
+        message: t('notifications.newReviewDesc'),
+        time: `1 ${t('notifications.timeAgo.hour')}`,
         read: true,
         priority: 'low'
       },
       {
         id: '4',
         type: 'payment',
-        title: 'Thanh toán thành công',
-        message: 'Bạn đã nhận được $300 từ booking #POR-002',
-        time: '2 giờ trước',
+                title: t('notifications.paymentSuccess'),
+        message: t('notifications.paymentSuccessDesc'),
+        time: `2 ${t('notifications.timeAgo.hours')}`,
         read: false,
         priority: 'medium'
       },
       {
         id: '5',
         type: 'system',
-        title: 'Cập nhật hệ thống',
-        message: 'Tính năng AI mới đã được thêm vào nền tảng',
-        time: '1 ngày trước',
+                title: t('notifications.systemUpdate'),
+        message: t('notifications.systemUpdateDesc'),
+        time: `1 ${t('notifications.timeAgo.day')}`,
         read: true,
         priority: 'low'
       }
@@ -163,14 +165,14 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ photographerId 
           {/* Header */}
           <div className="p-4 border-b border-gray-200">
             <div className="flex items-center justify-between">
-              <h3 className="text-lg font-semibold text-gray-900">Thông báo</h3>
+                            <h3 className="text-lg font-semibold text-gray-900">{t('notifications.title')}</h3>
               <div className="flex items-center space-x-2">
                 {unreadCount > 0 && (
                   <button
                     onClick={markAllAsRead}
                     className="text-sm text-blue-600 hover:text-blue-700 font-medium"
                   >
-                    Đánh dấu tất cả đã đọc
+                                        {t('notifications.markAllRead')}
                   </button>
                 )}
                 <button
@@ -224,7 +226,7 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ photographerId 
                               <button
                                 onClick={() => markAsRead(notification.id)}
                                 className="p-1 hover:bg-gray-200 rounded-full"
-                                title="Đánh dấu đã đọc"
+                                                                title={t('notifications.markRead')}
                               >
                                 <Check className="h-3 w-3 text-gray-500" />
                               </button>
@@ -232,7 +234,7 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ photographerId 
                             <button
                               onClick={() => deleteNotification(notification.id)}
                               className="p-1 hover:bg-gray-200 rounded-full"
-                              title="Xóa thông báo"
+                                                            title={t('notifications.delete')}
                             >
                               <X className="h-3 w-3 text-gray-500" />
                             </button>
@@ -246,7 +248,7 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ photographerId 
             ) : (
               <div className="p-8 text-center">
                 <Bell className="h-12 w-12 text-gray-300 mx-auto mb-4" />
-                <p className="text-gray-500">Không có thông báo nào</p>
+                                <p className="text-gray-500">{t('notifications.empty')}</p>
               </div>
             )}
           </div>
@@ -254,8 +256,8 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ photographerId 
           {/* Footer */}
           {notifications.length > 0 && (
             <div className="p-4 border-t border-gray-200">
-              <button className="w-full text-center text-sm text-blue-600 hover:text-blue-700 font-medium">
-                Xem tất cả thông báo
+                            <button className="w-full text-center text-sm text-blue-600 hover:text-blue-700 font-medium">
+                {t('notifications.viewAll')}
               </button>
             </div>
           )}

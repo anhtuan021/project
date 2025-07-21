@@ -31,23 +31,23 @@ const HomePage = () => {
   const aiFeatures = [
     {
       icon: <Lightbulb className="h-8 w-8 text-blue-600" />,
-      title: "Smart Matching",
-      description: "AI-powered photographer recommendations based on your style and needs"
+            title: t('home.features.smartMatching'),
+      description: t('home.features.smartMatchingDesc')
     },
     {
       icon: <Edit3 className="h-8 w-8 text-purple-600" />,
-      title: "Instant Editing",
-      description: "Professional photo editing with AI enhancement in minutes"
+            title: t('home.features.instantEditing'),
+      description: t('home.features.instantEditingDesc')
     },
     {
       icon: <Sparkles className="h-8 w-8 text-pink-600" />,
-      title: "Style Transfer",
-      description: "Transform your photos with AI-powered artistic style filters"
+            title: t('home.features.styleTransfer'),
+      description: t('home.features.styleTransferDesc')
     },
     {
       icon: <BarChart3 className="h-8 w-8 text-green-600" />,
-      title: "Analytics",
-      description: "Track your photography business growth with detailed insights"
+            title: t('home.features.analytics'),
+      description: t('home.features.analyticsDesc')
     }
   ];
 
@@ -87,10 +87,10 @@ const HomePage = () => {
                     className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none"
                   >
                     <option value="">{t('home.search.style')}</option>
-                    <option value="portrait">Portrait</option>
-                    <option value="wedding">Wedding</option>
-                    <option value="landscape">Landscape</option>
-                    <option value="event">Event</option>
+                                        <option value="portrait">{t('home.search.styles.portrait')}</option>
+                    <option value="wedding">{t('home.search.styles.wedding')}</option>
+                    <option value="landscape">{t('home.search.styles.landscape')}</option>
+                    <option value="event">{t('home.search.styles.event')}</option>
                   </select>
                 </div>
                 <div className="relative">
@@ -101,10 +101,10 @@ const HomePage = () => {
                     className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none"
                   >
                     <option value="">{t('home.search.budget')}</option>
-                    <option value="0-50">$0 - $50</option>
-                    <option value="50-100">$50 - $100</option>
-                    <option value="100-200">$100 - $200</option>
-                    <option value="200+">$200+</option>
+                                        <option value="0-50">{t('home.search.budget.range1')}</option>
+                    <option value="50-100">{t('home.search.budget.range2')}</option>
+                    <option value="100-200">{t('home.search.budget.range3')}</option>
+                    <option value="200+">{t('home.search.budget.range4')}</option>
                   </select>
                 </div>
                 <button 
@@ -197,9 +197,9 @@ const HomePage = () => {
       <section className="py-16 bg-gradient-to-r from-blue-50 to-purple-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">AI-Powered Photography</h2>
+                        <h2 className="text-3xl font-bold text-gray-900 mb-4">{t('home.aiPowered.title')}</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Experience the future of photography with our cutting-edge AI tools that enhance every aspect of your photo journey.
+              {t('home.aiPowered.subtitle')}
             </p>
           </div>
           
@@ -219,20 +219,20 @@ const HomePage = () => {
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Photography Categories</h2>
+                        <h2 className="text-3xl font-bold text-gray-900 mb-4">{t('home.categories.title')}</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Find the perfect photographer for any occasion or style preference.
+              {t('home.categories.subtitle')}
             </p>
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
             {[
-              { icon: <Heart className="h-8 w-8" />, name: 'Wedding', color: 'text-red-500' },
-              { icon: <Users className="h-8 w-8" />, name: 'Portrait', color: 'text-blue-500' },
-              { icon: <Camera className="h-8 w-8" />, name: 'Event', color: 'text-green-500' },
-              { icon: <Palette className="h-8 w-8" />, name: 'Fashion', color: 'text-purple-500' },
-              { icon: <MapPin className="h-8 w-8" />, name: 'Travel', color: 'text-orange-500' },
-              { icon: <Shirt className="h-8 w-8" />, name: 'Product', color: 'text-pink-500' },
+                            { icon: <Heart className="h-8 w-8" />, name: t('home.categories.wedding'), color: 'text-red-500' },
+              { icon: <Users className="h-8 w-8" />, name: t('home.categories.portrait'), color: 'text-blue-500' },
+              { icon: <Camera className="h-8 w-8" />, name: t('home.categories.event'), color: 'text-green-500' },
+              { icon: <Palette className="h-8 w-8" />, name: t('home.categories.fashion'), color: 'text-purple-500' },
+              { icon: <MapPin className="h-8 w-8" />, name: t('home.categories.travel'), color: 'text-orange-500' },
+              { icon: <Shirt className="h-8 w-8" />, name: t('home.categories.product'), color: 'text-pink-500' },
             ].map((category, index) => (
               <Link
                 key={index}
@@ -253,9 +253,9 @@ const HomePage = () => {
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">How It Works</h2>
+                        <h2 className="text-3xl font-bold text-gray-900 mb-4">{t('home.howItWorks.title')}</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Getting professional photos has never been easier. Follow these simple steps to book your perfect photographer.
+              {t('home.howItWorks.subtitle')}
             </p>
           </div>
           
@@ -263,20 +263,20 @@ const HomePage = () => {
             {[
               {
                 step: '1',
-                title: 'Search & Browse',
-                description: 'Find photographers in your area using our smart search filters.',
+                                title: t('home.howItWorks.step1.title'),
+                description: t('home.howItWorks.step1.description'),
                 icon: <Search className="h-8 w-8 text-blue-600" />
               },
               {
                 step: '2',
-                title: 'Book & Pay',
-                description: 'Choose your preferred photographer and book your session securely.',
+                                title: t('home.howItWorks.step2.title'),
+                description: t('home.howItWorks.step2.description'),
                 icon: <CheckCircle className="h-8 w-8 text-green-600" />
               },
               {
                 step: '3',
-                title: 'Get Photos',
-                description: 'Receive your professionally edited photos enhanced with AI.',
+                                title: t('home.howItWorks.step3.title'),
+                description: t('home.howItWorks.step3.description'),
                 icon: <Sparkles className="h-8 w-8 text-purple-600" />
               }
             ].map((item, index) => (
@@ -299,32 +299,32 @@ const HomePage = () => {
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">What Our Clients Say</h2>
+                        <h2 className="text-3xl font-bold text-gray-900 mb-4">{t('home.testimonials.title')}</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Don't just take our word for it. Here's what our satisfied clients have to say about their experience.
+              {t('home.testimonials.subtitle')}
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                name: 'Sarah Johnson',
-                role: 'Bride',
-                content: 'The photographer captured our wedding day perfectly. The AI-enhanced photos were stunning!',
+                                name: t('home.testimonials.realClient1'),
+                role: t('home.testimonials.realClient1Role'),
+                content: t('home.testimonials.realReview1'),
                 rating: 5,
                 image: 'https://images.pexels.com/photos/3763188/pexels-photo-3763188.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
               },
               {
-                name: 'Mark Thompson',
-                role: 'Business Owner',
-                content: 'Professional headshots for my team were delivered quickly with amazing quality.',
+                                name: t('home.testimonials.realClient2'),
+                role: t('home.testimonials.realClient2Role'),
+                content: t('home.testimonials.realReview2'),
                 rating: 5,
                 image: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
               },
               {
-                name: 'Emily Chen',
-                role: 'Event Planner',
-                content: 'I regularly book photographers through this platform. Always reliable and talented!',
+                                name: t('home.testimonials.realClient3'),
+                role: t('home.testimonials.realClient3Role'),
+                content: t('home.testimonials.realReview3'),
                 rating: 5,
                 image: 'https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
               }
@@ -356,16 +356,16 @@ const HomePage = () => {
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-r from-blue-600 to-purple-600">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-white mb-4">Ready to Capture Your Moments?</h2>
+                    <h2 className="text-3xl font-bold text-white mb-4">{t('home.cta.finalTitle')}</h2>
           <p className="text-blue-100 text-xl mb-8 max-w-2xl mx-auto">
-            Join thousands of satisfied clients who have found their perfect photographer through our platform.
+            {t('home.cta.finalSubtitle')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/photographers"
               className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-300 flex items-center justify-center"
             >
-              Find Photographers
+                            {t('home.cta.findPhotographers')}
               <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
             <Link
@@ -373,7 +373,7 @@ const HomePage = () => {
               className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors duration-300 flex items-center justify-center"
             >
               <Camera className="mr-2 h-5 w-5" />
-              Join as Photographer
+                            {t('home.cta.joinAsPhotographer')}
             </Link>
           </div>
         </div>
@@ -384,19 +384,19 @@ const HomePage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center justify-between">
             <div className="text-center md:text-left mb-6 md:mb-0">
-              <h3 className="text-xl font-semibold text-white mb-2">Need Help?</h3>
-              <p className="text-gray-400">Our support team is here to assist you 24/7</p>
+                            <h3 className="text-xl font-semibold text-white mb-2">{t('home.support.title')}</h3>
+              <p className="text-gray-400">{t('home.support.subtitle')}</p>
             </div>
             <div className="flex items-center space-x-4">
               <div className="flex items-center text-white">
                 <Headphones className="h-5 w-5 mr-2" />
-                <span>24/7 Support</span>
+                                <span>{t('home.support.available')}</span>
               </div>
               <Link
                 to="/contact"
                 className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-300"
               >
-                Contact Us
+                                {t('home.support.contact')}
               </Link>
             </div>
           </div>

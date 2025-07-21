@@ -171,11 +171,11 @@ const PhotographerDashboard = () => {
                 className="w-20 h-20 rounded-full object-cover"
               />
               <div>
-                <h1 className="text-2xl font-bold text-gray-900 mb-1">
-                  Chào mừng, {photographerData?.name || user?.name}!
+                                <h1 className="text-2xl font-bold text-gray-900 mb-1">
+                  {t('dashboard.welcome')}{photographerData?.name || user?.name}!
                 </h1>
                 <p className="text-gray-600 mb-2">
-                  {photographerData?.specialties?.join(", ") || "Nhiếp ảnh gia"}
+                  {photographerData?.specialties?.join(", ") || t('dashboard.photographer')}
                 </p>
                 <div className="flex items-center space-x-4 text-sm text-gray-500">
                   <div className="flex items-center">
@@ -197,12 +197,12 @@ const PhotographerDashboard = () => {
                 className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center space-x-2"
               >
                 <Edit className="h-4 w-4" />
-                <span>Chỉnh sửa hồ sơ</span>
+                                <span>{t('dashboard.editProfile')}</span>
               </Link>
               <NotificationCenter photographerId={user?.photographerId} />
               <button className="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors flex items-center space-x-2">
                 <Settings className="h-4 w-4" />
-                <span>Cài đặt</span>
+                                <span>{t('dashboard.settings')}</span>
               </button>
             </div>
           </div>
@@ -213,7 +213,7 @@ const PhotographerDashboard = () => {
           <div className="bg-white rounded-xl shadow-sm p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-500 mb-1">Tổng booking</p>
+                                <p className="text-sm text-gray-500 mb-1">{t('dashboard.totalBookings')}</p>
                 <p className="text-2xl font-bold text-gray-900">
                   {analytics.totalBookings}
                 </p>
@@ -227,7 +227,7 @@ const PhotographerDashboard = () => {
           <div className="bg-white rounded-xl shadow-sm p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-500 mb-1">Hoàn thành</p>
+                                <p className="text-sm text-gray-500 mb-1">{t('dashboard.completed')}</p>
                 <p className="text-2xl font-bold text-gray-900">
                   {analytics.completedBookings}
                 </p>
@@ -241,7 +241,7 @@ const PhotographerDashboard = () => {
           <div className="bg-white rounded-xl shadow-sm p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-500 mb-1">Tổng thu nhập</p>
+                                <p className="text-sm text-gray-500 mb-1">{t('dashboard.totalIncome')}</p>
                 <p className="text-2xl font-bold text-gray-900">
                   ${analytics.totalEarnings}
                 </p>
@@ -255,7 +255,7 @@ const PhotographerDashboard = () => {
           <div className="bg-white rounded-xl shadow-sm p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-500 mb-1">Đánh giá TB</p>
+                                <p className="text-sm text-gray-500 mb-1">{t('dashboard.averageRating')}</p>
                 <p className="text-2xl font-bold text-gray-900">
                   {analytics.averageRating}
                 </p>
@@ -269,7 +269,7 @@ const PhotographerDashboard = () => {
           <div className="bg-white rounded-xl shadow-sm p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-500 mb-1">Tỷ lệ phản hồi</p>
+                                <p className="text-sm text-gray-500 mb-1">{t('dashboard.responseRate')}</p>
                 <p className="text-2xl font-bold text-gray-900">
                   {analytics.responseRate}%
                 </p>
@@ -292,8 +292,8 @@ const PhotographerDashboard = () => {
                     ? "border-blue-600 text-blue-600"
                     : "border-transparent text-gray-500 hover:text-gray-700"
                 }`}
-              >
-                Tổng quan
+                            >
+                {t('dashboard.overview')}
               </button>
               <button
                 onClick={() => setSelectedTab("bookings")}
@@ -302,8 +302,8 @@ const PhotographerDashboard = () => {
                     ? "border-blue-600 text-blue-600"
                     : "border-transparent text-gray-500 hover:text-gray-700"
                 }`}
-              >
-                Quản lý booking
+                            >
+                {t('dashboard.manageBookings')}
               </button>
               <button
                 onClick={() => setSelectedTab("concepts")}
@@ -312,8 +312,8 @@ const PhotographerDashboard = () => {
                     ? "border-blue-600 text-blue-600"
                     : "border-transparent text-gray-500 hover:text-gray-700"
                 }`}
-              >
-                Concept & Portfolio
+                            >
+                {t('dashboard.conceptPortfolio')}
               </button>
             </div>
           </div>
@@ -325,21 +325,21 @@ const PhotographerDashboard = () => {
                 {/* Recent Bookings */}
                 <div>
                   <div className="flex items-center justify-between mb-6">
-                    <h2 className="text-xl font-bold text-gray-900">
-                      Booking gần đây
+                                        <h2 className="text-xl font-bold text-gray-900">
+                      {t('dashboard.recentBookings')}
                     </h2>
                     {bookingRequests.filter(b => b.status === 'Pending').length > 0 && (
                       <div className="flex items-center space-x-2">
                         <span className="bg-red-100 text-red-800 text-xs font-medium px-2 py-1 rounded-full">
-                          {bookingRequests.filter(b => b.status === 'Pending').length} booking chờ xử lý
+                                                    {bookingRequests.filter(b => b.status === 'Pending').length} {t('dashboard.pendingBookings')}
                         </span>
                       </div>
                     )}
-                    <button
+                                        <button
                       onClick={() => setSelectedTab("bookings")}
                       className="text-blue-600 hover:text-blue-700 text-sm font-medium flex items-center space-x-1"
                     >
-                      <span>Xem tất cả</span>
+                      <span>{t('dashboard.viewAll')}</span>
                       <ChevronRight className="h-4 w-4" />
                     </button>
                   </div>
@@ -390,7 +390,7 @@ const PhotographerDashboard = () => {
                   ) : (
                     <div className="text-center py-8 text-gray-500">
                       <Camera className="h-12 w-12 mx-auto mb-4 text-gray-300" />
-                      <p>Chưa có booking nào</p>
+                                            <p>{t('dashboard.noBookings')}</p>
                     </div>
                   )}
                 </div>
@@ -398,14 +398,14 @@ const PhotographerDashboard = () => {
                 {/* Popular Concepts */}
                 <div>
                   <div className="flex items-center justify-between mb-6">
-                    <h2 className="text-xl font-bold text-gray-900">
-                      Concept phổ biến
+                                        <h2 className="text-xl font-bold text-gray-900">
+                      {t('dashboard.popularConcepts')}
                     </h2>
-                    <button
+                                        <button
                       onClick={() => setSelectedTab("concepts")}
                       className="text-blue-600 hover:text-blue-700 text-sm font-medium flex items-center space-x-1"
                     >
-                      <span>Xem tất cả</span>
+                      <span>{t('dashboard.viewAll')}</span>
                       <ChevronRight className="h-4 w-4" />
                     </button>
                   </div>
@@ -449,21 +449,21 @@ const PhotographerDashboard = () => {
             {selectedTab === "bookings" && (
               <div>
                 <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-xl font-bold text-gray-900">
-                    Quản lý booking
+                                    <h2 className="text-xl font-bold text-gray-900">
+                    {t('dashboard.manageBookings')}
                   </h2>
                   <div className="flex items-center space-x-4">
                     <div className="flex items-center space-x-2 text-sm text-gray-600">
                       <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                      <span>Chờ xử lý: {bookingRequests.filter(b => b.status === 'Pending').length}</span>
+                                            <span>{t('dashboard.pending')}: {bookingRequests.filter(b => b.status === 'Pending').length}</span>
                     </div>
                     <div className="flex items-center space-x-2 text-sm text-gray-600">
                       <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                      <span>Đã xác nhận: {bookingRequests.filter(b => b.status === 'Confirmed').length}</span>
+                                            <span>{t('dashboard.confirmed')}: {bookingRequests.filter(b => b.status === 'Confirmed').length}</span>
                     </div>
                     <div className="flex items-center space-x-2 text-sm text-gray-600">
                       <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                      <span>Hoàn thành: {bookingRequests.filter(b => b.status === 'Completed').length}</span>
+                                            <span>{t('dashboard.completed')}: {bookingRequests.filter(b => b.status === 'Completed').length}</span>
                     </div>
                   </div>
                 </div>
@@ -516,13 +516,13 @@ const PhotographerDashboard = () => {
 
                               <div className="flex items-center justify-between">
                                 <div className="text-sm text-gray-500">
-                                  <span>
-                                    Thời gian:{" "}
+                                                                    <span>
+                                    {t('dashboard.time')}:{" "}
                                     {booking.bookingDetails?.duration || "N/A"}{" "}
-                                    giờ
+                                    {t('dashboard.hours')}
                                   </span>
                                   <span className="mx-2">•</span>
-                                  <span>Mã: {booking.reference}</span>
+                                  <span>{t('dashboard.code')}: {booking.reference}</span>
                                 </div>
                                 <div className="text-lg font-bold text-blue-600">
                                   ${booking.totalCost || 0}
@@ -535,23 +535,23 @@ const PhotographerDashboard = () => {
                         <div className="flex justify-end mt-4 pt-4 border-t border-gray-100 space-x-3">
                           {booking.status === 'Pending' && (
                             <>
-                              <button className="text-red-600 hover:text-red-700 text-sm font-medium">
-                                Từ chối
+                                                            <button className="text-red-600 hover:text-red-700 text-sm font-medium">
+                                {t('dashboard.reject')}
                               </button>
                               <button className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 text-sm font-medium">
-                                Chấp nhận
+                                {t('dashboard.accept')}
                               </button>
                             </>
                           )}
                           <button className="text-blue-600 hover:text-blue-700 text-sm font-medium flex items-center space-x-1">
                             <MessageSquare className="h-4 w-4" />
-                            <span>Nhắn tin</span>
+                                                        <span>{t('dashboard.message')}</span>
                           </button>
                           <button 
                             onClick={() => handleViewDetails(booking)}
                             className="text-blue-600 hover:text-blue-700 text-sm font-medium"
                           >
-                            Xem chi tiết
+                                                        {t('dashboard.viewDetails')}
                           </button>
                         </div>
                       </div>
@@ -562,11 +562,11 @@ const PhotographerDashboard = () => {
                     <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
                       <Calendar className="h-8 w-8 text-gray-400" />
                     </div>
-                    <h3 className="text-lg font-medium text-gray-900 mb-2">
-                      Chưa có booking nào
+                                        <h3 className="text-lg font-medium text-gray-900 mb-2">
+                      {t('dashboard.noBookings')}
                     </h3>
                     <p className="text-gray-500">
-                      Các booking từ khách hàng sẽ hiển thị ở đây
+                      {t('dashboard.noBookingsMessage')}
                     </p>
                   </div>
                 )}
@@ -576,12 +576,12 @@ const PhotographerDashboard = () => {
             {selectedTab === "concepts" && (
               <div>
                 <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-xl font-bold text-gray-900">
-                    Concept & Portfolio
+                                    <h2 className="text-xl font-bold text-gray-900">
+                    {t('dashboard.conceptPortfolio')}
                   </h2>
                   <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center space-x-2">
                     <Plus className="h-4 w-4" />
-                    <span>Thêm concept</span>
+                                        <span>{t('dashboard.addConcept')}</span>
                   </button>
                 </div>
 
@@ -616,11 +616,11 @@ const PhotographerDashboard = () => {
                         <div className="flex items-center justify-between text-sm text-gray-500">
                           <span className="flex items-center">
                             <Eye className="h-4 w-4 mr-1" />
-                            {concept.views} lượt xem
+                                                        {concept.views} {t('dashboard.views')}
                           </span>
                           <span className="flex items-center">
                             <Star className="h-4 w-4 mr-1" />
-                            {concept.likes} thích
+                                                        {concept.likes} {t('dashboard.likes')}
                           </span>
                         </div>
                       </div>
