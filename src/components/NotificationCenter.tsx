@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Bell, X, Check, Clock, MessageSquare, Calendar, Star, AlertCircle } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface Notification {
   id: string;
@@ -75,7 +76,7 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ photographerId 
         id: '5',
         type: 'system',
         title: 'Cập nhật hệ thống',
-        message: 'Tính năng AI mới đã được thêm vào nền tảng',
+        message: 'Tính năng AI mới đã được thêm vào nền t��ng',
         time: '1 ngày trước',
         read: true,
         priority: 'low'
