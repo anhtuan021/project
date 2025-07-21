@@ -335,11 +335,11 @@ const PhotographerDashboard = () => {
                         </span>
                       </div>
                     )}
-                    <button
+                                        <button
                       onClick={() => setSelectedTab("bookings")}
                       className="text-blue-600 hover:text-blue-700 text-sm font-medium flex items-center space-x-1"
                     >
-                      <span>Xem tất cả</span>
+                      <span>{t('dashboard.viewAll')}</span>
                       <ChevronRight className="h-4 w-4" />
                     </button>
                   </div>
@@ -390,7 +390,7 @@ const PhotographerDashboard = () => {
                   ) : (
                     <div className="text-center py-8 text-gray-500">
                       <Camera className="h-12 w-12 mx-auto mb-4 text-gray-300" />
-                      <p>Chưa có booking nào</p>
+                                            <p>{t('dashboard.noBookings')}</p>
                     </div>
                   )}
                 </div>
