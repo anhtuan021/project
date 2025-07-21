@@ -676,7 +676,7 @@ const translations = {
     'home.cta.joinPhotographer': 'Tham Gia Với Tư Cách Nhiếp Ảnh Gia',
     'home.hero.title': 'Tìm Nhiếp Ảnh Gia',
     'home.hero.titleHighlight': 'Hoàn Hảo',
-    'home.hero.subtitle': 'Kết nối với các nhiếp ảnh gia tài năng trên toàn thế giới. Đặt lịch chụp, nhận ảnh được nâng cấp bởi AI và tạo ra những kỷ niệm vĩnh cửu.',
+    'home.hero.subtitle': 'Kết nối với các nhiếp ảnh gia tài năng trên toàn thế gi��i. Đặt lịch chụp, nhận ảnh được nâng cấp bởi AI và tạo ra những kỷ niệm vĩnh cửu.',
     'home.stats.photographers': 'Nhiếp Ảnh Gia',
     'home.stats.photos': 'Ảnh Đã Chụp',
     'home.stats.clients': 'Khách Hàng Hài Lòng',
@@ -690,7 +690,7 @@ const translations = {
     'home.howItWorks.title': 'Cách Thức Hoạt Động',
     'home.howItWorks.subtitle': 'Việc có được những bức ảnh chuyên nghiệp chưa bao giờ dễ dàng hơn. Làm theo các bước đơn giản này để đặt nhiếp ảnh gia hoàn hảo của bạn.',
     'home.howItWorks.step1.title': 'Tìm Kiếm & Duyệt',
-    'home.howItWorks.step1.description': 'Tìm nhiếp ảnh gia trong khu vực c���a bạn bằng bộ lọc tìm kiếm thông minh.',
+    'home.howItWorks.step1.description': 'Tìm nhiếp ảnh gia trong khu vực c��a bạn bằng bộ lọc tìm kiếm thông minh.',
     'home.howItWorks.step2.title': 'Đặt Lịch & Thanh Toán',
     'home.howItWorks.step2.description': 'Chọn nhiếp ảnh gia ưa thích và đặt lịch chụp một cách an toàn.',
     'home.howItWorks.step3.title': 'Nhận Ảnh',
@@ -730,7 +730,7 @@ const translations = {
     'signup.continueWith': 'Hoặc tiếp tục với email',
     'signup.fullName': 'Họ và Tên',
     'signup.email': 'Địa Chỉ Email',
-    'signup.password': 'Mật Khẩu',
+    'signup.password': 'Mật Kh���u',
     'signup.confirmPassword': 'Xác Nhận Mật Khẩu',
     'signup.passwordHint': 'Phải có ít nhất 8 ký tự',
     'signup.agreeTerms': 'Tôi đồng ý với',
@@ -784,7 +784,7 @@ const translations = {
     'editProfile.saveChanges': 'Lưu Thay Đổi',
     'editProfile.cancel': 'Hủy',
     'editProfile.needAssistance': 'Cần hỗ trợ?',
-    'editProfile.chatSupport': 'Trò chuyện v��i AI Hỗ trợ',
+    'editProfile.chatSupport': 'Trò chuyện với AI Hỗ trợ',
     'editProfile.success': 'Cập nhật hồ sơ thành công!',
     
     // Photographer Listing Page
@@ -854,7 +854,7 @@ const translations = {
     'booking.whenWhere': 'Khi nào và ở đâu bạn cần chụp ảnh?',
     'booking.eventDate': 'Ngày Sự Kiện',
     'booking.eventTime': 'Giờ Sự Kiện',
-    'booking.duration': 'Thời Lượng (giờ)',
+    'booking.duration': 'Thời Lư��ng (giờ)',
     'booking.estimatedCost': 'Chi Phí Ước Tính',
     'booking.eventLocation': 'Địa Điểm Sự Kiện',
     'booking.locationPlaceholder': 'Nhập địa chỉ hoặc tên địa điểm',
@@ -902,7 +902,7 @@ const translations = {
     'aiTools.autoEditing': 'Công Cụ Chỉnh Sửa Tự Động',
     'aiTools.autoEditingDesc': 'Chỉnh sửa và nâng cấp ảnh được hỗ trợ bởi AI',
     'aiTools.styleMatcher': 'Ghép Đôi Phong Cách',
-    'aiTools.styleMatcherDesc': 'Tìm nhiếp ���nh gia có thẩm mỹ phù hợp',
+    'aiTools.styleMatcherDesc': 'Tìm nhiếp ảnh gia có thẩm mỹ phù hợp',
     'aiTools.enterTheme': 'Nhập chủ đề hoặc mô tả của bạn',
     'aiTools.themePlaceholder': 'ví dụ: đám cưới hoàng hôn lãng mạn, chân dung đô thị hiện đại...',
     'aiTools.generate': 'Tạo',
@@ -1003,7 +1003,7 @@ const translations = {
     'footer.email': 'support@snapmatch.ai',
     'footer.phone': '+84 (777) 123-45555',
     'footer.address': 'Việt Nam, Thành Phố Quy Nhơn',
-    'footer.description': 'Kết nối nhi��p ảnh gia và khách hàng thông qua hệ thống ghép đôi AI.',
+    'footer.description': 'Kết nối nhiếp ảnh gia và khách hàng thông qua hệ thống ghép đôi AI.',
     'footer.copyright': '© 2024 SnapMatch AI. Tất cả quyền được bảo lưu.',
 
     // Photographer Dashboard
@@ -1140,7 +1140,7 @@ const translations = {
     'notifications.title': 'Thông Báo',
     'notifications.markAllRead': 'Đánh dấu tất cả đã đọc',
     'notifications.markRead': 'Đánh dấu đã đọc',
-    'notifications.delete': 'X��a thông báo',
+    'notifications.delete': 'Xóa thông báo',
     'notifications.empty': 'Không có thông báo nào',
     'notifications.viewAll': 'Xem tất cả thông báo',
     'notifications.newBooking': 'Booking mới',
@@ -1177,8 +1177,8 @@ const translations = {
     'home.testimonials.client1': 'Sarah Johnson',
     'home.testimonials.review1': 'Trải nghiệm tuyệt vời! Hệ thống ghép đôi AI đã tìm cho tôi nhiếp ảnh gia hoàn hảo cho đám cưới. Những bức ảnh thật tuyệt đẹp.',
     'home.testimonials.client2': 'Michael Chen',
-    'home.testimonials.review2': 'Dịch vụ chuyên nghiệp và kết quả đáng kinh ngạc. Công cụ chỉnh sửa AI đã tiết kiệm cho tôi hàng giờ làm việc. Rất được khuyến khích!',
-        'home.testimonials.client3': 'Emily Davis',
+        'home.testimonials.review2': 'Dịch vụ chuyên nghiệp và kết quả đáng kinh ngạc. Công cụ chỉnh sửa AI đã tiết kiệm cho tôi hàng giờ làm việc. Rất được khuyến khích!',
+    'home.testimonials.client3': 'Emily Davis',
     'home.testimonials.review3': 'Nền tảng này giúp việc tìm và đặt nhiếp ảnh gia trở nên dễ dàng. Toàn bộ quá trình diễn ra mượt mà và không căng thẳng.',
 
     // Additional HomePage content
@@ -1198,7 +1198,7 @@ const translations = {
     'home.testimonials.realReview2': 'Ảnh chân dung chuyên nghiệp cho đội ngũ của tôi được giao nhanh chóng với chất lượng tuyệt vời.',
     'home.testimonials.realClient3': 'Emily Chen',
     'home.testimonials.realClient3Role': 'Người Tổ Chức Sự Kiện',
-    'home.testimonials.realReview3': 'Tôi thường xuyên đặt nhiếp ảnh gia qua n��n tảng này. Luôn đáng tin cậy và tài năng!',
+    'home.testimonials.realReview3': 'Tôi thường xuyên đặt nhiếp ảnh gia qua nền tảng này. Luôn đáng tin cậy và tài năng!',
 
     // Booking Page Additional
     'booking.photographyTypes.portrait': 'Chụp Ảnh Chân Dung',
