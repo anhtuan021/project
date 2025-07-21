@@ -449,21 +449,21 @@ const PhotographerDashboard = () => {
             {selectedTab === "bookings" && (
               <div>
                 <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-xl font-bold text-gray-900">
-                    Quản lý booking
+                                    <h2 className="text-xl font-bold text-gray-900">
+                    {t('dashboard.manageBookings')}
                   </h2>
                   <div className="flex items-center space-x-4">
                     <div className="flex items-center space-x-2 text-sm text-gray-600">
                       <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                      <span>Chờ xử lý: {bookingRequests.filter(b => b.status === 'Pending').length}</span>
+                                            <span>{t('dashboard.pending')}: {bookingRequests.filter(b => b.status === 'Pending').length}</span>
                     </div>
                     <div className="flex items-center space-x-2 text-sm text-gray-600">
                       <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                      <span>Đã xác nhận: {bookingRequests.filter(b => b.status === 'Confirmed').length}</span>
+                                            <span>{t('dashboard.confirmed')}: {bookingRequests.filter(b => b.status === 'Confirmed').length}</span>
                     </div>
                     <div className="flex items-center space-x-2 text-sm text-gray-600">
                       <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                      <span>Hoàn thành: {bookingRequests.filter(b => b.status === 'Completed').length}</span>
+                                            <span>{t('dashboard.completed')}: {bookingRequests.filter(b => b.status === 'Completed').length}</span>
                     </div>
                   </div>
                 </div>
