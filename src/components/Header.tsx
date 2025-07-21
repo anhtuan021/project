@@ -186,8 +186,8 @@ const Header = () => {
             ))}
 
             {user?.userType === 'photographer' && (
-              <div className="flex items-center justify-between">
-                <span className="text-gray-700">Thông báo</span>
+                            <div className="flex items-center justify-between">
+                <span className="text-gray-700">{t('notifications.title')}</span>
                 <NotificationCenter photographerId={user?.photographerId} />
               </div>
             )}
