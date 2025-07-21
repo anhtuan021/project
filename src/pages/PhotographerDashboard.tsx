@@ -545,13 +545,13 @@ const PhotographerDashboard = () => {
                           )}
                           <button className="text-blue-600 hover:text-blue-700 text-sm font-medium flex items-center space-x-1">
                             <MessageSquare className="h-4 w-4" />
-                            <span>Nhắn tin</span>
+                                                        <span>{t('dashboard.message')}</span>
                           </button>
                           <button 
                             onClick={() => handleViewDetails(booking)}
                             className="text-blue-600 hover:text-blue-700 text-sm font-medium"
                           >
-                            Xem chi tiết
+                                                        {t('dashboard.viewDetails')}
                           </button>
                         </div>
                       </div>
@@ -562,11 +562,11 @@ const PhotographerDashboard = () => {
                     <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
                       <Calendar className="h-8 w-8 text-gray-400" />
                     </div>
-                    <h3 className="text-lg font-medium text-gray-900 mb-2">
-                      Chưa có booking nào
+                                        <h3 className="text-lg font-medium text-gray-900 mb-2">
+                      {t('dashboard.noBookings')}
                     </h3>
                     <p className="text-gray-500">
-                      Các booking từ khách hàng sẽ hiển thị ở đây
+                      {t('dashboard.noBookingsMessage')}
                     </p>
                   </div>
                 )}
