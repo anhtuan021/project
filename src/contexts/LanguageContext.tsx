@@ -627,7 +627,7 @@ const translations = {
     'home.topPhotographers': 'Nhiếp Ảnh Gia Hàng Đầu Gần Bạn',
     'home.aiFeatures': 'Trải Nghiệm Chụp Ảnh Được Hỗ Trợ Bởi AI',
     'home.aiSubtitle': 'Biến đổi quy trình chụp ảnh của bạn với các công cụ thông minh được thiết kế để nâng cao mọi khía cạnh của quá trình sáng tạo',
-    'home.cta.title': 'Sẵn Sàng Biến Đổi Trải Nghiệm Chụp Ảnh?',
+    'home.cta.title': 'S���n Sàng Biến Đổi Trải Nghiệm Chụp Ảnh?',
     'home.cta.subtitle': 'Tham gia cùng hàng nghìn khách hàng và nhiếp ảnh gia hài lòng tin tưởng SnapMatch AI',
     'home.cta.findPhotographer': 'Tìm Nhiếp Ảnh Gia',
     'home.cta.joinPhotographer': 'Tham Gia Với Tư Cách Nhiếp Ảnh Gia',
@@ -641,7 +641,7 @@ const translations = {
     'home.featured.title': 'Nhiếp Ảnh Gia Nổi Bật',
     'home.featured.subtitle': 'Khám phá các nhiếp ảnh gia tài năng từ khắp nơi trên thế giới, mỗi người mang đến phong cách và chuyên môn độc đáo để ghi lại những khoảnh khắc đặc biệt của bạn.',
     'home.aiPowered.title': 'Nhiếp Ảnh Được Hỗ Trợ Bởi AI',
-    'home.aiPowered.subtitle': 'Trải nghi���m tương lai của nhiếp ảnh với các công cụ AI tiên tiến giúp nâng cao mọi khía cạnh trong hành trình ch��p ảnh của bạn.',
+    'home.aiPowered.subtitle': 'Trải nghiệm tương lai của nhiếp ảnh với các công cụ AI tiên tiến giúp nâng cao mọi khía cạnh trong hành trình ch��p ảnh của bạn.',
     'home.categories.title': 'Danh Mục Nhiếp Ảnh',
     'home.categories.subtitle': 'Tìm nhiếp ảnh gia hoàn hảo cho bất kỳ dịp nào hoặc sở thích phong cách.',
     'home.howItWorks.title': 'Cách Thức Hoạt Động',
@@ -726,7 +726,7 @@ const translations = {
     'editProfile.title': 'Chỉnh Sửa Hồ Sơ',
     'editProfile.changePhoto': 'Thay Đổi Ảnh',
     'editProfile.fullName': 'Họ và Tên',
-    'editProfile.email': 'Địa Chỉ Email',
+    'editProfile.email': 'Địa Ch��� Email',
     'editProfile.phone': 'Số Điện Thoại (Tùy chọn)',
     'editProfile.password': 'Mật Khẩu',
     'editProfile.changePassword': 'Thay Đổi Mật Khẩu',
@@ -1026,7 +1026,7 @@ const translations = {
     'admin.photographerManagement': 'Quản Lý Nhiếp Ảnh Gia',
     'admin.rating': 'Đánh Giá',
     'admin.revenue': 'Doanh Thu',
-    'admin.monthlyFee': 'Phí Tháng',
+    'admin.monthlyFee': 'Phí Th��ng',
     'admin.paymentManagement': 'Quản Lý Thanh Toán',
     'admin.paymentStatus': 'Trạng Thái Thanh Toán',
     'admin.lastPayment': 'Thanh Toán Cuối',
@@ -1136,7 +1136,7 @@ const translations = {
     'home.testimonials.client2': 'Michael Chen',
         'home.testimonials.review2': 'Dịch vụ chuyên nghiệp và kết quả đáng kinh ngạc. Công cụ chỉnh sửa AI đã tiết kiệm cho tôi hàng giờ làm việc. Rất được khuyến khích!',
     'home.testimonials.client3': 'Emily Davis',
-    'home.testimonials.review3': 'Nền tảng này giúp việc tìm và đặt nhiếp ảnh gia trở nên dễ dàng. Toàn bộ quá trình diễn ra mượt mà và không căng th���ng.',
+    'home.testimonials.review3': 'Nền tảng này giúp việc tìm và đặt nhiếp ảnh gia trở nên dễ dàng. Toàn bộ quá trình diễn ra mượt mà và không căng thẳng.',
 
     // Additional HomePage content
     'home.search.styles.portrait': 'Chân Dung',
@@ -1180,24 +1180,7 @@ const translations = {
 
     
 
-    // Photographer Profile Additional
-    'photographerProfile.allWork': 'Tất Cả Tác Phẩm',
-    'photographerProfile.bookNow': 'Đặt Ngay',
-    'photographerProfile.message': 'Nhắn Tin',
-    'photographerProfile.projectsCompleted': 'Dự ��n Hoàn Thành',
-    'photographerProfile.yearsExperience': 'năm',
-    'photographerProfile.available': 'Có Sẵn',
-    'photographerProfile.busy': 'Bận',
-    'photographerProfile.equipment': 'Thiết Bị',
-    'photographerProfile.about': 'Giới Thiệu',
-    'photographerProfile.specialties': 'Chuyên Môn',
-    'photographerProfile.portfolio': 'Danh Mục Tác Phẩm',
-    'photographerProfile.clientReviews': 'Đánh Giá Khách Hàng',
-
-    // Invoice Additional
-    'invoice.professionalPhotographer': 'Nhiếp Ảnh Gia Chuyên Nghiệp',
-    'invoice.hoursText': 'giờ',
-    'invoice.backToBookings': 'Quay lại Lịch Đặt Của Tôi',
+    
 
     // Support Page Additional
     'support.popularConcepts': 'Concept Phổ Biến',
