@@ -398,14 +398,14 @@ const PhotographerDashboard = () => {
                 {/* Popular Concepts */}
                 <div>
                   <div className="flex items-center justify-between mb-6">
-                    <h2 className="text-xl font-bold text-gray-900">
-                      Concept phổ biến
+                                        <h2 className="text-xl font-bold text-gray-900">
+                      {t('dashboard.popularConcepts')}
                     </h2>
-                    <button
+                                        <button
                       onClick={() => setSelectedTab("concepts")}
                       className="text-blue-600 hover:text-blue-700 text-sm font-medium flex items-center space-x-1"
                     >
-                      <span>Xem tất cả</span>
+                      <span>{t('dashboard.viewAll')}</span>
                       <ChevronRight className="h-4 w-4" />
                     </button>
                   </div>
