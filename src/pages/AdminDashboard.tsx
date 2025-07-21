@@ -152,14 +152,14 @@ const AdminDashboard = () => {
     }
   };
 
-  const getStatusText = (status) => {
+    const getStatusText = (status) => {
     switch (status) {
       case 'active':
-        return 'Hoạt động';
+        return t('admin.status.active');
       case 'pending_payment':
-        return 'Chờ thanh toán';
+        return t('admin.status.pendingPayment');
       case 'suspended':
-        return 'Tạm khóa';
+        return t('admin.status.suspended');
       default:
         return status;
     }
@@ -182,12 +182,12 @@ const AdminDashboard = () => {
         <div className="bg-white rounded-xl shadow-sm p-8 mb-8">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900 mb-2">Admin Dashboard</h1>
-              <p className="text-gray-600">Quản lý hệ thống SnapMatch AI</p>
+                            <h1 className="text-3xl font-bold text-gray-900 mb-2">{t('admin.dashboard')}</h1>
+              <p className="text-gray-600">{t('admin.systemManagement')}</p>
             </div>
             <div className="flex items-center space-x-4">
               <div className="text-right">
-                <p className="text-sm text-gray-500">Doanh thu tháng này</p>
+                                <p className="text-sm text-gray-500">{t('admin.monthlyRevenue')}</p>
                 <p className="text-2xl font-bold text-green-600">${analytics.monthlyRevenue}</p>
               </div>
             </div>
