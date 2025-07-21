@@ -165,14 +165,14 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ photographerId 
           {/* Header */}
           <div className="p-4 border-b border-gray-200">
             <div className="flex items-center justify-between">
-              <h3 className="text-lg font-semibold text-gray-900">Thông báo</h3>
+                            <h3 className="text-lg font-semibold text-gray-900">{t('notifications.title')}</h3>
               <div className="flex items-center space-x-2">
                 {unreadCount > 0 && (
                   <button
                     onClick={markAllAsRead}
                     className="text-sm text-blue-600 hover:text-blue-700 font-medium"
                   >
-                    Đánh dấu tất cả đã đọc
+                                        {t('notifications.markAllRead')}
                   </button>
                 )}
                 <button
@@ -226,7 +226,7 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ photographerId 
                               <button
                                 onClick={() => markAsRead(notification.id)}
                                 className="p-1 hover:bg-gray-200 rounded-full"
-                                title="Đánh dấu đã đọc"
+                                                                title={t('notifications.markRead')}
                               >
                                 <Check className="h-3 w-3 text-gray-500" />
                               </button>
@@ -234,7 +234,7 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ photographerId 
                             <button
                               onClick={() => deleteNotification(notification.id)}
                               className="p-1 hover:bg-gray-200 rounded-full"
-                              title="Xóa thông báo"
+                                                            title={t('notifications.delete')}
                             >
                               <X className="h-3 w-3 text-gray-500" />
                             </button>
@@ -248,7 +248,7 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ photographerId 
             ) : (
               <div className="p-8 text-center">
                 <Bell className="h-12 w-12 text-gray-300 mx-auto mb-4" />
-                <p className="text-gray-500">Không có thông báo nào</p>
+                                <p className="text-gray-500">{t('notifications.empty')}</p>
               </div>
             )}
           </div>
@@ -256,8 +256,8 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ photographerId 
           {/* Footer */}
           {notifications.length > 0 && (
             <div className="p-4 border-t border-gray-200">
-              <button className="w-full text-center text-sm text-blue-600 hover:text-blue-700 font-medium">
-                Xem tất cả thông báo
+                            <button className="w-full text-center text-sm text-blue-600 hover:text-blue-700 font-medium">
+                {t('notifications.viewAll')}
               </button>
             </div>
           )}
