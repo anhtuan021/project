@@ -55,8 +55,8 @@ const BookingDetailsModal: React.FC<BookingDetailsModalProps> = ({
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-200">
           <div>
-            <h2 className="text-2xl font-bold text-gray-900">Chi tiết booking</h2>
-            <p className="text-gray-600">Mã booking: {booking.reference}</p>
+                        <h2 className="text-2xl font-bold text-gray-900">{t('bookingModal.title')}</h2>
+            <p className="text-gray-600">{t('bookingModal.code')}: {booking.reference}</p>
           </div>
           <button
             onClick={onClose}
@@ -73,7 +73,7 @@ const BookingDetailsModal: React.FC<BookingDetailsModalProps> = ({
               {/* Status */}
               <div className="bg-gray-50 rounded-lg p-4">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium text-gray-700">Trạng thái</span>
+                                    <span className="text-sm font-medium text-gray-700">{t('bookingModal.status')}</span>
                   <span className={`px-3 py-1 rounded-full text-sm font-medium ${getStatusColor(booking.status)}`}>
                     {booking.status}
                   </span>
@@ -84,7 +84,7 @@ const BookingDetailsModal: React.FC<BookingDetailsModalProps> = ({
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center">
                   <Camera className="h-5 w-5 mr-2 text-blue-600" />
-                  Loại chụp ảnh
+                                    {t('bookingModal.type')}
                 </h3>
                 <p className="text-gray-700 bg-blue-50 p-3 rounded-lg">
                   {booking.photographyType || 'Photography Session'}
@@ -95,7 +95,7 @@ const BookingDetailsModal: React.FC<BookingDetailsModalProps> = ({
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center">
                   <Calendar className="h-5 w-5 mr-2 text-blue-600" />
-                  Thời gian
+                                    {t('bookingModal.time')}
                 </h3>
                 <div className="space-y-2">
                   <div className="flex items-center text-gray-700">
@@ -107,8 +107,8 @@ const BookingDetailsModal: React.FC<BookingDetailsModalProps> = ({
                     <span>{booking.bookingDetails?.time || 'N/A'}</span>
                   </div>
                   <div className="flex items-center text-gray-700">
-                    <span className="text-sm text-gray-500 mr-2">Thời lượng:</span>
-                    <span>{booking.bookingDetails?.duration || 'N/A'} giờ</span>
+                                        <span className="text-sm text-gray-500 mr-2">{t('bookingModal.duration')}</span>
+                    <span>{booking.bookingDetails?.duration || 'N/A'} {t('common.hours')}</span>
                   </div>
                 </div>
               </div>
@@ -117,7 +117,7 @@ const BookingDetailsModal: React.FC<BookingDetailsModalProps> = ({
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center">
                   <MapPin className="h-5 w-5 mr-2 text-blue-600" />
-                  Địa điểm
+                                    {t('bookingModal.location')}
                 </h3>
                 <p className="text-gray-700 bg-gray-50 p-3 rounded-lg">
                   {booking.bookingDetails?.location || 'N/A'}
@@ -126,14 +126,14 @@ const BookingDetailsModal: React.FC<BookingDetailsModalProps> = ({
 
               {/* Cost */}
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Chi phí</h3>
+                                <h3 className="text-lg font-semibold text-gray-900 mb-3">{t('bookingModal.cost')}</h3>
                 <div className="bg-green-50 p-4 rounded-lg">
                   <div className="flex justify-between items-center">
-                    <span className="text-gray-700">Tổng chi phí:</span>
+                                        <span className="text-gray-700">{t('bookingModal.totalCost')}</span>
                     <span className="text-2xl font-bold text-green-600">${booking.totalCost || 0}</span>
                   </div>
                   <p className="text-sm text-gray-500 mt-1">
-                    {booking.bookingDetails?.duration || 0} giờ × ${Math.round((booking.totalCost || 0) / (booking.bookingDetails?.duration || 1))}/giờ
+                                        {booking.bookingDetails?.duration || 0} {t('bookingModal.hoursMultiplier')} ${Math.round((booking.totalCost || 0) / (booking.bookingDetails?.duration || 1))}{t('bookingModal.perHour')}
                   </p>
                 </div>
               </div>
