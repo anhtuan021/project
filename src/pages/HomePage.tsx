@@ -356,16 +356,16 @@ const HomePage = () => {
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-r from-blue-600 to-purple-600">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-white mb-4">Ready to Capture Your Moments?</h2>
+                    <h2 className="text-3xl font-bold text-white mb-4">{t('home.cta.finalTitle')}</h2>
           <p className="text-blue-100 text-xl mb-8 max-w-2xl mx-auto">
-            Join thousands of satisfied clients who have found their perfect photographer through our platform.
+            {t('home.cta.finalSubtitle')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/photographers"
               className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-300 flex items-center justify-center"
             >
-              Find Photographers
+                            {t('home.cta.findPhotographers')}
               <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
             <Link
@@ -373,7 +373,7 @@ const HomePage = () => {
               className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors duration-300 flex items-center justify-center"
             >
               <Camera className="mr-2 h-5 w-5" />
-              Join as Photographer
+                            {t('home.cta.joinAsPhotographer')}
             </Link>
           </div>
         </div>
@@ -384,19 +384,19 @@ const HomePage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center justify-between">
             <div className="text-center md:text-left mb-6 md:mb-0">
-              <h3 className="text-xl font-semibold text-white mb-2">Need Help?</h3>
-              <p className="text-gray-400">Our support team is here to assist you 24/7</p>
+                            <h3 className="text-xl font-semibold text-white mb-2">{t('home.support.title')}</h3>
+              <p className="text-gray-400">{t('home.support.subtitle')}</p>
             </div>
             <div className="flex items-center space-x-4">
               <div className="flex items-center text-white">
                 <Headphones className="h-5 w-5 mr-2" />
-                <span>24/7 Support</span>
+                                <span>{t('home.support.available')}</span>
               </div>
               <Link
                 to="/contact"
                 className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-300"
               >
-                Contact Us
+                                {t('home.support.contact')}
               </Link>
             </div>
           </div>
