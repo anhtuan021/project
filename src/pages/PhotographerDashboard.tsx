@@ -171,11 +171,11 @@ const PhotographerDashboard = () => {
                 className="w-20 h-20 rounded-full object-cover"
               />
               <div>
-                <h1 className="text-2xl font-bold text-gray-900 mb-1">
-                  Chào mừng, {photographerData?.name || user?.name}!
+                                <h1 className="text-2xl font-bold text-gray-900 mb-1">
+                  {t('dashboard.welcome')}{photographerData?.name || user?.name}!
                 </h1>
                 <p className="text-gray-600 mb-2">
-                  {photographerData?.specialties?.join(", ") || "Nhiếp ảnh gia"}
+                  {photographerData?.specialties?.join(", ") || t('dashboard.photographer')}
                 </p>
                 <div className="flex items-center space-x-4 text-sm text-gray-500">
                   <div className="flex items-center">
@@ -197,12 +197,12 @@ const PhotographerDashboard = () => {
                 className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center space-x-2"
               >
                 <Edit className="h-4 w-4" />
-                <span>Chỉnh sửa hồ sơ</span>
+                                <span>{t('dashboard.editProfile')}</span>
               </Link>
               <NotificationCenter photographerId={user?.photographerId} />
               <button className="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors flex items-center space-x-2">
                 <Settings className="h-4 w-4" />
-                <span>Cài đặt</span>
+                                <span>{t('dashboard.settings')}</span>
               </button>
             </div>
           </div>
@@ -213,7 +213,7 @@ const PhotographerDashboard = () => {
           <div className="bg-white rounded-xl shadow-sm p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-500 mb-1">Tổng booking</p>
+                                <p className="text-sm text-gray-500 mb-1">{t('dashboard.totalBookings')}</p>
                 <p className="text-2xl font-bold text-gray-900">
                   {analytics.totalBookings}
                 </p>
@@ -227,7 +227,7 @@ const PhotographerDashboard = () => {
           <div className="bg-white rounded-xl shadow-sm p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-500 mb-1">Hoàn thành</p>
+                                <p className="text-sm text-gray-500 mb-1">{t('dashboard.completed')}</p>
                 <p className="text-2xl font-bold text-gray-900">
                   {analytics.completedBookings}
                 </p>
