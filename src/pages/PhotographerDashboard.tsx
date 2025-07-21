@@ -576,12 +576,12 @@ const PhotographerDashboard = () => {
             {selectedTab === "concepts" && (
               <div>
                 <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-xl font-bold text-gray-900">
-                    Concept & Portfolio
+                                    <h2 className="text-xl font-bold text-gray-900">
+                    {t('dashboard.conceptPortfolio')}
                   </h2>
                   <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center space-x-2">
                     <Plus className="h-4 w-4" />
-                    <span>Thêm concept</span>
+                                        <span>{t('dashboard.addConcept')}</span>
                   </button>
                 </div>
 
@@ -616,11 +616,11 @@ const PhotographerDashboard = () => {
                         <div className="flex items-center justify-between text-sm text-gray-500">
                           <span className="flex items-center">
                             <Eye className="h-4 w-4 mr-1" />
-                            {concept.views} lượt xem
+                                                        {concept.views} {t('dashboard.views')}
                           </span>
                           <span className="flex items-center">
                             <Star className="h-4 w-4 mr-1" />
-                            {concept.likes} thích
+                                                        {concept.likes} {t('dashboard.likes')}
                           </span>
                         </div>
                       </div>
