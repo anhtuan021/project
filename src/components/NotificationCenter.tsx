@@ -21,6 +21,7 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ photographerId 
   const [isOpen, setIsOpen] = useState(false);
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [unreadCount, setUnreadCount] = useState(0);
+  const { t } = useLanguage();
 
   useEffect(() => {
     // Load notifications from localStorage or API
@@ -38,9 +39,9 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ photographerId 
       {
         id: '1',
         type: 'booking',
-        title: 'Booking mới',
-        message: 'Nguyễn Văn A đã đặt lịch chụp ảnh cưới vào ngày 15/02/2024',
-        time: '5 phút trước',
+                title: t('notifications.newBooking'),
+        message: t('notifications.newBookingDesc'),
+        time: `5 ${t('notifications.timeAgo.minutes')}`,
         read: false,
         priority: 'high',
         actionUrl: '/photographer-dashboard?tab=bookings'
@@ -48,36 +49,36 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ photographerId 
       {
         id: '2',
         type: 'message',
-        title: 'Tin nhắn mới',
-        message: 'Trần Thị B đã gửi tin nhắn về buổi chụp ảnh gia đình',
-        time: '15 phút trước',
+                title: t('notifications.newMessage'),
+        message: t('notifications.newMessageDesc'),
+        time: `15 ${t('notifications.timeAgo.minutes')}`,
         read: false,
         priority: 'medium'
       },
       {
         id: '3',
         type: 'review',
-        title: 'Đánh giá mới',
-        message: 'Lê Văn C đã đánh giá 5 sao cho buổi chụp ảnh chân dung',
-        time: '1 giờ trước',
+                title: t('notifications.newReview'),
+        message: t('notifications.newReviewDesc'),
+        time: `1 ${t('notifications.timeAgo.hour')}`,
         read: true,
         priority: 'low'
       },
       {
         id: '4',
         type: 'payment',
-        title: 'Thanh toán thành công',
-        message: 'Bạn đã nhận được $300 từ booking #POR-002',
-        time: '2 giờ trước',
+                title: t('notifications.paymentSuccess'),
+        message: t('notifications.paymentSuccessDesc'),
+        time: `2 ${t('notifications.timeAgo.hours')}`,
         read: false,
         priority: 'medium'
       },
       {
         id: '5',
         type: 'system',
-        title: 'Cập nhật hệ thống',
-        message: 'Tính năng AI mới đã được thêm vào nền t��ng',
-        time: '1 ngày trước',
+                title: t('notifications.systemUpdate'),
+        message: t('notifications.systemUpdateDesc'),
+        time: `1 ${t('notifications.timeAgo.day')}`,
         read: true,
         priority: 'low'
       }
