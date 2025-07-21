@@ -173,16 +173,9 @@ const Header = () => {
       {/* Mobile menu */}
       {isMenuOpen && (
         <div className="md:hidden bg-white border-t border-gray-200">
-          <div className="px-4 py-3 space-y-3">
+                    <div className="px-4 py-3 space-y-3">
             {navigation.map((item) => (
               <Link
-
-                {user?.userType === 'photographer' && (
-                  <div className="flex items-center justify-between">
-                    <span className="text-gray-700">Thông báo</span>
-                    <NotificationCenter photographerId={user?.photographerId} />
-                  </div>
-                )}
                 key={item.name}
                 to={item.href}
                 className="block text-gray-700 hover:text-blue-600 transition-colors"
@@ -191,6 +184,13 @@ const Header = () => {
                 {item.name}
               </Link>
             ))}
+
+            {user?.userType === 'photographer' && (
+              <div className="flex items-center justify-between">
+                <span className="text-gray-700">Thông báo</span>
+                <NotificationCenter photographerId={user?.photographerId} />
+              </div>
+            )}
 
             <div className="pt-4 border-t border-gray-200">
               {isAuthenticated ? (

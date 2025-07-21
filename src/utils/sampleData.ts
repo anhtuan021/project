@@ -104,10 +104,11 @@ export const initializeSampleData = () => {
       read: true,
       priority: 'low'
     }
-  ];
-};
+    ];
 
+  // Only add sample notifications if none exist
   const existingNotifications = localStorage.getItem("photographerNotifications");
   if (!existingNotifications || JSON.parse(existingNotifications).length === 0) {
     localStorage.setItem("photographerNotifications", JSON.stringify(sampleNotifications));
   }
+};
