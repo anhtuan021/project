@@ -516,13 +516,13 @@ const PhotographerDashboard = () => {
 
                               <div className="flex items-center justify-between">
                                 <div className="text-sm text-gray-500">
-                                  <span>
-                                    Thời gian:{" "}
+                                                                    <span>
+                                    {t('dashboard.time')}:{" "}
                                     {booking.bookingDetails?.duration || "N/A"}{" "}
-                                    giờ
+                                    {t('dashboard.hours')}
                                   </span>
                                   <span className="mx-2">•</span>
-                                  <span>Mã: {booking.reference}</span>
+                                  <span>{t('dashboard.code')}: {booking.reference}</span>
                                 </div>
                                 <div className="text-lg font-bold text-blue-600">
                                   ${booking.totalCost || 0}
@@ -535,11 +535,11 @@ const PhotographerDashboard = () => {
                         <div className="flex justify-end mt-4 pt-4 border-t border-gray-100 space-x-3">
                           {booking.status === 'Pending' && (
                             <>
-                              <button className="text-red-600 hover:text-red-700 text-sm font-medium">
-                                Từ chối
+                                                            <button className="text-red-600 hover:text-red-700 text-sm font-medium">
+                                {t('dashboard.reject')}
                               </button>
                               <button className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 text-sm font-medium">
-                                Chấp nhận
+                                {t('dashboard.accept')}
                               </button>
                             </>
                           )}
