@@ -160,8 +160,8 @@ const BookingPage = () => {
         {/* Step 1: Photography Type Selection */}
         {currentStep === 1 && (
           <div className="bg-white rounded-xl shadow-sm p-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-8">
-              What type of photography do you need?
+                        <h2 className="text-2xl font-bold text-gray-900 mb-8">
+              {t('booking.photographyType')}
             </h2>
             
             {/* Show selected photographer if pre-selected */}
