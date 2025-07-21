@@ -21,6 +21,7 @@ import { useLanguage } from "../contexts/LanguageContext";
 import { getPhotographerById } from "../data/photographers";
 import { initializeSampleData } from "../utils/sampleData";
 import BookingDetailsModal from "../components/BookingDetailsModal";
+import NotificationCenter from "../components/NotificationCenter";
 
 const PhotographerDashboard = () => {
   const [selectedTab, setSelectedTab] = useState("overview");
@@ -198,6 +199,7 @@ const PhotographerDashboard = () => {
                 <Edit className="h-4 w-4" />
                 <span>Chỉnh sửa hồ sơ</span>
               </Link>
+              <NotificationCenter photographerId={user?.photographerId} />
               <button className="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors flex items-center space-x-2">
                 <Settings className="h-4 w-4" />
                 <span>Cài đặt</span>
@@ -326,6 +328,13 @@ const PhotographerDashboard = () => {
                     <h2 className="text-xl font-bold text-gray-900">
                       Booking gần đây
                     </h2>
+                    {bookingRequests.filter(b => b.status === 'Pending').length > 0 && (
+                      <div className="flex items-center space-x-2">
+                        <span className="bg-red-100 text-red-800 text-xs font-medium px-2 py-1 rounded-full">
+                          {bookingRequests.filter(b => b.status === 'Pending').length} booking chờ xử lý
+                        </span>
+                      </div>
+                    )}
                     <button
                       onClick={() => setSelectedTab("bookings")}
                       className="text-blue-600 hover:text-blue-700 text-sm font-medium flex items-center space-x-1"
@@ -443,6 +452,20 @@ const PhotographerDashboard = () => {
                   <h2 className="text-xl font-bold text-gray-900">
                     Quản lý booking
                   </h2>
+                  <div className="flex items-center space-x-4">
+                    <div className="flex items-center space-x-2 text-sm text-gray-600">
+                      <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                      <span>Chờ xử lý: {bookingRequests.filter(b => b.status === 'Pending').length}</span>
+                    </div>
+                    <div className="flex items-center space-x-2 text-sm text-gray-600">
+                      <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                      <span>Đã xác nhận: {bookingRequests.filter(b => b.status === 'Confirmed').length}</span>
+                    </div>
+                    <div className="flex items-center space-x-2 text-sm text-gray-600">
+                      <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                      <span>Hoàn thành: {bookingRequests.filter(b => b.status === 'Completed').length}</span>
+                    </div>
+                  </div>
                 </div>
 
                 {bookingRequests.length > 0 ? (
@@ -510,6 +533,16 @@ const PhotographerDashboard = () => {
                         </div>
 
                         <div className="flex justify-end mt-4 pt-4 border-t border-gray-100 space-x-3">
+                          {booking.status === 'Pending' && (
+                            <>
+                              <button className="text-red-600 hover:text-red-700 text-sm font-medium">
+                                Từ chối
+                              </button>
+                              <button className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 text-sm font-medium">
+                                Chấp nhận
+                              </button>
+                            </>
+                          )}
                           <button className="text-blue-600 hover:text-blue-700 text-sm font-medium flex items-center space-x-1">
                             <MessageSquare className="h-4 w-4" />
                             <span>Nhắn tin</span>

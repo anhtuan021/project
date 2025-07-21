@@ -71,4 +71,43 @@ export const initializeSampleData = () => {
   if (!existingBookings || JSON.parse(existingBookings).length === 0) {
     localStorage.setItem("userBookings", JSON.stringify(sampleBookings));
   }
+
+  // Initialize notifications for photographers
+  const sampleNotifications = [
+    {
+      id: 'notif_001',
+      photographerId: '1',
+      type: 'booking',
+      title: 'Booking mới từ Nguyễn Văn A',
+      message: 'Yêu cầu chụp ảnh cưới vào ngày 15/02/2024',
+      timestamp: new Date(Date.now() - 5 * 60 * 1000).toISOString(), // 5 minutes ago
+      read: false,
+      priority: 'high'
+    },
+    {
+      id: 'notif_002',
+      photographerId: '1',
+      type: 'message',
+      title: 'Tin nhắn mới từ Trần Thị B',
+      message: 'Câu hỏi về buổi chụp ảnh gia đình',
+      timestamp: new Date(Date.now() - 15 * 60 * 1000).toISOString(), // 15 minutes ago
+      read: false,
+      priority: 'medium'
+    },
+    {
+      id: 'notif_003',
+      photographerId: '1',
+      type: 'review',
+      title: 'Đánh giá mới 5 sao',
+      message: 'Lê Văn C đã đánh giá buổi chụp ảnh chân dung',
+      timestamp: new Date(Date.now() - 60 * 60 * 1000).toISOString(), // 1 hour ago
+      read: true,
+      priority: 'low'
+    }
+  ];
 };
+
+  const existingNotifications = localStorage.getItem("photographerNotifications");
+  if (!existingNotifications || JSON.parse(existingNotifications).length === 0) {
+    localStorage.setItem("photographerNotifications", JSON.stringify(sampleNotifications));
+  }

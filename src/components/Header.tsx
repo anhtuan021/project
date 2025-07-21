@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { useAuth } from "../contexts/AuthContext";
 import { useLanguage } from "../contexts/LanguageContext";
+import NotificationCenter from "./NotificationCenter";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -80,6 +81,11 @@ const Header = () => {
 
             {isAuthenticated ? (
               <div className="flex items-center space-x-4">
+                {/* Show notifications for photographers */}
+                {user?.userType === 'photographer' && (
+                  <NotificationCenter photographerId={user?.photographerId} />
+                )}
+                
                 <span className="text-sm text-gray-600">
                   {t("header.welcome")},{" "}
                   <span className="font-medium text-gray-900">
@@ -180,6 +186,13 @@ const Header = () => {
           <div className="px-4 py-3 space-y-3">
             {navigation.map((item) => (
               <Link
+                {/* Mobile notifications for photographers */}
+                {user?.userType === 'photographer' && (
+                  <div className="flex items-center justify-between">
+                    <span className="text-gray-700">Thông báo</span>
+                    <NotificationCenter photographerId={user?.photographerId} />
+                  </div>
+                )}
                 key={item.name}
                 to={item.href}
                 className="block text-gray-700 hover:text-blue-600 transition-colors"
