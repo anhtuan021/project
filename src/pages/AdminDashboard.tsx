@@ -273,12 +273,12 @@ const AdminDashboard = () => {
         <div className="bg-white rounded-xl shadow-sm mb-8">
           <div className="border-b border-gray-200">
             <div className="flex space-x-8 px-8">
-              {[
-                { id: 'overview', label: 'Tổng quan' },
-                { id: 'users', label: 'Người dùng' },
-                { id: 'photographers', label: 'Nhiếp ảnh gia' },
-                { id: 'payments', label: 'Thanh toán' },
-                { id: 'feedbacks', label: 'Đánh giá' }
+                            {[
+                { id: 'overview', label: t('admin.overview') },
+                { id: 'users', label: t('admin.users') },
+                { id: 'photographers', label: t('admin.photographers') },
+                { id: 'payments', label: t('admin.payments') },
+                { id: 'feedbacks', label: t('admin.reviews') }
               ].map((tab) => (
                 <button
                   key={tab.id}
