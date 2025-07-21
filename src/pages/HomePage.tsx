@@ -253,9 +253,9 @@ const HomePage = () => {
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">How It Works</h2>
+                        <h2 className="text-3xl font-bold text-gray-900 mb-4">{t('home.howItWorks.title')}</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Getting professional photos has never been easier. Follow these simple steps to book your perfect photographer.
+              {t('home.howItWorks.subtitle')}
             </p>
           </div>
           
@@ -263,20 +263,20 @@ const HomePage = () => {
             {[
               {
                 step: '1',
-                title: 'Search & Browse',
-                description: 'Find photographers in your area using our smart search filters.',
+                                title: t('home.howItWorks.step1.title'),
+                description: t('home.howItWorks.step1.description'),
                 icon: <Search className="h-8 w-8 text-blue-600" />
               },
               {
                 step: '2',
-                title: 'Book & Pay',
-                description: 'Choose your preferred photographer and book your session securely.',
+                                title: t('home.howItWorks.step2.title'),
+                description: t('home.howItWorks.step2.description'),
                 icon: <CheckCircle className="h-8 w-8 text-green-600" />
               },
               {
                 step: '3',
-                title: 'Get Photos',
-                description: 'Receive your professionally edited photos enhanced with AI.',
+                                title: t('home.howItWorks.step3.title'),
+                description: t('home.howItWorks.step3.description'),
                 icon: <Sparkles className="h-8 w-8 text-purple-600" />
               }
             ].map((item, index) => (
