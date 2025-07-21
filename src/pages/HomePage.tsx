@@ -31,23 +31,23 @@ const HomePage = () => {
   const aiFeatures = [
     {
       icon: <Lightbulb className="h-8 w-8 text-blue-600" />,
-      title: "Smart Matching",
-      description: "AI-powered photographer recommendations based on your style and needs"
+            title: t('home.features.smartMatching'),
+      description: t('home.features.smartMatchingDesc')
     },
     {
       icon: <Edit3 className="h-8 w-8 text-purple-600" />,
-      title: "Instant Editing",
-      description: "Professional photo editing with AI enhancement in minutes"
+            title: t('home.features.instantEditing'),
+      description: t('home.features.instantEditingDesc')
     },
     {
       icon: <Sparkles className="h-8 w-8 text-pink-600" />,
-      title: "Style Transfer",
-      description: "Transform your photos with AI-powered artistic style filters"
+            title: t('home.features.styleTransfer'),
+      description: t('home.features.styleTransferDesc')
     },
     {
       icon: <BarChart3 className="h-8 w-8 text-green-600" />,
-      title: "Analytics",
-      description: "Track your photography business growth with detailed insights"
+            title: t('home.features.analytics'),
+      description: t('home.features.analyticsDesc')
     }
   ];
 
