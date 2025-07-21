@@ -13,7 +13,11 @@ import {
   Sun,
   Moon,
   Globe,
-  ChevronDown
+  ChevronDown,
+  Lightbulb,
+  Camera,
+  Heart,
+  Sparkles
 } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 
@@ -22,6 +26,8 @@ const SupportPage = () => {
   const [message, setMessage] = useState('');
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState('English');
+  const [chatMessages, setChatMessages] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(true);
 
   const supportCategories = [
     {
@@ -71,26 +77,138 @@ const SupportPage = () => {
     t('support.quickActions.setup')
   ];
 
-  const chatMessages = [
+  // Popular concept suggestions that AI will show initially
+  const popularConcepts = [
     {
       id: 1,
-      type: 'bot',
-      message: t('support.aiGreeting'),
-      time: '9:41 AM',
-      avatar: 'https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
+      title: 'Ảnh cưới lãng mạn',
+      description: 'Phong cách cổ điển với ánh sáng tự nhiên',
+      icon: Heart,
+      color: 'text-pink-500',
+      bgColor: 'bg-pink-50'
     },
     {
       id: 2,
-      type: 'user',
-      message: t('support.userMessage'),
-      time: '9:42 AM'
+      title: 'Chân dung nghệ thuật',
+      description: 'Phong cách hiện đại với hiệu ứng ánh sáng',
+      icon: Camera,
+      color: 'text-blue-500',
+      bgColor: 'bg-blue-50'
+    },
+    {
+      id: 3,
+      title: 'Ảnh gia đình ngoài trời',
+      description: 'Tự nhiên và ấm áp trong môi trường thiên nhiên',
+      icon: Users,
+      color: 'text-green-500',
+      bgColor: 'bg-green-50'
+    },
+    {
+      id: 4,
+      title: 'Ảnh thời trang đường phố',
+      description: 'Phong cách urban với background thành phố',
+      icon: Sparkles,
+      color: 'text-purple-500',
+      bgColor: 'bg-purple-50'
     }
   ];
 
+  // Initialize chat with AI greeting and concept suggestions
+  React.useEffect(() => {
+    const initialMessages = [
+      {
+        id: 1,
+        type: 'bot',
+        message: 'Xin chào! Tôi là AI Assistant của SnapMatch. Tôi có thể giúp bạn tìm hiểu về các concept chụp ảnh phổ biến hoặc trả lời các câu hỏi khác.',
+        time: new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' }),
+        avatar: 'https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
+      }
+    ];
+    setChatMessages(initialMessages);
+  }, []);
+
+  const handleConceptClick = (concept) => {
+    const userMessage = {
+      id: Date.now(),
+      type: 'user',
+      message: `Tôi muốn tìm hiểu về ${concept.title.toLowerCase()}`,
+      time: new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })
+    };
+
+    const botResponse = {
+      id: Date.now() + 1,
+      type: 'bot',
+      message: `${concept.title} là một trong những concept được yêu thích nhất! ${concept.description}. Bạn có thể tìm thấy nhiều nhiếp ảnh gia chuyên về phong cách này trên nền tảng của chúng tôi. Bạn có muốn tôi giúp tìm nhiếp ảnh gia phù hợp không?`,
+      time: new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' }),
+      avatar: 'https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
+    };
+
+    setChatMessages(prev => [...prev, userMessage, botResponse]);
+    setShowSuggestions(false);
+  };
+
+  const handleQuickActionClick = (action) => {
+    const userMessage = {
+      id: Date.now(),
+      type: 'user',
+      message: action,
+      time: new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })
+    };
+
+    let botResponse = '';
+    if (action.includes('đặt lịch')) {
+      botResponse = 'Để đặt lịch chụp ảnh, bạn có thể: 1) Tìm kiếm nhiếp ảnh gia phù hợp trên trang "Find Photographers", 2) Xem hồ sơ và portfolio của họ, 3) Nhấn "Book Now" để đặt lịch. Bạn có cần tôi hướng dẫn chi tiết hơn không?';
+    } else if (action.includes('giá')) {
+      botResponse = 'Giá chụp ảnh thường dao động từ $50-200/giờ tùy thuộc vào: kinh nghiệm của nhiếp ảnh gia, loại hình chụp (cưới, chân dung, sự kiện), địa điểm và thời gian. Bạn có thể lọc theo ngân sách khi tìm kiếm nhiếp ảnh gia.';
+    } else if (action.includes('AI')) {
+      botResponse = 'Hệ thống AI của chúng tôi phân tích phong cách, sở thích và yêu cầu của bạn để gợi ý những nhiếp ảnh gia phù hợp nhất. AI cũng hỗ trợ tạo concept, chỉnh sửa ảnh tự động và ghép đôi phong cách. Bạn muốn thử tính năng nào?';
+    } else {
+      botResponse = 'Để thiết lập tài khoản, bạn có thể đăng ký bằng email hoặc Google. Sau đó hoàn thiện hồ sơ với thông tin cá nhân và sở thích chụp ảnh. Tôi có thể hướng dẫn bạn từng bước nếu cần.';
+    }
+
+    const botMessage = {
+      id: Date.now() + 1,
+      type: 'bot',
+      message: botResponse,
+      time: new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' }),
+      avatar: 'https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
+    };
+
+    setChatMessages(prev => [...prev, userMessage, botMessage]);
+    setShowSuggestions(false);
+  };
+
   const handleSendMessage = () => {
     if (message.trim()) {
-      // Handle message sending logic here
+      const userMessage = {
+        id: Date.now(),
+        type: 'user',
+        message: message.trim(),
+        time: new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })
+      };
+
+      // Simple AI response logic
+      let botResponse = 'Cảm ơn bạn đã liên hệ! Tôi đang xử lý câu hỏi của bạn. Trong thời gian chờ, bạn có thể xem các concept phổ biến hoặc liên hệ trực tiếp với đội ngũ hỗ trợ qua email support@snapmatch.ai';
+      
+      if (message.toLowerCase().includes('concept') || message.toLowerCase().includes('ý tưởng')) {
+        botResponse = 'Tôi có thể giúp bạn tìm hiểu về các concept chụp ảnh phổ biến! Một số concept được yêu thích nhất bao gồm: ảnh cưới lãng mạn, chân dung nghệ thuật, ảnh gia đình ngoài trời, và ảnh thời trang đường phố. Bạn quan tâm đến concept nào?';
+      } else if (message.toLowerCase().includes('giá') || message.toLowerCase().includes('chi phí')) {
+        botResponse = 'Về giá cả, chúng tôi có nhiều mức giá khác nhau từ $50-200/giờ. Giá phụ thuộc vào kinh nghiệm nhiếp ảnh gia, loại hình chụp và yêu cầu cụ thể. Bạn có thể lọc theo ngân sách khi tìm kiếm nhiếp ảnh gia phù hợp.';
+      } else if (message.toLowerCase().includes('đặt lịch') || message.toLowerCase().includes('booking')) {
+        botResponse = 'Để đặt lịch, bạn chỉ cần: 1) Tìm nhiếp ảnh gia phù hợp, 2) Xem portfolio và đánh giá, 3) Chọn ngày giờ và địa điểm, 4) Xác nhận và thanh toán. Rất đơn giản! Bạn có cần hướng dẫn chi tiết không?';
+      }
+
+      const botMessage = {
+        id: Date.now() + 1,
+        type: 'bot',
+        message: botResponse,
+        time: new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' }),
+        avatar: 'https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
+      };
+
+      setChatMessages(prev => [...prev, userMessage, botMessage]);
       setMessage('');
+      setShowSuggestions(false);
     }
   };
 
@@ -190,19 +308,52 @@ const SupportPage = () => {
                   ))}
                 </div>
 
-                {/* Quick Actions */}
-                <div className="mt-6">
-                  <div className="flex flex-wrap gap-2">
-                    {quickActions.map((action, index) => (
-                      <button
-                        key={index}
-                        className="bg-gray-100 text-gray-700 px-3 py-2 rounded-lg text-sm hover:bg-gray-200 transition-colors"
-                      >
-                        {action}
-                      </button>
-                    ))}
+                {/* Popular Concepts Suggestions */}
+                {showSuggestions && (
+                  <div className="mt-6">
+                    <div className="mb-4">
+                      <div className="flex items-center space-x-2 mb-3">
+                        <Lightbulb className="h-5 w-5 text-yellow-500" />
+                        <h4 className="font-medium text-gray-900">Concept phổ biến</h4>
+                      </div>
+                      <div className="grid grid-cols-1 gap-3">
+                        {popularConcepts.map((concept) => (
+                          <button
+                            key={concept.id}
+                            onClick={() => handleConceptClick(concept)}
+                            className={`${concept.bgColor} border border-gray-200 rounded-lg p-3 text-left hover:shadow-md transition-all duration-200 group`}
+                          >
+                            <div className="flex items-start space-x-3">
+                              <div className={`${concept.color} group-hover:scale-110 transition-transform duration-200`}>
+                                <concept.icon className="h-5 w-5" />
+                              </div>
+                              <div className="flex-1">
+                                <h5 className="font-medium text-gray-900 mb-1">{concept.title}</h5>
+                                <p className="text-sm text-gray-600">{concept.description}</p>
+                              </div>
+                            </div>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Quick Actions */}
+                    <div className="border-t pt-4">
+                      <h4 className="font-medium text-gray-900 mb-3">Câu hỏi thường gặp</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {quickActions.map((action, index) => (
+                          <button
+                            key={index}
+                            onClick={() => handleQuickActionClick(action)}
+                            className="bg-white border border-gray-200 text-gray-700 px-3 py-2 rounded-lg text-sm hover:bg-gray-50 hover:border-blue-300 transition-colors"
+                          >
+                            {action}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
 
               {/* Chat Input */}
@@ -213,7 +364,7 @@ const SupportPage = () => {
                       type="text"
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
-                      placeholder={t('support.typeMessage')}
+                      placeholder="Nhập câu hỏi của bạn hoặc chọn concept phía trên..."
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
                     />
