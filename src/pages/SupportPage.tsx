@@ -70,11 +70,11 @@ const SupportPage = () => {
     { title: t('support.termsOfService'), href: '#' }
   ];
 
-  const quickActions = [
-    t('support.quickActions.booking'),
-    t('support.quickActions.price'),
-    t('support.quickActions.matching'),
-    t('support.quickActions.setup')
+    const quickActions = [
+    t('support.howToBook'),
+    t('support.priceRange'),
+    t('support.aiMatching'),
+    t('support.accountSetup')
   ];
 
   // Popular concept suggestions that AI will show initially
@@ -98,7 +98,7 @@ const SupportPage = () => {
     {
       id: 3,
       title: 'Ảnh gia đình ngoài trời',
-      description: 'Tự nhiên và ấm áp trong môi trường thiên nhiên',
+      description: 'Tự nhiên và ấm áp trong môi trường thi��n nhiên',
       icon: Users,
       color: 'text-green-500',
       bgColor: 'bg-green-50'
