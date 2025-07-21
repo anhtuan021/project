@@ -301,15 +301,15 @@ const AdminDashboard = () => {
               <div className="space-y-8">
                 {/* Recent Activities */}
                 <div>
-                  <h2 className="text-xl font-bold text-gray-900 mb-6">Hoạt động gần đây</h2>
+                                    <h2 className="text-xl font-bold text-gray-900 mb-6">{t('admin.recentActivities')}</h2>
                   <div className="space-y-4">
                     <div className="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg">
                       <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
                         <CheckCircle className="h-5 w-5 text-green-600" />
                       </div>
                       <div>
-                        <p className="font-medium text-gray-900">Booking mới được tạo</p>
-                        <p className="text-sm text-gray-500">Nguyễn Văn A đã đặt lịch với Lily Emily - 2 giờ trước</p>
+                                                <p className="font-medium text-gray-900">{t('admin.newBooking')}</p>
+                        <p className="text-sm text-gray-500">{t('admin.bookingActivity')}</p>
                       </div>
                     </div>
                     <div className="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg">
@@ -317,8 +317,8 @@ const AdminDashboard = () => {
                         <AlertTriangle className="h-5 w-5 text-yellow-600" />
                       </div>
                       <div>
-                        <p className="font-medium text-gray-900">Thanh toán chậm trễ</p>
-                        <p className="text-sm text-gray-500">Michael Chen chưa thanh toán phí tháng này - 1 ngày trước</p>
+                                                <p className="font-medium text-gray-900">{t('admin.paymentDelayed')}</p>
+                        <p className="text-sm text-gray-500">{t('admin.paymentActivity')}</p>
                       </div>
                     </div>
                     <div className="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg">
@@ -326,8 +326,8 @@ const AdminDashboard = () => {
                         <Star className="h-5 w-5 text-blue-600" />
                       </div>
                       <div>
-                        <p className="font-medium text-gray-900">Đánh giá mới</p>
-                        <p className="text-sm text-gray-500">Trần Thị B đã đánh giá 5 sao cho Michael Chen - 3 giờ trước</p>
+                                                <p className="font-medium text-gray-900">{t('admin.newReview')}</p>
+                        <p className="text-sm text-gray-500">{t('admin.reviewActivity')}</p>
                       </div>
                     </div>
                   </div>
@@ -338,13 +338,13 @@ const AdminDashboard = () => {
             {selectedTab === 'users' && (
               <div>
                 <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-xl font-bold text-gray-900">Quản lý người dùng</h2>
+                                    <h2 className="text-xl font-bold text-gray-900">{t('admin.userManagement')}</h2>
                   <div className="flex items-center space-x-4">
                     <div className="relative">
                       <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
                       <input
                         type="text"
-                        placeholder="Tìm kiếm người dùng..."
+                                                placeholder={t('admin.searchUsers')}
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                         className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
@@ -662,7 +662,7 @@ const AdminDashboard = () => {
             <h3 className="text-lg font-semibold text-gray-900 mb-4">Xác nhận xóa</h3>
             <p className="text-gray-600 mb-6">
               Bạn có chắc chắn muốn xóa tài khoản của <strong>{selectedUser.name}</strong>? 
-              Hành động này không thể hoàn tác.
+              Hành động n��y không thể hoàn tác.
             </p>
             <div className="flex justify-end space-x-3">
               <button
