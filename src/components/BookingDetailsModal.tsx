@@ -244,29 +244,29 @@ const BookingDetailsModal: React.FC<BookingDetailsModalProps> = ({
           <div className="flex justify-end space-x-3 mt-8 pt-6 border-t border-gray-200">
             {userType === 'photographer' && booking.status === 'Pending' && (
               <>
-                <button className="px-6 py-2 border border-red-300 text-red-700 rounded-lg hover:bg-red-50 transition-colors">
-                  Từ chối
+                                <button className="px-6 py-2 border border-red-300 text-red-700 rounded-lg hover:bg-red-50 transition-colors">
+                  {t('bookingModal.reject')}
                 </button>
                 <button className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
-                  Chấp nhận
+                  {t('bookingModal.accept')}
                 </button>
               </>
             )}
             {userType === 'photographer' && booking.status === 'Confirmed' && (
-              <button className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-                Liên hệ khách hàng
+                            <button className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                {t('bookingModal.contactCustomer')}
               </button>
             )}
             {userType === 'customer' && booking.status === 'Confirmed' && (
-              <button className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-                Liên hệ nhiếp ảnh gia
+                            <button className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                {t('bookingModal.contactPhotographer')}
               </button>
             )}
             <button
               onClick={onClose}
               className="px-6 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors"
             >
-              Đóng
+                            {t('bookingModal.close')}
             </button>
           </div>
         </div>
