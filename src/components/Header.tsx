@@ -8,6 +8,7 @@ import {
   User,
   LogOut,
   ChevronDown,
+  Settings,
 } from "lucide-react";
 import { useAuth } from "../contexts/AuthContext";
 import { useLanguage } from "../contexts/LanguageContext";
@@ -127,12 +128,31 @@ const Header = () => {
 
                                     {isUserMenuOpen && (
                     <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-50">
+                      {/* Dashboard Link */}
+                      {(user?.userType === "photographer" || user?.userType === "admin") && (
+                        <Link
+                          to={
+                            user?.userType === "photographer"
+                              ? "/photographer-dashboard"
+                              : "/admin"
+                          }
+                          className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                          onClick={() => setIsUserMenuOpen(false)}
+                        >
+                          <Settings className="h-4 w-4 mr-2" />
+                          {user?.userType === "photographer"
+                            ? "Dashboard"
+                            : "Admin Dashboard"}
+                        </Link>
+                      )}
+
+                      {/* Profile Link */}
                       <Link
                         to={
                           user?.userType === "photographer"
-                            ? "/photographer-dashboard"
+                            ? "/photographer-settings"
                             : user?.userType === "admin"
-                            ? "/admin"
+                            ? "/admin-profile"
                             : "/profile"
                         }
                         className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
@@ -140,11 +160,14 @@ const Header = () => {
                       >
                         <User className="h-4 w-4 mr-2" />
                         {user?.userType === "photographer"
-                          ? "Dashboard"
+                          ? "Cài đặt Profile"
                           : user?.userType === "admin"
-                          ? "Admin Dashboard"
+                          ? "Admin Profile"
                           : t("header.profile")}
                       </Link>
+
+                      <div className="border-t border-gray-100 my-1"></div>
+
                       <button
                         onClick={handleLogout}
                         className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
@@ -232,17 +255,40 @@ const Header = () => {
                       {t("header.welcome")}, {user?.name}
                     </span>
                   </div>
+
+                  {/* Dashboard Link for mobile */}
+                  {(user?.userType === "photographer" || user?.userType === "admin") && (
+                    <Link
+                      to={
+                        user?.userType === "photographer"
+                          ? "/photographer-dashboard"
+                          : "/admin"
+                      }
+                      className="block text-gray-700 hover:text-blue-600 transition-colors"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {user?.userType === "photographer"
+                        ? "Dashboard"
+                        : "Admin Dashboard"}
+                    </Link>
+                  )}
+
+                  {/* Profile Link for mobile */}
                   <Link
                     to={
                       user?.userType === "photographer"
-                        ? "/photographer-dashboard"
+                        ? "/photographer-settings"
+                        : user?.userType === "admin"
+                        ? "/admin-profile"
                         : "/profile"
                     }
                     className="block text-gray-700 hover:text-blue-600 transition-colors"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {user?.userType === "photographer"
-                      ? "Dashboard"
+                      ? "Cài đặt Profile"
+                      : user?.userType === "admin"
+                      ? "Admin Profile"
                       : t("header.profile")}
                   </Link>
                   <button

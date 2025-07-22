@@ -17,6 +17,9 @@ import EditProfilePage from "./pages/EditProfilePage";
 import BookingInvoicePage from "./pages/BookingInvoicePage";
 import PhotographerDashboard from "./pages/PhotographerDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
+import AdminProfilePage from "./pages/AdminProfilePage";
+import PhotographerSettingsPage from "./pages/PhotographerSettingsPage";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
@@ -55,19 +58,51 @@ function App() {
                         <Route path="/support" element={<SupportPage />} />
                         <Route
                           path="/profile"
-                          element={<PersonalProfilePage />}
+                          element={
+                            <ProtectedRoute allowedUserTypes={['customer']}>
+                              <PersonalProfilePage />
+                            </ProtectedRoute>
+                          }
                         />
                         <Route
                           path="/photographer-dashboard"
-                          element={<PhotographerDashboard />}
+                          element={
+                            <ProtectedRoute allowedUserTypes={['photographer']}>
+                              <PhotographerDashboard />
+                            </ProtectedRoute>
+                          }
                         />
                         <Route
                           path="/edit-profile"
-                          element={<EditProfilePage />}
+                          element={
+                            <ProtectedRoute>
+                              <EditProfilePage />
+                            </ProtectedRoute>
+                          }
                         />
                         <Route
                           path="/admin"
-                          element={<AdminDashboard />}
+                          element={
+                            <ProtectedRoute allowedUserTypes={['admin']}>
+                              <AdminDashboard />
+                            </ProtectedRoute>
+                          }
+                        />
+                        <Route
+                          path="/admin-profile"
+                          element={
+                            <ProtectedRoute allowedUserTypes={['admin']}>
+                              <AdminProfilePage />
+                            </ProtectedRoute>
+                          }
+                        />
+                        <Route
+                          path="/photographer-settings"
+                          element={
+                            <ProtectedRoute allowedUserTypes={['photographer']}>
+                              <PhotographerSettingsPage />
+                            </ProtectedRoute>
+                          }
                         />
                       </Routes>
                     </main>
