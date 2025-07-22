@@ -417,7 +417,7 @@ const translations = {
     'photographerDashboard.conceptDescription': 'Concept description:',
     'photographerDashboard.conceptAdded': 'New concept added successfully!',
     'photographerDashboard.vintageWedding': 'Vintage Wedding Photography',
-    'photographerDashboard.vintageWeddingDesc': 'Classic romantic style with warm vintage tones and soft lighting',
+    'photographerDashboard.vintageWeddingDesc': 'Classic style with warm tones, natural lighting',
     'photographerDashboard.streetPortrait': 'Street Art Portrait',
     'photographerDashboard.streetPortraitDesc': 'Combining urban style with natural lighting',
 
@@ -737,7 +737,7 @@ const translations = {
     'home.stats.clients': 'Khách Hàng Hài Lòng',
     'home.stats.rating': 'Đánh Giá Trung Bình',
     'home.featured.title': 'Nhiếp Ảnh Gia Nổi Bật',
-    'home.featured.subtitle': 'Khám phá các nhiếp ảnh gia tài năng từ khắp nơi trên thế giới, mỗi người mang đến phong cách và chuyên môn độc đáo để ghi lại những khoảnh khắc đặc biệt của bạn.',
+    'home.featured.subtitle': 'Khám phá các nhiếp ảnh gia tài năng từ khắp nơi trên thế giới, mỗi người mang đến phong cách và chuy��n môn độc đáo để ghi lại những khoảnh khắc đặc biệt của bạn.',
     'home.aiPowered.title': 'Nhiếp Ảnh Được Hỗ Trợ Bởi AI',
     'home.aiPowered.subtitle': 'Trải nghiệm tương lai của nhiếp ảnh với các công cụ AI tiên tiến giúp nâng cao mọi khía cạnh trong hành trình ch��p ảnh của bạn.',
     'home.categories.title': 'Danh Mục Nhiếp Ảnh',
@@ -965,7 +965,7 @@ const translations = {
     'aiTools.dragDrop': 'Kéo và thả ảnh của bạn vào đây',
     'aiTools.browseFiles': 'Duyệt Tệp',
     'aiTools.aiEnhanced': 'Xem Trước Được Nâng Cấp Bởi AI',
-    'aiTools.enhancedPreview': 'Ảnh được nâng cấp sẽ xuất hiện ở đây',
+    'aiTools.enhancedPreview': '���nh được nâng cấp sẽ xuất hiện ở đây',
     'aiTools.brightness': 'Độ Sáng',
     'aiTools.contrast': 'Độ Tương Phản',
     'aiTools.saturation': 'Độ Bão Hòa',
@@ -1034,7 +1034,7 @@ const translations = {
     'common.sort': 'Sắp xếp',
     'common.viewAll': 'Xem Tất Cả',
     'common.showMore': 'Hiển Thị Thêm',
-    'common.showLess': 'Hiển Thị Ít Hơn',
+    'common.showLess': 'Hiển Th��� Ít Hơn',
     'common.hours': 'giờ',
             'common.hour': 'giờ',
     'common.years': 'năm',
@@ -1064,7 +1064,7 @@ const translations = {
     // Photographer Dashboard
     'dashboard.welcome': 'Chào mừng, ',
     'dashboard.photographer': 'Nhiếp Ảnh Gia',
-    'dashboard.editProfile': 'Chỉnh Sửa Hồ Sơ',
+    'dashboard.editProfile': 'Chỉnh S��a Hồ Sơ',
     'dashboard.settings': 'Cài Đặt',
     'dashboard.totalBookings': 'Tổng Booking',
     'dashboard.completed': 'Hoàn Thành',
@@ -1179,7 +1179,7 @@ const translations = {
     'bookingModal.close': 'Đóng',
 
     // Feedback Modal
-    'feedback.title': 'Đánh Giá Dịch V��',
+    'feedback.title': 'Đánh Giá Dịch Vụ',
     'feedback.rateQuality': 'Đánh giá chất lượng dịch vụ',
     'feedback.veryUnsatisfied': 'Rất không hài lòng',
     'feedback.unsatisfied': 'Không hài lòng',
@@ -1258,7 +1258,7 @@ const translations = {
     // Booking Page Additional
     'booking.photographyTypes.portrait': 'Chụp Ảnh Chân Dung',
     'booking.photographyTypes.portraitDesc': 'Ảnh chân dung chuyên nghiệp và cá nhân',
-    'booking.photographyTypes.event': 'Chụp Ảnh Sự Kiện',
+    'booking.photographyTypes.event': 'Chụp ���nh Sự Kiện',
     'booking.photographyTypes.eventDesc': 'Ghi lại các sự kiện đặc biệt và lễ kỷ niệm',
     'booking.photographyTypes.wedding': 'Chụp Ảnh Cưới',
     'booking.photographyTypes.weddingDesc': 'Ghi lại ngày quan trọng nhất của bạn',
@@ -1291,7 +1291,7 @@ const translations = {
     // Personal Profile Additional
     'profile.duration': 'Thời Lượng',
     'profile.reference': 'Tham Chiếu',
-    'profile.feedbackSuccess': 'Cảm ơn bạn đã đánh giá! Feedback của bạn đã được gửi thành công.',
+    'profile.feedbackSuccess': 'Cảm ơn bạn đã đánh giá! Feedback của bạn đã đ��ợc gửi thành công.',
     'profile.dateExample': 'Tháng 3 2024',
 
     // Header translations
