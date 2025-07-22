@@ -97,7 +97,7 @@ const PersonalProfilePage = () => {
   const aiSuggestions = [
     {
       id: 1,
-      title: 'Ảnh cưới lãng mạn',
+      title: 'Ảnh cưới lãng m��n',
       description: 'Phong cách cổ điển với ánh sáng golden hour',
       image: 'https://images.pexels.com/photos/1616113/pexels-photo-1616113.jpeg?auto=compress&cs=tinysrgb&w=400&h=250&fit=crop',
       category: 'Wedding',
@@ -654,12 +654,12 @@ const PersonalProfilePage = () => {
             {selectedTab === 'favorites' && (
               <div>
                 <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-xl font-bold text-gray-900">Nhiếp ảnh gia yêu thích</h2>
+                  <h2 className="text-xl font-bold text-gray-900">{t('profile.favorites.title')}</h2>
                   <Link
                     to="/photographers"
                     className="text-blue-600 hover:text-blue-700 text-sm font-medium flex items-center space-x-1"
                   >
-                    <span>Xem tất cả</span>
+                    <span>{t('profile.favorites.viewAll')}</span>
                     <ChevronRight className="h-4 w-4" />
                   </Link>
                 </div>
@@ -682,7 +682,7 @@ const PersonalProfilePage = () => {
                           <button
                             onClick={() => handleUnsavePhotographer(photographer.id)}
                             className="text-red-500 hover:text-red-600"
-                            title="Xóa khỏi yêu thích"
+                            title={t('profile.favorites.removeFromFavorites')}
                           >
                             <Heart className="h-5 w-5 fill-current" />
                           </button>
@@ -709,12 +709,12 @@ const PersonalProfilePage = () => {
                             onClick={() => handleRebookPhotographer(photographer)}
                             className="flex-1 bg-blue-600 text-white text-center py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
                           >
-                            Đặt lại
+                            {t('profile.favorites.rebook')}
                           </button>
                           <button
                             onClick={() => handleMessagePhotographer(photographer)}
                             className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-                            title="Gửi tin nhắn"
+                            title={t('profile.favorites.sendMessage')}
                           >
                             <MessageSquare className="h-4 w-4 text-gray-600" />
                           </button>
