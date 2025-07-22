@@ -141,7 +141,7 @@ const PersonalProfilePage = () => {
     {
       id: 3,
       type: 'points_earned',
-      message: 'Nhận được 50 điểm loyalty t�� booking gần nhất',
+      message: 'Nhận được 50 điểm loyalty từ booking gần nhất',
       time: '2 tuần trước',
       icon: Gift,
       color: 'text-yellow-600 bg-yellow-100'
@@ -255,7 +255,7 @@ const PersonalProfilePage = () => {
   };
 
   const handleRebookPhotographer = (photographer) => {
-    alert(`Chuyển hướng tới trang ��ặt chụp với ${photographer.name}`);
+    alert(`Chuyển hướng tới trang đặt chụp với ${photographer.name}`);
     // In real app, navigate to booking page with photographer pre-selected
   };
 
@@ -596,7 +596,7 @@ const PersonalProfilePage = () => {
                         
                         <div className="flex justify-end mt-4 pt-4 border-t border-gray-100 space-x-3">
                           {booking.status === 'Completed' && (
-                            <button 
+                            <button
                               onClick={() => handleLeaveFeedback(booking)}
                               className="text-green-600 hover:text-green-700 text-sm font-medium flex items-center space-x-1"
                             >
@@ -604,11 +604,22 @@ const PersonalProfilePage = () => {
                               <span>Đánh giá</span>
                             </button>
                           )}
-                          <button className="text-blue-600 hover:text-blue-700 text-sm font-medium flex items-center space-x-1">
+                          {booking.status === 'Confirmed' && (
+                            <button
+                              onClick={() => handleCancelBooking(booking.id)}
+                              className="text-red-600 hover:text-red-700 text-sm font-medium"
+                            >
+                              Hủy booking
+                            </button>
+                          )}
+                          <button
+                            onClick={() => handleMessagePhotographer(booking.photographer)}
+                            className="text-blue-600 hover:text-blue-700 text-sm font-medium flex items-center space-x-1"
+                          >
                             <MessageSquare className="h-4 w-4" />
                             <span>Nhắn tin</span>
                           </button>
-                          <button 
+                          <button
                             onClick={() => handleViewDetails(booking)}
                             className="text-blue-600 hover:text-blue-700 text-sm font-medium"
                           >
@@ -633,7 +644,7 @@ const PersonalProfilePage = () => {
                       to="/photographers"
                       className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
                     >
-                      Tìm nhi���p ảnh gia
+                      Tìm nhiếp ảnh gia
                     </Link>
                   </div>
                 )}
@@ -668,7 +679,11 @@ const PersonalProfilePage = () => {
                           <h3 className="font-semibold text-lg text-gray-900">
                             {photographer.name}
                           </h3>
-                          <button className="text-red-500 hover:text-red-600">
+                          <button
+                            onClick={() => handleUnsavePhotographer(photographer.id)}
+                            className="text-red-500 hover:text-red-600"
+                            title="Xóa khỏi yêu thích"
+                          >
                             <Heart className="h-5 w-5 fill-current" />
                           </button>
                         </div>
@@ -690,13 +705,17 @@ const PersonalProfilePage = () => {
                           <span>{photographer.location}</span>
                         </div>
                         <div className="flex space-x-2">
-                          <Link
-                            to={`/photographer/${photographer.id}`}
+                          <button
+                            onClick={() => handleRebookPhotographer(photographer)}
                             className="flex-1 bg-blue-600 text-white text-center py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
                           >
-                            Xem profile
-                          </Link>
-                          <button className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+                            Đặt lại
+                          </button>
+                          <button
+                            onClick={() => handleMessagePhotographer(photographer)}
+                            className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                            title="Gửi tin nhắn"
+                          >
                             <MessageSquare className="h-4 w-4 text-gray-600" />
                           </button>
                         </div>
@@ -711,7 +730,10 @@ const PersonalProfilePage = () => {
               <div>
                 <div className="flex items-center justify-between mb-6">
                   <h2 className="text-xl font-bold text-gray-900">Gợi ý AI dành cho bạn</h2>
-                  <button className="text-blue-600 hover:text-blue-700 text-sm font-medium flex items-center space-x-1">
+                  <button
+                    onClick={handleRefreshSuggestions}
+                    className="text-blue-600 hover:text-blue-700 text-sm font-medium flex items-center space-x-1"
+                  >
                     <Sparkles className="h-4 w-4" />
                     <span>Làm mới gợi ý</span>
                   </button>
@@ -741,13 +763,17 @@ const PersonalProfilePage = () => {
                           {suggestion.description}
                         </p>
                         <div className="flex space-x-2">
-                          <Link
-                            to="/photographers"
+                          <button
+                            onClick={() => handleFindPhotographerForConcept(suggestion)}
                             className="flex-1 bg-blue-600 text-white text-center py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
                           >
                             Tìm nhiếp ảnh gia
-                          </Link>
-                          <button className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+                          </button>
+                          <button
+                            onClick={() => handleSaveConcept(suggestion.id)}
+                            className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                            title="Lưu concept"
+                          >
                             <Heart className="h-4 w-4 text-gray-600" />
                           </button>
                         </div>
