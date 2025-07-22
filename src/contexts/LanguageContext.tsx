@@ -986,7 +986,7 @@ const translations = {
     'support.respondsIn': 'Thường phản hồi trong 1 phút',
         'support.typeMessage': 'Nhập tin nhắn của bạn ở đây...',
     'support.helpfulResources': 'Tài Nguyên Hữu Ích',
-    'support.needMoreHelp': 'Cần Thêm Trợ Giúp?',
+    'support.needMoreHelp': 'Cần Thêm Tr�� Giúp?',
     'support.cantFind': 'Không thể tìm thấy những gì bạn đang tìm kiếm? Liên hệ với đội ngũ hỗ trợ của chúng tôi.',
         'support.contactSupport': 'Liên Hệ Hỗ Trợ',
     'support.quickActions': 'Hành Động Nhanh',
@@ -1219,7 +1219,7 @@ const translations = {
     'home.testimonials.client1': 'Sarah Johnson',
     'home.testimonials.review1': 'Trải nghiệm tuyệt vời! Hệ thống ghép đôi AI đã tìm cho tôi nhiếp ảnh gia hoàn hảo cho đám cưới. Những bức ảnh thật tuyệt đẹp.',
     'home.testimonials.client2': 'Michael Chen',
-        'home.testimonials.review2': 'Dịch vụ chuyên nghiệp và kết quả đáng kinh ngạc. Công cụ chỉnh sửa AI đã tiết kiệm cho tôi hàng giờ làm việc. Rất được khuyến khích!',
+        'home.testimonials.review2': 'Dịch vụ chuyên nghiệp và kết quả ��áng kinh ngạc. Công cụ chỉnh sửa AI đã tiết kiệm cho tôi hàng giờ làm việc. Rất được khuyến khích!',
     'home.testimonials.client3': 'Emily Davis',
     'home.testimonials.review3': 'Nền tảng này giúp việc tìm và đặt nhiếp ảnh gia trở nên dễ dàng. Toàn bộ quá trình diễn ra mượt mà và không căng thẳng.',
 
@@ -1384,9 +1384,18 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     localStorage.setItem('language', lang);
   };
 
-  // Translation function
-  const t = (key: string): string => {
-    return translations[language][key as keyof typeof translations['en']] || key;
+  // Translation function with interpolation support
+  const t = (key: string, variables?: Record<string, any>): string => {
+    let translation = translations[language][key as keyof typeof translations['en']] || key;
+
+    if (variables) {
+      Object.keys(variables).forEach(varKey => {
+        const regex = new RegExp(`{{${varKey}}}`, 'g');
+        translation = translation.replace(regex, variables[varKey]);
+      });
+    }
+
+    return translation;
   };
 
   const value = {
