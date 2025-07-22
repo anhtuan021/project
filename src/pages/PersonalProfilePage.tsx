@@ -141,7 +141,7 @@ const PersonalProfilePage = () => {
     {
       id: 3,
       type: 'points_earned',
-      message: 'Nhận được 50 đi��m loyalty từ booking gần nhất',
+      message: 'Nhận được 50 điểm loyalty từ booking gần nhất',
       time: '2 tuần trước',
       icon: Gift,
       color: 'text-yellow-600 bg-yellow-100'
@@ -386,10 +386,10 @@ const PersonalProfilePage = () => {
           <div className="border-b border-gray-200">
             <div className="flex space-x-8 px-8">
               {[
-                { id: 'overview', label: 'Tổng quan', icon: BarChart3 },
-                { id: 'bookings', label: 'Lịch sử Booking', icon: Calendar },
-                { id: 'favorites', label: 'Yêu thích', icon: Heart },
-                { id: 'suggestions', label: 'Gợi ý AI', icon: Sparkles }
+                { id: 'overview', label: t('profile.tabs.overview'), icon: BarChart3 },
+                { id: 'bookings', label: t('profile.tabs.bookingHistory'), icon: Calendar },
+                { id: 'favorites', label: t('profile.tabs.favorites'), icon: Heart },
+                { id: 'suggestions', label: t('profile.tabs.aiSuggestions'), icon: Sparkles }
               ].map((tab) => (
                 <button
                   key={tab.id}
