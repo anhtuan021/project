@@ -42,10 +42,10 @@ const PersonalProfilePage = () => {
   const { t } = useLanguage();
   const { user } = useAuth();
 
-  // Lấy dữ liệu booking từ localStorage khi component mount
+  // Get booking data from localStorage when component mounts
   useEffect(() => {
     const bookings = JSON.parse(localStorage.getItem('userBookings') || '[]');
-    setBookingHistory(bookings.reverse()); // Đảo chiều để booking mới nhất lên trên
+    setBookingHistory(bookings.reverse()); // Reverse to show newest bookings first
   }, []);
 
   // Analytics calculations
@@ -192,12 +192,12 @@ const PersonalProfilePage = () => {
     const enhancedBooking = {
       ...booking,
       customerInfo: {
-        name: user?.name || 'Khách hàng',
+        name: user?.name || t('profile.customer'),
         email: user?.email || 'customer@example.com',
         phone: '+84 123 456 789'
       },
-      conceptRequirements: 'Chụp ảnh tự nhiên, phong cách hiện đại với ánh sáng tự nhiên. Tập trung vào cảm xúc và khoảnh khắc chân thực.',
-      specialNotes: booking.bookingDetails?.notes || 'Vui lòng đến đúng giờ. Mang theo trang phục dự phòng.'
+      conceptRequirements: t('profile.defaultConceptRequirements'),
+      specialNotes: booking.bookingDetails?.notes || t('profile.defaultSpecialNotes')
     };
     setSelectedBooking(enhancedBooking);
     setIsModalOpen(true);
