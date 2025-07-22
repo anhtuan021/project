@@ -141,8 +141,8 @@ const Header = () => {
                         >
                           <Settings className="h-4 w-4 mr-2" />
                           {user?.userType === "photographer"
-                            ? "Dashboard"
-                            : "Admin Dashboard"}
+                            ? t("header.dashboard")
+                            : t("header.adminDashboard")}
                         </Link>
                       )}
 
@@ -160,9 +160,9 @@ const Header = () => {
                       >
                         <User className="h-4 w-4 mr-2" />
                         {user?.userType === "photographer"
-                          ? "Cài đặt Profile"
+                          ? t("header.photographerSettings")
                           : user?.userType === "admin"
-                          ? "Admin Profile"
+                          ? t("header.adminProfile")
                           : t("header.profile")}
                       </Link>
 
@@ -268,8 +268,8 @@ const Header = () => {
                       onClick={() => setIsMenuOpen(false)}
                     >
                       {user?.userType === "photographer"
-                        ? "Dashboard"
-                        : "Admin Dashboard"}
+                        ? t("header.dashboard")
+                        : t("header.adminDashboard")}
                     </Link>
                   )}
 
@@ -286,9 +286,9 @@ const Header = () => {
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {user?.userType === "photographer"
-                      ? "Cài đặt Profile"
+                      ? t("header.photographerSettings")
                       : user?.userType === "admin"
-                      ? "Admin Profile"
+                      ? t("header.adminProfile")
                       : t("header.profile")}
                   </Link>
                   <button
