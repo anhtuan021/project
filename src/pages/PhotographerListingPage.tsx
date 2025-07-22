@@ -148,7 +148,7 @@ const PhotographerListingPage = () => {
             <div className="bg-white rounded-xl shadow-sm p-6 sticky top-8">
               <div className="flex items-center gap-2 mb-6">
                 <Filter size={20} className="text-gray-600" />
-                <h2 className="text-lg font-semibold text-gray-900">Filters</h2>
+                <h2 className="text-lg font-semibold text-gray-900">{t('listing.filters')}</h2>
               </div>
 
               {/* Search */}
