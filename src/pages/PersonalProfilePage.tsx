@@ -297,30 +297,30 @@ const PersonalProfilePage = () => {
               />
               <div>
                 <h1 className="text-3xl font-bold mb-2">
-                  {user?.name || 'Khách hàng'}
+                  {user?.name || t('profile.customer')}
                 </h1>
                 <p className="text-blue-100 mb-2">{user?.email || 'user@example.com'}</p>
                 <div className="flex items-center space-x-6">
                   <div className="flex items-center">
                     <Activity className="h-5 w-5 mr-2" />
-                    <span className="text-sm">Thành viên từ tháng 3/2024</span>
+                    <span className="text-sm">{t('profile.memberSince', { date: 'tháng 3/2024' })}</span>
                   </div>
                   <div className="flex items-center">
                     <Gift className="h-5 w-5 mr-2" />
-                    <span className="text-sm">{analytics.loyaltyPoints} điểm tích lũy</span>
+                    <span className="text-sm">{t('profile.loyaltyPoints', { points: analytics.loyaltyPoints })}</span>
                   </div>
                 </div>
               </div>
             </div>
             <div className="text-right">
-              <p className="text-sm text-blue-100 mb-1">Tổng chi tiêu</p>
+              <p className="text-sm text-blue-100 mb-1">{t('profile.totalSpent')}</p>
               <p className="text-4xl font-bold">${analytics.totalSpent}</p>
               <Link
                 to="/edit-profile"
                 className="inline-flex items-center space-x-2 bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition-colors mt-4"
               >
                 <Edit className="h-4 w-4" />
-                <span className="text-sm font-medium">Chỉnh sửa</span>
+                <span className="text-sm font-medium">{t('profile.edit')}</span>
               </Link>
             </div>
           </div>
@@ -638,7 +638,7 @@ const PersonalProfilePage = () => {
                       Chưa có booking nào
                     </h3>
                     <p className="text-gray-500 mb-6">
-                      Hãy tìm và đặt nhiếp ảnh gia đầu tiên của b���n
+                      Hãy tìm và đặt nhiếp ảnh gia đầu tiên của bạn
                     </p>
                     <Link
                       to="/photographers"
