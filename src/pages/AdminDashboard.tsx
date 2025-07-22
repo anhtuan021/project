@@ -50,7 +50,12 @@ const AdminDashboard = () => {
 
   const loadAdminData = () => {
     setIsLoading(true);
-    
+
+    // Load data from localStorage first, fallback to sample data
+    const savedUsers = localStorage.getItem('adminUsers');
+    const savedPhotographers = localStorage.getItem('adminPhotographers');
+    const savedFeedbacks = localStorage.getItem('adminFeedbacks');
+
     // Load sample data - in real app this would come from API
     const sampleUsers = [
       {
