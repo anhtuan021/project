@@ -968,7 +968,7 @@ const translations = {
     'aiTools.enhancedPreview': 'Ảnh được nâng cấp sẽ xuất hiện ở đây',
     'aiTools.brightness': 'Độ Sáng',
     'aiTools.contrast': 'Độ Tương Phản',
-    'aiTools.saturation': 'Độ Bão H��a',
+    'aiTools.saturation': 'Độ Bão Hòa',
     'aiTools.autoEnhance': 'Nâng Cấp Tự Động',
     'aiTools.uploadReference': 'Tải ảnh tham khảo lên',
     'aiTools.matchedPhotographers': 'Nhiếp Ảnh Gia Phù Hợp',
@@ -1179,7 +1179,7 @@ const translations = {
     'bookingModal.close': 'Đóng',
 
     // Feedback Modal
-    'feedback.title': 'Đ��nh Giá Dịch Vụ',
+    'feedback.title': 'Đánh Giá Dịch V��',
     'feedback.rateQuality': 'Đánh giá chất lượng dịch vụ',
     'feedback.veryUnsatisfied': 'Rất không hài lòng',
     'feedback.unsatisfied': 'Không hài lòng',
@@ -1377,6 +1377,19 @@ const translations = {
     'profile.status.completed': 'Hoàn thành',
     'profile.status.upcoming': 'Sắp tới',
     'profile.status.cancelled': 'Đã hủy',
+
+    // Photographer Dashboard
+    'photographerDashboard.conceptRequirements': 'Chụp ảnh cưới phong cách vintage, tông màu ấm. Muốn có những khoảnh khắc tự nhiên và lãng mạn. Ưu tiên ánh sáng golden hour.',
+    'photographerDashboard.specialNotes': 'Cô dâu có thể bị dị ứng với một số loại hoa. Vui lòng chuẩn bị backup location trong trường hợp thời tiết xấu.',
+    'photographerDashboard.bookingAccepted': 'Đã chấp nhận booking thành công!',
+    'photographerDashboard.rejectionReason': 'Lý do từ chối booking:',
+    'photographerDashboard.conceptTitle': 'Tiêu đề concept:',
+    'photographerDashboard.conceptDescription': 'Mô tả concept:',
+    'photographerDashboard.conceptAdded': 'Đã thêm concept mới thành công!',
+    'photographerDashboard.vintageWedding': 'Ảnh cưới phong cách Vintage',
+    'photographerDashboard.vintageWeddingDesc': 'Phong cách lãng mạn cổ điển với tông màu vintage ấm áp và ánh sáng mềm mại',
+    'photographerDashboard.streetPortrait': 'Chân dung nghệ thuật đường phố',
+    'photographerDashboard.streetPortraitDesc': 'Kết hợp phong cách urban với ánh sáng tự nhiên',
   }
 };
 
