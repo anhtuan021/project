@@ -35,22 +35,16 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
   // Kiểm tra localStorage khi component mount
   useEffect(() => {
-    console.log('AuthContext - Checking localStorage...');
     const savedUser = localStorage.getItem("user");
-    console.log('AuthContext - savedUser from localStorage:', savedUser);
     if (savedUser) {
       try {
         const userData = JSON.parse(savedUser);
-        console.log('AuthContext - Parsed userData:', userData);
         setUser(userData);
         setIsAuthenticated(true);
-        console.log('AuthContext - User authenticated from localStorage');
       } catch (error) {
         console.error("Error parsing saved user data:", error);
         localStorage.removeItem("user");
       }
-    } else {
-      console.log('AuthContext - No saved user found');
     }
   }, []);
 
@@ -60,9 +54,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
       // Check for admin login
-      console.log('AuthContext - Login attempt:', email, password);
       if (email === 'admin@snapmatch.ai' && password === 'admin123') {
-        console.log('AuthContext - Admin login successful');
         const adminData: User = {
           id: 'admin',
           name: 'Admin User',
@@ -71,11 +63,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
           userType: 'admin',
         };
 
-        console.log('AuthContext - Setting admin data:', adminData);
         setUser(adminData);
         setIsAuthenticated(true);
         localStorage.setItem('user', JSON.stringify(adminData));
-        console.log('AuthContext - Admin data saved to localStorage');
         return true;
       }
       
