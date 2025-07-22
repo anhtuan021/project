@@ -117,6 +117,122 @@ const PhotographerDashboard = () => {
     setIsModalOpen(true);
   };
 
+  const handleAcceptBooking = (bookingId: string) => {
+    const updatedBookings = bookingRequests.map(booking =>
+      booking.id === bookingId
+        ? { ...booking, status: 'Confirmed' }
+        : booking
+    );
+    setBookingRequests(updatedBookings);
+
+    // Update localStorage
+    const allBookings = JSON.parse(localStorage.getItem('userBookings') || '[]');
+    const updatedAllBookings = allBookings.map((booking: any) =>
+      booking.id === bookingId
+        ? { ...booking, status: 'Confirmed' }
+        : booking
+    );
+    localStorage.setItem('userBookings', JSON.stringify(updatedAllBookings));
+
+    alert('Đã chấp nhận booking thành công!');
+  };
+
+  const handleRejectBooking = (bookingId: string) => {
+    const reason = prompt('Lý do từ chối booking:');
+    if (reason) {
+      const updatedBookings = bookingRequests.map(booking =>
+        booking.id === bookingId
+          ? { ...booking, status: 'Cancelled', rejectionReason: reason }
+          : booking
+      );
+      setBookingRequests(updatedBookings);
+
+      // Update localStorage
+      const allBookings = JSON.parse(localStorage.getItem('userBookings') || '[]');
+      const updatedAllBookings = allBookings.map((booking: any) =>
+        booking.id === bookingId
+          ? { ...booking, status: 'Cancelled', rejectionReason: reason }
+          : booking
+      );
+      localStorage.setItem('userBookings', JSON.stringify(updatedAllBookings));
+
+      alert('Đã từ chối booking!');
+    }
+  };
+
+  const handleCompleteBooking = (bookingId: string) => {
+    const updatedBookings = bookingRequests.map(booking =>
+      booking.id === bookingId
+        ? { ...booking, status: 'Completed', completedDate: new Date().toISOString() }
+        : booking
+    );
+    setBookingRequests(updatedBookings);
+
+    // Update localStorage
+    const allBookings = JSON.parse(localStorage.getItem('userBookings') || '[]');
+    const updatedAllBookings = allBookings.map((booking: any) =>
+      booking.id === bookingId
+        ? { ...booking, status: 'Completed', completedDate: new Date().toISOString() }
+        : booking
+    );
+    localStorage.setItem('userBookings', JSON.stringify(updatedAllBookings));
+
+    alert('Đã đánh dấu booking hoàn thành!');
+  };
+
+  const handleMessageCustomer = (booking: any) => {
+    const message = prompt(`Gửi tin nhắn tới khách hàng (${booking.customerInfo?.name || 'Khách hàng'}):`);
+    if (message) {
+      alert(`Đã gửi tin nhắn: "${message}" tới khách hàng`);
+    }
+  };
+
+  const handleAddConcept = () => {
+    const title = prompt('Tiêu đề concept:');
+    const description = prompt('Mô tả concept:');
+    const category = prompt('Danh mục (Wedding/Portrait/Family/Event):');
+
+    if (title && description && category) {
+      const newConcept = {
+        id: Date.now(),
+        title,
+        description,
+        category,
+        image: 'https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg?auto=compress&cs=tinysrgb&w=300&h=200&fit=crop',
+        likes: 0,
+        views: 0
+      };
+
+      setConcepts(prev => [...prev, newConcept]);
+
+      // Save to localStorage
+      const savedConcepts = JSON.parse(localStorage.getItem('photographerConcepts') || '[]');
+      savedConcepts.push(newConcept);
+      localStorage.setItem('photographerConcepts', JSON.stringify(savedConcepts));
+
+      alert('Đã thêm concept mới thành công!');
+    }
+  };
+
+  const handleEditConcept = (conceptId: number) => {
+    const concept = sampleConcepts.find(c => c.id === conceptId);
+    if (concept) {
+      const newTitle = prompt('Tiêu đề mới:', concept.title);
+      const newDescription = prompt('Mô tả mới:', concept.description);
+
+      if (newTitle && newDescription) {
+        const updatedConcepts = sampleConcepts.map(c =>
+          c.id === conceptId
+            ? { ...c, title: newTitle, description: newDescription }
+            : c
+        );
+        setConcepts(updatedConcepts);
+        localStorage.setItem('photographerConcepts', JSON.stringify(updatedConcepts));
+        alert('Đã cập nhật concept thành công!');
+      }
+    }
+  };
+
   const sampleConcepts =
     concepts.length === 0
       ? [
