@@ -60,7 +60,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
       // Check for admin login
+      console.log('AuthContext - Login attempt:', email, password);
       if (email === 'admin@snapmatch.ai' && password === 'admin123') {
+        console.log('AuthContext - Admin login successful');
         const adminData: User = {
           id: 'admin',
           name: 'Admin User',
@@ -68,10 +70,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
           avatar: 'https://images.pexels.com/photos/3763188/pexels-photo-3763188.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop',
           userType: 'admin',
         };
-        
+
+        console.log('AuthContext - Setting admin data:', adminData);
         setUser(adminData);
         setIsAuthenticated(true);
         localStorage.setItem('user', JSON.stringify(adminData));
+        console.log('AuthContext - Admin data saved to localStorage');
         return true;
       }
       
