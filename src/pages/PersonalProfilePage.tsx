@@ -98,7 +98,7 @@ const PersonalProfilePage = () => {
     {
       id: 1,
       title: 'Ảnh cưới lãng mạn',
-      description: 'Phong cách cổ điển với ánh sáng golden hour',
+      description: 'Phong cách cổ ��iển với ánh sáng golden hour',
       image: 'https://images.pexels.com/photos/1616113/pexels-photo-1616113.jpeg?auto=compress&cs=tinysrgb&w=400&h=250&fit=crop',
       category: 'Wedding',
       matches: '95%'
@@ -234,14 +234,14 @@ const PersonalProfilePage = () => {
   };
 
   const handleMessagePhotographer = (photographer) => {
-    const message = prompt(`Gửi tin nhắn tới ${photographer.name}:`);
+    const message = prompt(t('profile.sendMessagePrompt', { name: photographer.name }));
     if (message) {
-      alert(`Đã gửi tin nhắn "${message}" tới ${photographer.name}`);
+      alert(t('profile.messageSent', { message, name: photographer.name }));
     }
   };
 
   const handleCancelBooking = (bookingId) => {
-    const reason = prompt('Lý do hủy booking (tùy chọn):');
+    const reason = prompt(t('profile.cancelBookingPrompt'));
     const updatedBookings = bookingHistory.map(booking =>
       booking.id === bookingId
         ? { ...booking, status: 'Cancelled', cancellationReason: reason }
@@ -255,7 +255,7 @@ const PersonalProfilePage = () => {
   };
 
   const handleRebookPhotographer = (photographer) => {
-    alert(`Chuyển hướng tới trang đặt chụp với ${photographer.name}`);
+    alert(t('profile.rebookMessage', { name: photographer.name }));
     // In real app, navigate to booking page with photographer pre-selected
   };
 
@@ -264,7 +264,7 @@ const PersonalProfilePage = () => {
     if (!savedConcepts.includes(conceptId)) {
       savedConcepts.push(conceptId);
       localStorage.setItem('savedConcepts', JSON.stringify(savedConcepts));
-      alert('Đã lưu concept vào danh sách yêu thích!');
+      alert(t('profile.conceptSaved'));
     } else {
       alert('Concept này đã có trong danh sách yêu thích!');
     }
