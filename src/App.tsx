@@ -71,6 +71,14 @@ function App() {
                           path="/admin"
                           element={<AdminDashboard />}
                         />
+                        <Route
+                          path="/admin-profile"
+                          element={<AdminProfilePage />}
+                        />
+                        <Route
+                          path="/photographer-settings"
+                          element={<PhotographerSettingsPage />}
+                        />
                       </Routes>
                     </main>
                     <Footer />
