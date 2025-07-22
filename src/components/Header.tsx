@@ -20,12 +20,30 @@ const Header = () => {
   const { user, isAuthenticated, logout } = useAuth();
   const { language, setLanguage, t } = useLanguage();
 
-  const navigation = [
-    { name: t("header.findPhotographers"), href: "/photographers" },
-    { name: t("header.booking"), href: "/booking" },
-    { name: t("header.aiFeatures"), href: "/ai-tools" },
-    { name: t("header.support"), href: "/support" },
-  ];
+  // Different navigation based on user type
+  const getNavigation = () => {
+    if (user?.userType === 'admin') {
+      return [
+        { name: t("header.aiFeatures"), href: "/ai-tools" },
+        { name: t("header.support"), href: "/support" },
+      ];
+    } else if (user?.userType === 'photographer') {
+      return [
+        { name: t("header.aiFeatures"), href: "/ai-tools" },
+        { name: t("header.support"), href: "/support" },
+      ];
+    } else {
+      // Regular customer navigation
+      return [
+        { name: t("header.findPhotographers"), href: "/photographers" },
+        { name: t("header.booking"), href: "/booking" },
+        { name: t("header.aiFeatures"), href: "/ai-tools" },
+        { name: t("header.support"), href: "/support" },
+      ];
+    }
+  };
+
+  const navigation = getNavigation();
 
   const isActive = (path: string) => location.pathname === path;
 
