@@ -189,10 +189,11 @@ const AdminDashboard = () => {
     ];
 
     setTimeout(() => {
-      setUsers(sampleUsers);
-      setPhotographers(samplePhotographers);
+      // Use saved data if available, otherwise use sample data
+      setUsers(savedUsers ? JSON.parse(savedUsers) : sampleUsers);
+      setPhotographers(savedPhotographers ? JSON.parse(savedPhotographers) : samplePhotographers);
       setBookings(sampleBookings);
-      setFeedbacks(sampleFeedbacks);
+      setFeedbacks(savedFeedbacks ? JSON.parse(savedFeedbacks) : sampleFeedbacks);
       setIsLoading(false);
     }, 1000);
   };
