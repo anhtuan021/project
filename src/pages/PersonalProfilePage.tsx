@@ -141,7 +141,7 @@ const PersonalProfilePage = () => {
     {
       id: 3,
       type: 'points_earned',
-      message: 'Nhận được 50 điểm loyalty từ booking gần nhất',
+      message: 'Nhận được 50 điểm loyalty t�� booking gần nhất',
       time: '2 tuần trước',
       icon: Gift,
       color: 'text-yellow-600 bg-yellow-100'
@@ -213,6 +213,74 @@ const PersonalProfilePage = () => {
     existingFeedbacks.push(feedback);
     localStorage.setItem('feedbacks', JSON.stringify(existingFeedbacks));
     alert('Cảm ơn bạn đã đánh giá! Feedback của bạn đã được gửi thành công.');
+  };
+
+  const handleSavePhotographer = (photographerId) => {
+    const savedPhotographers = JSON.parse(localStorage.getItem('savedPhotographers') || '[]');
+    if (!savedPhotographers.includes(photographerId)) {
+      savedPhotographers.push(photographerId);
+      localStorage.setItem('savedPhotographers', JSON.stringify(savedPhotographers));
+      alert('Đã lưu nhiếp ảnh gia vào danh sách yêu thích!');
+    } else {
+      alert('Nhiếp ảnh gia này đã có trong danh sách yêu thích!');
+    }
+  };
+
+  const handleUnsavePhotographer = (photographerId) => {
+    const savedPhotographers = JSON.parse(localStorage.getItem('savedPhotographers') || '[]');
+    const updatedSaved = savedPhotographers.filter(id => id !== photographerId);
+    localStorage.setItem('savedPhotographers', JSON.stringify(updatedSaved));
+    alert('Đã xóa khỏi danh sách yêu thích!');
+  };
+
+  const handleMessagePhotographer = (photographer) => {
+    const message = prompt(`Gửi tin nhắn tới ${photographer.name}:`);
+    if (message) {
+      alert(`Đã gửi tin nhắn "${message}" tới ${photographer.name}`);
+    }
+  };
+
+  const handleCancelBooking = (bookingId) => {
+    const reason = prompt('Lý do hủy booking (tùy chọn):');
+    const updatedBookings = bookingHistory.map(booking =>
+      booking.id === bookingId
+        ? { ...booking, status: 'Cancelled', cancellationReason: reason }
+        : booking
+    );
+    setBookingHistory(updatedBookings);
+
+    // Update localStorage
+    localStorage.setItem('userBookings', JSON.stringify(updatedBookings));
+    alert('Đã hủy booking thành công!');
+  };
+
+  const handleRebookPhotographer = (photographer) => {
+    alert(`Chuyển hướng tới trang ��ặt chụp với ${photographer.name}`);
+    // In real app, navigate to booking page with photographer pre-selected
+  };
+
+  const handleSaveConcept = (conceptId) => {
+    const savedConcepts = JSON.parse(localStorage.getItem('savedConcepts') || '[]');
+    if (!savedConcepts.includes(conceptId)) {
+      savedConcepts.push(conceptId);
+      localStorage.setItem('savedConcepts', JSON.stringify(savedConcepts));
+      alert('Đã lưu concept vào danh sách yêu thích!');
+    } else {
+      alert('Concept này đã có trong danh sách yêu thích!');
+    }
+  };
+
+  const handleFindPhotographerForConcept = (concept) => {
+    alert(`Tìm nhiếp ảnh gia cho concept "${concept.title}" trong danh mục ${concept.category}`);
+    // In real app, navigate to photographers page with category filter
+  };
+
+  const handleRefreshSuggestions = () => {
+    alert('Đang làm mới gợi ý AI dựa trên sở thích và lịch sử của bạn...');
+    // In real app, call API to get new AI suggestions
+    setTimeout(() => {
+      alert('Đã cập nhật gợi ý mới!');
+    }, 1000);
   };
 
   return (
@@ -565,7 +633,7 @@ const PersonalProfilePage = () => {
                       to="/photographers"
                       className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
                     >
-                      Tìm nhiếp ảnh gia
+                      Tìm nhi���p ảnh gia
                     </Link>
                   </div>
                 )}
