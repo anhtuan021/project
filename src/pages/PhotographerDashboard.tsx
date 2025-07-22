@@ -651,17 +651,34 @@ const PhotographerDashboard = () => {
                         <div className="flex justify-end mt-4 pt-4 border-t border-gray-100 space-x-3">
                           {booking.status === 'Pending' && (
                             <>
-                                                            <button className="text-red-600 hover:text-red-700 text-sm font-medium">
+                              <button
+                                onClick={() => handleRejectBooking(booking.id)}
+                                className="text-red-600 hover:text-red-700 text-sm font-medium"
+                              >
                                 {t('dashboard.reject')}
                               </button>
-                              <button className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 text-sm font-medium">
+                              <button
+                                onClick={() => handleAcceptBooking(booking.id)}
+                                className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 text-sm font-medium"
+                              >
                                 {t('dashboard.accept')}
                               </button>
                             </>
                           )}
-                          <button className="text-blue-600 hover:text-blue-700 text-sm font-medium flex items-center space-x-1">
+                          {booking.status === 'Confirmed' && (
+                            <button
+                              onClick={() => handleCompleteBooking(booking.id)}
+                              className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 text-sm font-medium"
+                            >
+                              Đánh dấu hoàn thành
+                            </button>
+                          )}
+                          <button
+                            onClick={() => handleMessageCustomer(booking)}
+                            className="text-blue-600 hover:text-blue-700 text-sm font-medium flex items-center space-x-1"
+                          >
                             <MessageSquare className="h-4 w-4" />
-                                                        <span>{t('dashboard.message')}</span>
+                            <span>{t('dashboard.message')}</span>
                           </button>
                           <button 
                             onClick={() => handleViewDetails(booking)}
@@ -695,9 +712,12 @@ const PhotographerDashboard = () => {
                                     <h2 className="text-xl font-bold text-gray-900">
                     {t('dashboard.conceptPortfolio')}
                   </h2>
-                  <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center space-x-2">
+                  <button
+                    onClick={handleAddConcept}
+                    className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center space-x-2"
+                  >
                     <Plus className="h-4 w-4" />
-                                        <span>{t('dashboard.addConcept')}</span>
+                    <span>{t('dashboard.addConcept')}</span>
                   </button>
                 </div>
 
@@ -717,7 +737,11 @@ const PhotographerDashboard = () => {
                           {concept.category}
                         </div>
                         <div className="absolute top-2 right-2 space-x-2">
-                          <button className="bg-white bg-opacity-80 hover:bg-opacity-100 p-1 rounded">
+                          <button
+                            onClick={() => handleEditConcept(concept.id)}
+                            className="bg-white bg-opacity-80 hover:bg-opacity-100 p-1 rounded"
+                            title="Chỉnh sửa concept"
+                          >
                             <Edit className="h-4 w-4 text-gray-600" />
                           </button>
                         </div>
