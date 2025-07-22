@@ -98,7 +98,7 @@ const PhotographerSettingsPage = () => {
   const handleSaveProfile = () => {
     console.log('Saving photographer profile:', profileData);
     setIsEditing(false);
-    alert('Thông tin profile đã đ��ợc cập nhật thành công!');
+    alert('Thông tin profile đã được cập nhật thành công!');
   };
 
   const handleAddSpecialty = (specialty: string) => {
@@ -582,7 +582,7 @@ const PhotographerSettingsPage = () => {
                           <span className="text-gray-600">Theo giờ</span>
                           <div className="flex items-center space-x-2">
                             <span className="text-lg font-semibold">${profileData.pricing.hourly}</span>
-                            <span className="text-sm text-gray-500">/gi���</span>
+                            <span className="text-sm text-gray-500">/giờ</span>
                           </div>
                         </div>
                         <div className="flex justify-between items-center">
@@ -833,4 +833,4 @@ const PhotographerSettingsPage = () => {
   );
 };
 
-export default PhotographerProfilePage;
+export default PhotographerSettingsPage;
