@@ -110,8 +110,8 @@ const PhotographerDashboard = () => {
         email: 'customer@example.com',
         phone: '+84 123 456 789'
       },
-      conceptRequirements: 'Chụp ảnh cưới phong cách vintage, tông màu ấm. Muốn có những khoảnh khắc tự nhiên và lãng mạn. Ưu tiên ánh sáng golden hour.',
-      specialNotes: booking.bookingDetails?.notes || 'Cô dâu có thể bị dị ứng với một số loại hoa. Vui lòng chuẩn bị backup location trong trường hợp thời tiết xấu.'
+      conceptRequirements: t('photographerDashboard.conceptRequirements'),
+      specialNotes: booking.bookingDetails?.notes || t('photographerDashboard.specialNotes')
     };
     setSelectedBooking(enhancedBooking);
     setIsModalOpen(true);
@@ -134,11 +134,11 @@ const PhotographerDashboard = () => {
     );
     localStorage.setItem('userBookings', JSON.stringify(updatedAllBookings));
 
-    alert('Đã chấp nhận booking thành công!');
+    alert(t('photographerDashboard.bookingAccepted'));
   };
 
   const handleRejectBooking = (bookingId: string) => {
-    const reason = prompt('Lý do từ chối booking:');
+    const reason = prompt(t('photographerDashboard.rejectionReason'));
     if (reason) {
       const updatedBookings = bookingRequests.map(booking =>
         booking.id === bookingId
@@ -188,8 +188,8 @@ const PhotographerDashboard = () => {
   };
 
   const handleAddConcept = () => {
-    const title = prompt('Tiêu đề concept:');
-    const description = prompt('Mô tả concept:');
+    const title = prompt(t('photographerDashboard.conceptTitle'));
+    const description = prompt(t('photographerDashboard.conceptDescription'));
     const category = prompt('Danh mục (Wedding/Portrait/Family/Event):');
 
     if (title && description && category) {
@@ -210,7 +210,7 @@ const PhotographerDashboard = () => {
       savedConcepts.push(newConcept);
       localStorage.setItem('photographerConcepts', JSON.stringify(savedConcepts));
 
-      alert('Đã thêm concept mới thành công!');
+      alert(t('photographerDashboard.conceptAdded'));
     }
   };
 
@@ -238,9 +238,9 @@ const PhotographerDashboard = () => {
       ? [
           {
             id: 1,
-            title: "Ảnh cưới phong cách Vintage",
+            title: t('photographerDashboard.vintageWedding'),
             description:
-              "Phong cách cổ điển với tông màu ấm, ánh sáng tự nhiên",
+              t('photographerDashboard.vintageWeddingDesc'),
             image:
               "https://images.pexels.com/photos/1616113/pexels-photo-1616113.jpeg?auto=compress&cs=tinysrgb&w=300&h=200&fit=crop",
             category: "Wedding",
@@ -249,8 +249,8 @@ const PhotographerDashboard = () => {
           },
           {
             id: 2,
-            title: "Chân dung nghệ thuật đường phố",
-            description: "Kết hợp phong cách urban với ánh sáng tự nhiên",
+            title: t('photographerDashboard.streetPortrait'),
+            description: t('photographerDashboard.streetPortraitDesc'),
             image:
               "https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg?auto=compress&cs=tinysrgb&w=300&h=200&fit=crop",
             category: "Portrait",
