@@ -3,15 +3,15 @@ import { useAuth } from '../contexts/AuthContext';
 import HomePage from '../pages/HomePage';
 import AdminDashboard from '../pages/AdminDashboard';
 import PhotographerDashboard from '../pages/PhotographerDashboard';
+import CustomerDashboard from '../pages/CustomerDashboard';
 
 const DashboardRouter = () => {
   const { user, isAuthenticated } = useAuth();
 
 
 
-  // Nếu chưa đăng nhập hoặc là customer, hiển thị HomePage
-  if (!isAuthenticated || !user || user.userType === 'customer') {
-
+  // Nếu chưa đăng nhập, hiển thị HomePage
+  if (!isAuthenticated || !user) {
     return <HomePage />;
   }
 
@@ -23,12 +23,15 @@ const DashboardRouter = () => {
 
   // Nếu là photographer, hiển thị PhotographerDashboard
   if (user.userType === 'photographer') {
-
     return <PhotographerDashboard />;
   }
 
-  // Fallback về HomePage
+  // Nếu là customer, hiển thị CustomerDashboard
+  if (user.userType === 'customer') {
+    return <CustomerDashboard />;
+  }
 
+  // Fallback về HomePage
   return <HomePage />;
 };
 
