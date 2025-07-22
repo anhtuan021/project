@@ -97,24 +97,24 @@ const PersonalProfilePage = () => {
   const aiSuggestions = [
     {
       id: 1,
-      title: 'Ảnh cưới lãng mạn',
-      description: 'Phong cách cổ điển với ánh sáng golden hour',
+      title: t('profile.suggestionTitles.romanticWedding'),
+      description: t('profile.suggestionDescriptions.romanticWedding'),
       image: 'https://images.pexels.com/photos/1616113/pexels-photo-1616113.jpeg?auto=compress&cs=tinysrgb&w=400&h=250&fit=crop',
       category: 'Wedding',
       matches: '95%'
     },
     {
       id: 2,
-      title: 'Chân dung nghệ thuật',
-      description: 'Phong cách hiện đại với hiệu ứng ánh sáng',
+      title: t('profile.suggestionTitles.artisticPortrait'),
+      description: t('profile.suggestionDescriptions.artisticPortrait'),
       image: 'https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg?auto=compress&cs=tinysrgb&w=400&h=250&fit=crop',
       category: 'Portrait',
       matches: '88%'
     },
     {
       id: 3,
-      title: 'Ảnh gia đình ngoài trời',
-      description: 'Tự nhiên và ấm áp trong thiên nhiên',
+      title: t('profile.suggestionTitles.outdoorFamily'),
+      description: t('profile.suggestionDescriptions.outdoorFamily'),
       image: 'https://images.pexels.com/photos/3184639/pexels-photo-3184639.jpeg?auto=compress&cs=tinysrgb&w=400&h=250&fit=crop',
       category: 'Family',
       matches: '92%'
