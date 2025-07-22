@@ -1,37 +1,38 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { 
-  Edit, 
-  Star, 
-  Calendar, 
-  MapPin, 
-  Clock, 
+import {
+  Calendar,
+  Camera,
+  Star,
+  Clock,
+  MapPin,
   User,
   DollarSign,
   TrendingUp,
+  Edit,
   Eye,
   MessageSquare,
   Settings,
+  Plus,
   ChevronRight,
   Heart,
   BookOpen,
   Award,
   Activity,
+  Search,
+  Filter,
+  Bell,
   Gift,
   Sparkles,
   Users,
-  BarChart3,
-  Camera,
-  Plus,
-  Bell,
-  Filter
+  BarChart3
 } from 'lucide-react';
-import { useLanguage } from '../contexts/LanguageContext';
 import { useAuth } from '../contexts/AuthContext';
+import { useLanguage } from '../contexts/LanguageContext';
 import BookingDetailsModal from '../components/BookingDetailsModal';
 import FeedbackModal from '../components/FeedbackModal';
 
-const PersonalProfilePage = () => {
+const CustomerDashboard = () => {
   const [selectedTab, setSelectedTab] = useState('overview');
   const [bookingHistory, setBookingHistory] = useState([]);
   const [selectedBooking, setSelectedBooking] = useState(null);
@@ -39,13 +40,13 @@ const PersonalProfilePage = () => {
   const [showFeedbackModal, setShowFeedbackModal] = useState(false);
   const [feedbackBooking, setFeedbackBooking] = useState(null);
 
-  const { t } = useLanguage();
   const { user } = useAuth();
+  const { t } = useLanguage();
 
-  // Get booking data from localStorage when component mounts
+  // Load booking data from localStorage
   useEffect(() => {
     const bookings = JSON.parse(localStorage.getItem('userBookings') || '[]');
-    setBookingHistory(bookings.reverse()); // Reverse to show newest bookings first
+    setBookingHistory(bookings.reverse());
   }, []);
 
   // Analytics calculations
@@ -97,24 +98,24 @@ const PersonalProfilePage = () => {
   const aiSuggestions = [
     {
       id: 1,
-      title: t('profile.suggestionTitles.romanticWedding'),
-      description: t('profile.suggestionDescriptions.romanticWedding'),
+      title: 'Ảnh cưới lãng mạn',
+      description: 'Phong cách cổ điển với ánh sáng golden hour',
       image: 'https://images.pexels.com/photos/1616113/pexels-photo-1616113.jpeg?auto=compress&cs=tinysrgb&w=400&h=250&fit=crop',
       category: 'Wedding',
       matches: '95%'
     },
     {
       id: 2,
-      title: t('profile.suggestionTitles.artisticPortrait'),
-      description: t('profile.suggestionDescriptions.artisticPortrait'),
+      title: 'Chân dung nghệ thuật',
+      description: 'Phong cách hiện đại với hiệu ứng ánh sáng',
       image: 'https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg?auto=compress&cs=tinysrgb&w=400&h=250&fit=crop',
       category: 'Portrait',
       matches: '88%'
     },
     {
       id: 3,
-      title: t('profile.suggestionTitles.outdoorFamily'),
-      description: t('profile.suggestionDescriptions.outdoorFamily'),
+      title: 'Ảnh gia đình ngoài trời',
+      description: 'Tự nhiên và ấm áp trong thiên nhiên',
       image: 'https://images.pexels.com/photos/3184639/pexels-photo-3184639.jpeg?auto=compress&cs=tinysrgb&w=400&h=250&fit=crop',
       category: 'Family',
       matches: '92%'
@@ -125,35 +126,45 @@ const PersonalProfilePage = () => {
     {
       id: 1,
       type: 'booking_completed',
-      message: t('profile.activities.bookingCompleted', { photographer: 'Lily Emily' }),
-      time: t('profile.activities.daysAgo', { days: 2 }),
+      message: 'Bạn đã hoàn thành phiên chụp với Lily Emily',
+      time: '2 ngày trước',
       icon: Calendar,
       color: 'text-green-600 bg-green-100'
     },
     {
       id: 2,
       type: 'photographer_saved',
-      message: t('profile.activities.photographerSaved', { photographer: 'Michael Chen' }),
-      time: t('profile.activities.weeksAgo', { weeks: 1 }),
+      message: 'Đã lưu Michael Chen vào danh sách yêu thích',
+      time: '1 tuần trước',
       icon: Heart,
       color: 'text-pink-600 bg-pink-100'
     },
     {
       id: 3,
       type: 'points_earned',
-      message: t('profile.activities.pointsEarned', { points: 50 }),
-      time: t('profile.activities.weeksAgo', { weeks: 2 }),
+      message: 'Nhận được 50 điểm loyalty từ booking gần nhất',
+      time: '2 tuần trước',
       icon: Gift,
       color: 'text-yellow-600 bg-yellow-100'
+    },
+    {
+      id: 4,
+      type: 'concept_liked',
+      message: 'Đã thích concept "Ảnh cưới vintage"',
+      time: '3 tuần trước',
+      icon: Sparkles,
+      color: 'text-purple-600 bg-purple-100'
     }
   ];
 
-  const getStatusColor = (status) => {
+  const getStatusColor = (status: string) => {
     switch (status) {
       case 'Completed':
         return 'text-green-600 bg-green-100';
       case 'Confirmed':
         return 'text-blue-600 bg-blue-100';
+      case 'Pending':
+        return 'text-yellow-600 bg-yellow-100';
       case 'Cancelled':
         return 'text-red-600 bg-red-100';
       default:
@@ -161,20 +172,7 @@ const PersonalProfilePage = () => {
     }
   };
 
-  const getStatusText = (status) => {
-    switch (status) {
-      case 'Completed':
-        return t('profile.status.completed');
-      case 'Confirmed':
-        return t('profile.status.upcoming');
-      case 'Cancelled':
-        return t('profile.status.cancelled');
-      default:
-        return status;
-    }
-  };
-
-  const formatDate = (dateString) => {
+  const formatDate = (dateString: string) => {
     if (!dateString) return 'N/A';
     try {
       const date = new Date(dateString);
@@ -188,99 +186,31 @@ const PersonalProfilePage = () => {
     }
   };
 
-  const handleViewDetails = (booking) => {
+  const handleViewDetails = (booking: any) => {
     const enhancedBooking = {
       ...booking,
       customerInfo: {
-        name: user?.name || t('profile.customer'),
+        name: user?.name || 'Khách hàng',
         email: user?.email || 'customer@example.com',
         phone: '+84 123 456 789'
       },
-      conceptRequirements: t('profile.defaultConceptRequirements'),
-      specialNotes: booking.bookingDetails?.notes || t('profile.defaultSpecialNotes')
+      conceptRequirements: 'Chụp ảnh tự nhiên, phong cách hiện đại với ánh sáng tự nhiên. Tập trung vào cảm xúc và khoảnh khắc chân thực.',
+      specialNotes: booking.bookingDetails?.notes || 'Vui lòng đến đúng giờ. Mang theo trang phục dự phòng.'
     };
     setSelectedBooking(enhancedBooking);
     setIsModalOpen(true);
   };
 
-  const handleLeaveFeedback = (booking) => {
+  const handleLeaveFeedback = (booking: any) => {
     setFeedbackBooking(booking);
     setShowFeedbackModal(true);
   };
 
-  const handleSubmitFeedback = (feedback) => {
+  const handleSubmitFeedback = (feedback: any) => {
     const existingFeedbacks = JSON.parse(localStorage.getItem('feedbacks') || '[]');
     existingFeedbacks.push(feedback);
     localStorage.setItem('feedbacks', JSON.stringify(existingFeedbacks));
-    alert(t('profile.feedbackSuccess'));
-  };
-
-  const handleSavePhotographer = (photographerId) => {
-    const savedPhotographers = JSON.parse(localStorage.getItem('savedPhotographers') || '[]');
-    if (!savedPhotographers.includes(photographerId)) {
-      savedPhotographers.push(photographerId);
-      localStorage.setItem('savedPhotographers', JSON.stringify(savedPhotographers));
-      alert(t('profile.photographerSaved'));
-    } else {
-      alert(t('profile.photographerAlreadySaved'));
-    }
-  };
-
-  const handleUnsavePhotographer = (photographerId) => {
-    const savedPhotographers = JSON.parse(localStorage.getItem('savedPhotographers') || '[]');
-    const updatedSaved = savedPhotographers.filter(id => id !== photographerId);
-    localStorage.setItem('savedPhotographers', JSON.stringify(updatedSaved));
-    alert(t('profile.photographerUnsaved'));
-  };
-
-  const handleMessagePhotographer = (photographer) => {
-    const message = prompt(t('profile.sendMessagePrompt', { name: photographer.name }));
-    if (message) {
-      alert(t('profile.messageSent', { message, name: photographer.name }));
-    }
-  };
-
-  const handleCancelBooking = (bookingId) => {
-    const reason = prompt(t('profile.cancelBookingPrompt'));
-    const updatedBookings = bookingHistory.map(booking =>
-      booking.id === bookingId
-        ? { ...booking, status: 'Cancelled', cancellationReason: reason }
-        : booking
-    );
-    setBookingHistory(updatedBookings);
-
-    // Update localStorage
-    localStorage.setItem('userBookings', JSON.stringify(updatedBookings));
-    alert(t('profile.bookingCancelled'));
-  };
-
-  const handleRebookPhotographer = (photographer) => {
-    alert(t('profile.rebookMessage', { name: photographer.name }));
-    // In real app, navigate to booking page with photographer pre-selected
-  };
-
-  const handleSaveConcept = (conceptId) => {
-    const savedConcepts = JSON.parse(localStorage.getItem('savedConcepts') || '[]');
-    if (!savedConcepts.includes(conceptId)) {
-      savedConcepts.push(conceptId);
-      localStorage.setItem('savedConcepts', JSON.stringify(savedConcepts));
-      alert(t('profile.conceptSaved'));
-    } else {
-      alert(t('profile.conceptAlreadySaved'));
-    }
-  };
-
-  const handleFindPhotographerForConcept = (concept) => {
-    alert(t('profile.findPhotographerForConcept', { title: concept.title, category: concept.category }));
-    // In real app, navigate to photographers page with category filter
-  };
-
-  const handleRefreshSuggestions = () => {
-    alert(t('profile.refreshingSuggestions'));
-    // In real app, call API to get new AI suggestions
-    setTimeout(() => {
-      alert(t('profile.suggestionsUpdated'));
-    }, 1000);
+    alert('Cảm ơn bạn đã đánh giá! Feedback của bạn đã được gửi thành công.');
   };
 
   return (
@@ -297,31 +227,30 @@ const PersonalProfilePage = () => {
               />
               <div>
                 <h1 className="text-3xl font-bold mb-2">
-                  {user?.name || t('profile.customer')}
+                  Chào mừng trở lại, {user?.name || 'Khách hàng'}!
                 </h1>
-                <p className="text-blue-100 mb-2">{user?.email || 'user@example.com'}</p>
+                <p className="text-blue-100 mb-4">
+                  Khám phá và đặt chụp với các nhiếp ảnh gia hàng đầu
+                </p>
                 <div className="flex items-center space-x-6">
                   <div className="flex items-center">
                     <Activity className="h-5 w-5 mr-2" />
-                    <span className="text-sm">{t('profile.memberSince', { date: 'tháng 3/2024' })}</span>
+                    <span className="text-sm">Thành viên VIP</span>
                   </div>
                   <div className="flex items-center">
                     <Gift className="h-5 w-5 mr-2" />
-                    <span className="text-sm">{t('profile.loyaltyPoints', { points: analytics.loyaltyPoints })}</span>
+                    <span className="text-sm">{analytics.loyaltyPoints} điểm tích lũy</span>
                   </div>
                 </div>
               </div>
             </div>
             <div className="text-right">
-              <p className="text-sm text-blue-100 mb-1">{t('profile.totalSpent')}</p>
+              <p className="text-sm text-blue-100 mb-1">Tổng chi tiêu</p>
               <p className="text-4xl font-bold">${analytics.totalSpent}</p>
-              <Link
-                to="/edit-profile"
-                className="inline-flex items-center space-x-2 bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition-colors mt-4"
-              >
-                <Edit className="h-4 w-4" />
-                <span className="text-sm font-medium">{t('profile.edit')}</span>
-              </Link>
+              <div className="flex items-center justify-end mt-2">
+                <TrendingUp className="h-4 w-4 mr-1" />
+                <span className="text-sm">+15% so với tháng trước</span>
+              </div>
             </div>
           </div>
         </div>
@@ -331,9 +260,9 @@ const PersonalProfilePage = () => {
           <div className="bg-white rounded-xl shadow-sm p-6 border-l-4 border-blue-500">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-500 mb-1">{t('profile.totalBookings')}</p>
+                <p className="text-sm text-gray-500 mb-1">Tổng số booking</p>
                 <p className="text-3xl font-bold text-gray-900">{analytics.totalBookings}</p>
-                <p className="text-sm text-green-600 mt-1">{t('profile.completedBookings', { count: analytics.completedBookings })}</p>
+                <p className="text-sm text-green-600 mt-1">+{analytics.completedBookings} hoàn thành</p>
               </div>
               <div className="bg-blue-100 p-4 rounded-full">
                 <Calendar className="h-8 w-8 text-blue-600" />
@@ -344,9 +273,9 @@ const PersonalProfilePage = () => {
           <div className="bg-white rounded-xl shadow-sm p-6 border-l-4 border-green-500">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-500 mb-1">{t('profile.upcomingBookings')}</p>
+                <p className="text-sm text-gray-500 mb-1">Booking sắp tới</p>
                 <p className="text-3xl font-bold text-gray-900">{analytics.upcomingBookings}</p>
-                <p className="text-sm text-blue-600 mt-1">{t('profile.getReady')}</p>
+                <p className="text-sm text-blue-600 mt-1">Chuẩn bị sẵn sàng</p>
               </div>
               <div className="bg-green-100 p-4 rounded-full">
                 <Clock className="h-8 w-8 text-green-600" />
@@ -357,9 +286,9 @@ const PersonalProfilePage = () => {
           <div className="bg-white rounded-xl shadow-sm p-6 border-l-4 border-purple-500">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-500 mb-1">{t('profile.averageSpending')}</p>
+                <p className="text-sm text-gray-500 mb-1">Chi tiêu trung bình</p>
                 <p className="text-3xl font-bold text-gray-900">${analytics.averageSpending}</p>
-                <p className="text-sm text-purple-600 mt-1">{t('profile.perSession')}</p>
+                <p className="text-sm text-purple-600 mt-1">Mỗi phiên chụp</p>
               </div>
               <div className="bg-purple-100 p-4 rounded-full">
                 <DollarSign className="h-8 w-8 text-purple-600" />
@@ -370,9 +299,9 @@ const PersonalProfilePage = () => {
           <div className="bg-white rounded-xl shadow-sm p-6 border-l-4 border-yellow-500">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-500 mb-1">{t('profile.loyaltyPointsLabel')}</p>
+                <p className="text-sm text-gray-500 mb-1">Điểm tích lũy</p>
                 <p className="text-3xl font-bold text-gray-900">{analytics.loyaltyPoints}</p>
-                <p className="text-sm text-yellow-600 mt-1">{t('profile.redeemable')}</p>
+                <p className="text-sm text-yellow-600 mt-1">Có thể đổi quà</p>
               </div>
               <div className="bg-yellow-100 p-4 rounded-full">
                 <Gift className="h-8 w-8 text-yellow-600" />
@@ -386,10 +315,10 @@ const PersonalProfilePage = () => {
           <div className="border-b border-gray-200">
             <div className="flex space-x-8 px-8">
               {[
-                { id: 'overview', label: t('profile.tabs.overview'), icon: BarChart3 },
-                { id: 'bookings', label: t('profile.tabs.bookingHistory'), icon: Calendar },
-                { id: 'favorites', label: t('profile.tabs.favorites'), icon: Heart },
-                { id: 'suggestions', label: t('profile.tabs.aiSuggestions'), icon: Sparkles }
+                { id: 'overview', label: 'Tổng quan', icon: BarChart3 },
+                { id: 'bookings', label: 'Quản lý Booking', icon: Calendar },
+                { id: 'favorites', label: 'Yêu thích', icon: Heart },
+                { id: 'suggestions', label: 'Gợi ý AI', icon: Sparkles }
               ].map((tab) => (
                 <button
                   key={tab.id}
@@ -416,7 +345,7 @@ const PersonalProfilePage = () => {
                   <div className="bg-gradient-to-r from-green-50 to-green-100 rounded-xl p-6">
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-green-800 font-medium">{t('profile.overview.weeklyBookings')}</p>
+                        <p className="text-green-800 font-medium">Booking tuần này</p>
                         <p className="text-2xl font-bold text-green-900">2</p>
                       </div>
                       <Calendar className="h-8 w-8 text-green-600" />
@@ -426,7 +355,7 @@ const PersonalProfilePage = () => {
                   <div className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl p-6">
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-blue-800 font-medium">{t('profile.overview.favoritePhotographers')}</p>
+                        <p className="text-blue-800 font-medium">Nhiếp ảnh gia yêu thích</p>
                         <p className="text-2xl font-bold text-blue-900">{analytics.favoritePhotographers}</p>
                       </div>
                       <Users className="h-8 w-8 text-blue-600" />
@@ -436,7 +365,7 @@ const PersonalProfilePage = () => {
                   <div className="bg-gradient-to-r from-purple-50 to-purple-100 rounded-xl p-6">
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-purple-800 font-medium">{t('profile.overview.savedConcepts')}</p>
+                        <p className="text-purple-800 font-medium">Concept đã lưu</p>
                         <p className="text-2xl font-bold text-purple-900">{analytics.savedConcepts}</p>
                       </div>
                       <BookOpen className="h-8 w-8 text-purple-600" />
@@ -449,7 +378,7 @@ const PersonalProfilePage = () => {
                   <div>
                     <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
                       <Activity className="h-5 w-5 mr-2 text-blue-600" />
-                      {t('profile.overview.recentActivities')}
+                      Hoạt động gần đây
                     </h2>
                     <div className="space-y-4">
                       {recentActivities.map((activity) => (
@@ -470,7 +399,7 @@ const PersonalProfilePage = () => {
                   <div>
                     <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
                       <Clock className="h-5 w-5 mr-2 text-green-600" />
-                      {t('profile.overview.upcomingBookings')}
+                      Booking sắp tới
                     </h2>
                     {bookingHistory.filter(b => b.status === 'Confirmed').slice(0, 3).length > 0 ? (
                       <div className="space-y-4">
@@ -502,12 +431,12 @@ const PersonalProfilePage = () => {
                     ) : (
                       <div className="text-center py-8 text-gray-500">
                         <Calendar className="h-12 w-12 mx-auto mb-4 text-gray-300" />
-                        <p>{t('profile.overview.noUpcomingBookings')}</p>
+                        <p>Không có booking nào sắp tới</p>
                         <Link
                           to="/photographers"
                           className="text-blue-600 hover:text-blue-700 text-sm font-medium mt-2 inline-block"
                         >
-                          {t('profile.overview.bookNow')} →
+                          Đặt ngay →
                         </Link>
                       </div>
                     )}
@@ -519,22 +448,22 @@ const PersonalProfilePage = () => {
             {selectedTab === 'bookings' && (
               <div>
                 <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-xl font-bold text-gray-900">{t('profile.bookings.title')}</h2>
+                  <h2 className="text-xl font-bold text-gray-900">Lịch sử Booking</h2>
                   <div className="flex items-center space-x-4">
                     <div className="flex items-center space-x-2 text-sm text-gray-600">
                       <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                      <span>{t('profile.bookings.confirmed', { count: analytics.upcomingBookings })}</span>
+                      <span>Đã xác nhận: {analytics.upcomingBookings}</span>
                     </div>
                     <div className="flex items-center space-x-2 text-sm text-gray-600">
                       <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                      <span>{t('profile.bookings.completed', { count: analytics.completedBookings })}</span>
+                      <span>Hoàn thành: {analytics.completedBookings}</span>
                     </div>
                     <Link
                       to="/photographers"
                       className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center space-x-2"
                     >
                       <Plus className="h-4 w-4" />
-                      <span>{t('profile.bookings.bookNew')}</span>
+                      <span>Đặt mới</span>
                     </Link>
                   </div>
                 </div>
@@ -556,7 +485,7 @@ const PersonalProfilePage = () => {
                                   {booking.photographyType || 'Photography Session'}
                                 </h3>
                                 <span className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(booking.status)}`}>
-                                  {getStatusText(booking.status)}
+                                  {booking.status}
                                 </span>
                               </div>
                               
@@ -582,9 +511,9 @@ const PersonalProfilePage = () => {
                               
                               <div className="flex items-center justify-between">
                                 <div className="text-sm text-gray-500">
-                                  <span>{t('profile.bookings.duration', { duration: booking.bookingDetails?.duration || 'N/A' })}</span>
+                                  <span>Thời lượng: {booking.bookingDetails?.duration || 'N/A'} gi���</span>
                                   <span className="mx-2">•</span>
-                                  <span>{t('profile.bookings.reference', { ref: booking.reference })}</span>
+                                  <span>Mã: {booking.reference}</span>
                                 </div>
                                 <div className="text-lg font-bold text-blue-600">
                                   ${booking.totalCost || 0}
@@ -596,34 +525,23 @@ const PersonalProfilePage = () => {
                         
                         <div className="flex justify-end mt-4 pt-4 border-t border-gray-100 space-x-3">
                           {booking.status === 'Completed' && (
-                            <button
+                            <button 
                               onClick={() => handleLeaveFeedback(booking)}
                               className="text-green-600 hover:text-green-700 text-sm font-medium flex items-center space-x-1"
                             >
                               <Star className="h-4 w-4" />
-                              <span>{t('profile.bookings.actions.rate')}</span>
+                              <span>Đánh giá</span>
                             </button>
                           )}
-                          {booking.status === 'Confirmed' && (
-                            <button
-                              onClick={() => handleCancelBooking(booking.id)}
-                              className="text-red-600 hover:text-red-700 text-sm font-medium"
-                            >
-                              {t('profile.bookings.actions.cancel')}
-                            </button>
-                          )}
-                          <button
-                            onClick={() => handleMessagePhotographer(booking.photographer)}
-                            className="text-blue-600 hover:text-blue-700 text-sm font-medium flex items-center space-x-1"
-                          >
+                          <button className="text-blue-600 hover:text-blue-700 text-sm font-medium flex items-center space-x-1">
                             <MessageSquare className="h-4 w-4" />
-                            <span>{t('profile.bookings.actions.message')}</span>
+                            <span>Nhắn tin</span>
                           </button>
-                          <button
+                          <button 
                             onClick={() => handleViewDetails(booking)}
                             className="text-blue-600 hover:text-blue-700 text-sm font-medium"
                           >
-                            {t('profile.bookings.actions.viewDetails')}
+                            Xem chi tiết
                           </button>
                         </div>
                       </div>
@@ -635,16 +553,16 @@ const PersonalProfilePage = () => {
                       <Calendar className="h-8 w-8 text-gray-400" />
                     </div>
                     <h3 className="text-lg font-medium text-gray-900 mb-2">
-                      {t('profile.bookings.noBookings')}
+                      Chưa có booking nào
                     </h3>
                     <p className="text-gray-500 mb-6">
-                      {t('profile.bookings.noBookingsSubtitle')}
+                      Hãy tìm và đặt nhiếp ảnh gia đầu tiên của bạn
                     </p>
                     <Link
                       to="/photographers"
                       className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
                     >
-                      {t('profile.bookings.findPhotographer')}
+                      Tìm nhiếp ảnh gia
                     </Link>
                   </div>
                 )}
@@ -654,12 +572,12 @@ const PersonalProfilePage = () => {
             {selectedTab === 'favorites' && (
               <div>
                 <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-xl font-bold text-gray-900">{t('profile.favorites.title')}</h2>
+                  <h2 className="text-xl font-bold text-gray-900">Nhiếp ảnh gia yêu thích</h2>
                   <Link
                     to="/photographers"
                     className="text-blue-600 hover:text-blue-700 text-sm font-medium flex items-center space-x-1"
                   >
-                    <span>{t('profile.favorites.viewAll')}</span>
+                    <span>Xem tất cả</span>
                     <ChevronRight className="h-4 w-4" />
                   </Link>
                 </div>
@@ -679,11 +597,7 @@ const PersonalProfilePage = () => {
                           <h3 className="font-semibold text-lg text-gray-900">
                             {photographer.name}
                           </h3>
-                          <button
-                            onClick={() => handleUnsavePhotographer(photographer.id)}
-                            className="text-red-500 hover:text-red-600"
-                            title={t('profile.favorites.removeFromFavorites')}
-                          >
+                          <button className="text-red-500 hover:text-red-600">
                             <Heart className="h-5 w-5 fill-current" />
                           </button>
                         </div>
@@ -705,17 +619,13 @@ const PersonalProfilePage = () => {
                           <span>{photographer.location}</span>
                         </div>
                         <div className="flex space-x-2">
-                          <button
-                            onClick={() => handleRebookPhotographer(photographer)}
+                          <Link
+                            to={`/photographer/${photographer.id}`}
                             className="flex-1 bg-blue-600 text-white text-center py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
                           >
-                            {t('profile.favorites.rebook')}
-                          </button>
-                          <button
-                            onClick={() => handleMessagePhotographer(photographer)}
-                            className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-                            title={t('profile.favorites.sendMessage')}
-                          >
+                            Xem profile
+                          </Link>
+                          <button className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
                             <MessageSquare className="h-4 w-4 text-gray-600" />
                           </button>
                         </div>
@@ -729,13 +639,10 @@ const PersonalProfilePage = () => {
             {selectedTab === 'suggestions' && (
               <div>
                 <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-xl font-bold text-gray-900">{t('profile.suggestions.title')}</h2>
-                  <button
-                    onClick={handleRefreshSuggestions}
-                    className="text-blue-600 hover:text-blue-700 text-sm font-medium flex items-center space-x-1"
-                  >
+                  <h2 className="text-xl font-bold text-gray-900">Gợi ý AI dành cho bạn</h2>
+                  <button className="text-blue-600 hover:text-blue-700 text-sm font-medium flex items-center space-x-1">
                     <Sparkles className="h-4 w-4" />
-                    <span>{t('profile.suggestions.refresh')}</span>
+                    <span>Làm mới gợi ý</span>
                   </button>
                 </div>
 
@@ -752,7 +659,7 @@ const PersonalProfilePage = () => {
                           {suggestion.category}
                         </div>
                         <div className="absolute top-2 right-2 bg-green-500 text-white px-2 py-1 rounded text-xs font-medium">
-                          {t('profile.suggestions.match', { percentage: suggestion.matches })}
+                          {suggestion.matches} khớp
                         </div>
                       </div>
                       <div className="p-6">
@@ -763,17 +670,10 @@ const PersonalProfilePage = () => {
                           {suggestion.description}
                         </p>
                         <div className="flex space-x-2">
-                          <button
-                            onClick={() => handleFindPhotographerForConcept(suggestion)}
-                            className="flex-1 bg-blue-600 text-white text-center py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
-                          >
-                            {t('profile.suggestions.findPhotographer')}
+                          <button className="flex-1 bg-blue-600 text-white text-center py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">
+                            Tìm nhiếp ảnh gia
                           </button>
-                          <button
-                            onClick={() => handleSaveConcept(suggestion.id)}
-                            className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-                            title={t('profile.suggestions.saveConcept')}
-                          >
+                          <button className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
                             <Heart className="h-4 w-4 text-gray-600" />
                           </button>
                         </div>
@@ -806,4 +706,4 @@ const PersonalProfilePage = () => {
   );
 };
 
-export default PersonalProfilePage;
+export default CustomerDashboard;

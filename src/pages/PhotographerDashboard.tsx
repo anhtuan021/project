@@ -110,11 +110,127 @@ const PhotographerDashboard = () => {
         email: 'customer@example.com',
         phone: '+84 123 456 789'
       },
-      conceptRequirements: 'Chụp ảnh cưới phong cách vintage, tông màu ấm. Muốn có những khoảnh khắc tự nhiên và lãng mạn. Ưu tiên ánh sáng golden hour.',
-      specialNotes: booking.bookingDetails?.notes || 'Cô dâu có thể bị dị ứng với một số loại hoa. Vui lòng chuẩn bị backup location trong trường hợp thời tiết xấu.'
+      conceptRequirements: t('photographerDashboard.conceptRequirements'),
+      specialNotes: booking.bookingDetails?.notes || t('photographerDashboard.specialNotes')
     };
     setSelectedBooking(enhancedBooking);
     setIsModalOpen(true);
+  };
+
+  const handleAcceptBooking = (bookingId: string) => {
+    const updatedBookings = bookingRequests.map(booking =>
+      booking.id === bookingId
+        ? { ...booking, status: 'Confirmed' }
+        : booking
+    );
+    setBookingRequests(updatedBookings);
+
+    // Update localStorage
+    const allBookings = JSON.parse(localStorage.getItem('userBookings') || '[]');
+    const updatedAllBookings = allBookings.map((booking: any) =>
+      booking.id === bookingId
+        ? { ...booking, status: 'Confirmed' }
+        : booking
+    );
+    localStorage.setItem('userBookings', JSON.stringify(updatedAllBookings));
+
+    alert(t('photographerDashboard.bookingAccepted'));
+  };
+
+  const handleRejectBooking = (bookingId: string) => {
+    const reason = prompt(t('photographerDashboard.rejectionReason'));
+    if (reason) {
+      const updatedBookings = bookingRequests.map(booking =>
+        booking.id === bookingId
+          ? { ...booking, status: 'Cancelled', rejectionReason: reason }
+          : booking
+      );
+      setBookingRequests(updatedBookings);
+
+      // Update localStorage
+      const allBookings = JSON.parse(localStorage.getItem('userBookings') || '[]');
+      const updatedAllBookings = allBookings.map((booking: any) =>
+        booking.id === bookingId
+          ? { ...booking, status: 'Cancelled', rejectionReason: reason }
+          : booking
+      );
+      localStorage.setItem('userBookings', JSON.stringify(updatedAllBookings));
+
+      alert('Đã từ chối booking!');
+    }
+  };
+
+  const handleCompleteBooking = (bookingId: string) => {
+    const updatedBookings = bookingRequests.map(booking =>
+      booking.id === bookingId
+        ? { ...booking, status: 'Completed', completedDate: new Date().toISOString() }
+        : booking
+    );
+    setBookingRequests(updatedBookings);
+
+    // Update localStorage
+    const allBookings = JSON.parse(localStorage.getItem('userBookings') || '[]');
+    const updatedAllBookings = allBookings.map((booking: any) =>
+      booking.id === bookingId
+        ? { ...booking, status: 'Completed', completedDate: new Date().toISOString() }
+        : booking
+    );
+    localStorage.setItem('userBookings', JSON.stringify(updatedAllBookings));
+
+    alert('Đã đánh dấu booking hoàn thành!');
+  };
+
+  const handleMessageCustomer = (booking: any) => {
+    const message = prompt(`Gửi tin nhắn tới khách hàng (${booking.customerInfo?.name || 'Khách hàng'}):`);
+    if (message) {
+      alert(`Đã gửi tin nhắn: "${message}" tới khách hàng`);
+    }
+  };
+
+  const handleAddConcept = () => {
+    const title = prompt(t('photographerDashboard.conceptTitle'));
+    const description = prompt(t('photographerDashboard.conceptDescription'));
+    const category = prompt('Danh mục (Wedding/Portrait/Family/Event):');
+
+    if (title && description && category) {
+      const newConcept = {
+        id: Date.now(),
+        title,
+        description,
+        category,
+        image: 'https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg?auto=compress&cs=tinysrgb&w=300&h=200&fit=crop',
+        likes: 0,
+        views: 0
+      };
+
+      setConcepts(prev => [...prev, newConcept]);
+
+      // Save to localStorage
+      const savedConcepts = JSON.parse(localStorage.getItem('photographerConcepts') || '[]');
+      savedConcepts.push(newConcept);
+      localStorage.setItem('photographerConcepts', JSON.stringify(savedConcepts));
+
+      alert(t('photographerDashboard.conceptAdded'));
+    }
+  };
+
+  const handleEditConcept = (conceptId: number) => {
+    const concept = sampleConcepts.find(c => c.id === conceptId);
+    if (concept) {
+      const newTitle = prompt('Tiêu đề mới:', concept.title);
+      const newDescription = prompt('Mô tả mới:', concept.description);
+
+      if (newTitle && newDescription) {
+        const updatedConcepts = sampleConcepts.map(c =>
+          c.id === conceptId
+            ? { ...c, title: newTitle, description: newDescription }
+            : c
+        );
+        setConcepts(updatedConcepts);
+        localStorage.setItem('photographerConcepts', JSON.stringify(updatedConcepts));
+        alert('Đã cập nhật concept thành công!');
+      }
+    }
   };
 
   const sampleConcepts =
@@ -122,9 +238,9 @@ const PhotographerDashboard = () => {
       ? [
           {
             id: 1,
-            title: "Ảnh cưới phong cách Vintage",
+            title: t('photographerDashboard.vintageWedding'),
             description:
-              "Phong cách cổ điển với tông màu ấm, ánh sáng tự nhiên",
+              t('photographerDashboard.vintageWeddingDesc'),
             image:
               "https://images.pexels.com/photos/1616113/pexels-photo-1616113.jpeg?auto=compress&cs=tinysrgb&w=300&h=200&fit=crop",
             category: "Wedding",
@@ -133,8 +249,8 @@ const PhotographerDashboard = () => {
           },
           {
             id: 2,
-            title: "Chân dung nghệ thuật đường phố",
-            description: "Kết hợp phong cách urban với ánh sáng tự nhiên",
+            title: t('photographerDashboard.streetPortrait'),
+            description: t('photographerDashboard.streetPortraitDesc'),
             image:
               "https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg?auto=compress&cs=tinysrgb&w=300&h=200&fit=crop",
             category: "Portrait",
@@ -535,17 +651,34 @@ const PhotographerDashboard = () => {
                         <div className="flex justify-end mt-4 pt-4 border-t border-gray-100 space-x-3">
                           {booking.status === 'Pending' && (
                             <>
-                                                            <button className="text-red-600 hover:text-red-700 text-sm font-medium">
+                              <button
+                                onClick={() => handleRejectBooking(booking.id)}
+                                className="text-red-600 hover:text-red-700 text-sm font-medium"
+                              >
                                 {t('dashboard.reject')}
                               </button>
-                              <button className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 text-sm font-medium">
+                              <button
+                                onClick={() => handleAcceptBooking(booking.id)}
+                                className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 text-sm font-medium"
+                              >
                                 {t('dashboard.accept')}
                               </button>
                             </>
                           )}
-                          <button className="text-blue-600 hover:text-blue-700 text-sm font-medium flex items-center space-x-1">
+                          {booking.status === 'Confirmed' && (
+                            <button
+                              onClick={() => handleCompleteBooking(booking.id)}
+                              className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 text-sm font-medium"
+                            >
+                              Đánh dấu hoàn thành
+                            </button>
+                          )}
+                          <button
+                            onClick={() => handleMessageCustomer(booking)}
+                            className="text-blue-600 hover:text-blue-700 text-sm font-medium flex items-center space-x-1"
+                          >
                             <MessageSquare className="h-4 w-4" />
-                                                        <span>{t('dashboard.message')}</span>
+                            <span>{t('dashboard.message')}</span>
                           </button>
                           <button 
                             onClick={() => handleViewDetails(booking)}
@@ -579,9 +712,12 @@ const PhotographerDashboard = () => {
                                     <h2 className="text-xl font-bold text-gray-900">
                     {t('dashboard.conceptPortfolio')}
                   </h2>
-                  <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center space-x-2">
+                  <button
+                    onClick={handleAddConcept}
+                    className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center space-x-2"
+                  >
                     <Plus className="h-4 w-4" />
-                                        <span>{t('dashboard.addConcept')}</span>
+                    <span>{t('dashboard.addConcept')}</span>
                   </button>
                 </div>
 
@@ -601,7 +737,11 @@ const PhotographerDashboard = () => {
                           {concept.category}
                         </div>
                         <div className="absolute top-2 right-2 space-x-2">
-                          <button className="bg-white bg-opacity-80 hover:bg-opacity-100 p-1 rounded">
+                          <button
+                            onClick={() => handleEditConcept(concept.id)}
+                            className="bg-white bg-opacity-80 hover:bg-opacity-100 p-1 rounded"
+                            title="Chỉnh sửa concept"
+                          >
                             <Edit className="h-4 w-4 text-gray-600" />
                           </button>
                         </div>

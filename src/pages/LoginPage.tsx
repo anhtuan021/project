@@ -32,9 +32,9 @@ const LoginPage = () => {
         const isAdmin = email === "admin@snapmatch.ai";
 
         if (isAdmin) {
-          navigate("/admin"); // Redirect admin to admin dashboard
+          navigate("/"); // Redirect admin to home page (will show AdminDashboard via DashboardRouter)
         } else if (isPhotographer) {
-          navigate("/photographer-dashboard"); // Redirect photographers to dashboard
+          navigate("/"); // Redirect photographers to home page (will show PhotographerDashboard via DashboardRouter)
         } else {
           navigate("/"); // Redirect customers to homepage
         }

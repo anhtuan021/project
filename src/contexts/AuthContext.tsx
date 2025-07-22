@@ -62,7 +62,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
           avatar: 'https://images.pexels.com/photos/3763188/pexels-photo-3763188.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop',
           userType: 'admin',
         };
-        
+
         setUser(adminData);
         setIsAuthenticated(true);
         localStorage.setItem('user', JSON.stringify(adminData));

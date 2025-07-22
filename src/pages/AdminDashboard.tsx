@@ -50,7 +50,12 @@ const AdminDashboard = () => {
 
   const loadAdminData = () => {
     setIsLoading(true);
-    
+
+    // Load data from localStorage first, fallback to sample data
+    const savedUsers = localStorage.getItem('adminUsers');
+    const savedPhotographers = localStorage.getItem('adminPhotographers');
+    const savedFeedbacks = localStorage.getItem('adminFeedbacks');
+
     // Load sample data - in real app this would come from API
     const sampleUsers = [
       {
@@ -184,10 +189,11 @@ const AdminDashboard = () => {
     ];
 
     setTimeout(() => {
-      setUsers(sampleUsers);
-      setPhotographers(samplePhotographers);
+      // Use saved data if available, otherwise use sample data
+      setUsers(savedUsers ? JSON.parse(savedUsers) : sampleUsers);
+      setPhotographers(savedPhotographers ? JSON.parse(savedPhotographers) : samplePhotographers);
       setBookings(sampleBookings);
-      setFeedbacks(sampleFeedbacks);
+      setFeedbacks(savedFeedbacks ? JSON.parse(savedFeedbacks) : sampleFeedbacks);
       setIsLoading(false);
     }, 1000);
   };
@@ -203,11 +209,135 @@ const AdminDashboard = () => {
   };
 
   const handleUpdatePaymentStatus = (photographerId, status) => {
-    setPhotographers(prev => prev.map(p => 
-      p.id === photographerId 
+    setPhotographers(prev => prev.map(p =>
+      p.id === photographerId
         ? { ...p, status, lastPayment: status === 'active' ? new Date().toISOString().split('T')[0] : p.lastPayment }
         : p
     ));
+
+    // Lưu vào localStorage
+    const updatedPhotographers = photographers.map(p =>
+      p.id === photographerId
+        ? { ...p, status, lastPayment: status === 'active' ? new Date().toISOString().split('T')[0] : p.lastPayment }
+        : p
+    );
+    localStorage.setItem('adminPhotographers', JSON.stringify(updatedPhotographers));
+
+    // Show notification
+    alert(`Đã cập nhật trạng thái thanh toán của nhiếp ảnh gia thành "${status === 'active' ? 'Hoạt động' : status}"`);
+  };
+
+  const handleAddUser = () => {
+    const name = prompt('Nhập tên người dùng:');
+    const email = prompt('Nhập email:');
+    const userType = prompt('Nhập loại người dùng (customer/photographer):');
+
+    if (name && email && userType) {
+      const newUser = {
+        id: Date.now().toString(),
+        name,
+        email,
+        userType: userType === 'photographer' ? 'photographer' : 'customer',
+        joinDate: new Date().toISOString().split('T')[0],
+        totalBookings: 0,
+        totalSpent: 0,
+        status: 'active',
+        avatar: 'https://images.pexels.com/photos/3763188/pexels-photo-3763188.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop',
+        lastActive: new Date().toISOString().split('T')[0]
+      };
+
+      if (userType === 'photographer') {
+        const newPhotographer = {
+          ...newUser,
+          totalEarnings: 0,
+          monthlyFee: 50,
+          lastPayment: new Date().toISOString().split('T')[0],
+          rating: 0,
+          reviews: 0,
+          specialties: ['Photography'],
+          location: 'Vietnam'
+        };
+        setPhotographers(prev => [...prev, newPhotographer]);
+        localStorage.setItem('adminPhotographers', JSON.stringify([...photographers, newPhotographer]));
+      } else {
+        setUsers(prev => [...prev, newUser]);
+        localStorage.setItem('adminUsers', JSON.stringify([...users, newUser]));
+      }
+
+      alert('Đã thêm người dùng mới thành công!');
+    }
+  };
+
+  const handleExportReport = (type) => {
+    let data = [];
+    let filename = '';
+
+    switch(type) {
+      case 'photographers':
+        data = photographers;
+        filename = 'photographers_report.json';
+        break;
+      case 'users':
+        data = users;
+        filename = 'users_report.json';
+        break;
+      case 'payments':
+        data = photographers.map(p => ({
+          name: p.name,
+          email: p.email,
+          monthlyFee: p.monthlyFee,
+          totalEarnings: p.totalEarnings,
+          status: p.status,
+          lastPayment: p.lastPayment
+        }));
+        filename = 'payments_report.json';
+        break;
+      default:
+        return;
+    }
+
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    alert(`Đã xuất báo cáo ${filename} thành công!`);
+  };
+
+  const handleApproveFeedback = (feedbackId) => {
+    setFeedbacks(prev => prev.map(f =>
+      f.id === feedbackId ? { ...f, status: 'published' } : f
+    ));
+    localStorage.setItem('adminFeedbacks', JSON.stringify(
+      feedbacks.map(f => f.id === feedbackId ? { ...f, status: 'published' } : f)
+    ));
+    alert('Đã duyệt feedback thành công!');
+  };
+
+  const handleRejectFeedback = (feedbackId) => {
+    setFeedbacks(prev => prev.map(f =>
+      f.id === feedbackId ? { ...f, status: 'rejected' } : f
+    ));
+    localStorage.setItem('adminFeedbacks', JSON.stringify(
+      feedbacks.map(f => f.id === feedbackId ? { ...f, status: 'rejected' } : f)
+    ));
+    alert('Đã từ chối feedback!');
+  };
+
+  const handleViewUserDetails = (user) => {
+    alert(`Chi tiết người dùng:\nTên: ${user.name}\nEmail: ${user.email}\nLoại: ${user.userType}\nTổng booking: ${user.totalBookings}\nTổng chi tiêu: $${user.totalSpent}`);
+  };
+
+  const handleContactUser = (user) => {
+    const message = prompt(`Gửi tin nhắn tới ${user.name}:`);
+    if (message) {
+      alert(`Đã gửi tin nhắn "${message}" tới ${user.email}`);
+    }
   };
 
   const getStatusColor = (status) => {
@@ -312,6 +442,14 @@ const AdminDashboard = () => {
                   <Clock className="h-5 w-5 mr-2" />
                   <span className="text-sm">Cập nhật lần cuối: {new Date().toLocaleTimeString('vi-VN')}</span>
                 </div>
+                <button
+                  onClick={loadAdminData}
+                  className="flex items-center text-sm bg-white/20 hover:bg-white/30 px-3 py-1 rounded transition-colors"
+                  disabled={isLoading}
+                >
+                  <RefreshCw className={`h-4 w-4 mr-1 ${isLoading ? 'animate-spin' : ''}`} />
+                  <span>Làm mới</span>
+                </button>
               </div>
             </div>
             <div className="text-right">
@@ -517,7 +655,10 @@ const AdminDashboard = () => {
                         className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       />
                     </div>
-                    <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center space-x-2">
+                    <button
+                      onClick={handleAddUser}
+                      className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center space-x-2"
+                    >
                       <Plus className="h-4 w-4" />
                       <span>Thêm người dùng</span>
                     </button>
@@ -587,7 +728,11 @@ const AdminDashboard = () => {
                               </span>
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
-                              <button className="text-blue-600 hover:text-blue-900 p-1 rounded">
+                              <button
+                                onClick={() => handleViewUserDetails(user)}
+                                className="text-blue-600 hover:text-blue-900 p-1 rounded"
+                                title="Xem chi tiết"
+                              >
                                 <Eye className="h-4 w-4" />
                               </button>
                               <button className="text-indigo-600 hover:text-indigo-900 p-1 rounded">
@@ -623,7 +768,10 @@ const AdminDashboard = () => {
                       <option>Chờ thanh toán</option>
                       <option>Tạm ngưng</option>
                     </select>
-                    <button className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors flex items-center space-x-2">
+                    <button
+                      onClick={() => handleExportReport('photographers')}
+                      className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors flex items-center space-x-2"
+                    >
                       <Download className="h-4 w-4" />
                       <span>Xuất báo cáo</span>
                     </button>
@@ -694,10 +842,16 @@ const AdminDashboard = () => {
                           </div>
                           
                           <div className="flex space-x-2">
-                            <button className="flex-1 text-blue-600 hover:text-blue-700 text-sm font-medium py-2 border border-blue-200 rounded-lg hover:bg-blue-50">
+                            <button
+                              onClick={() => handleViewUserDetails(photographer)}
+                              className="flex-1 text-blue-600 hover:text-blue-700 text-sm font-medium py-2 border border-blue-200 rounded-lg hover:bg-blue-50"
+                            >
                               Xem chi tiết
                             </button>
-                            <button className="flex-1 text-gray-600 hover:text-gray-700 text-sm font-medium py-2 border border-gray-200 rounded-lg hover:bg-gray-50">
+                            <button
+                              onClick={() => handleContactUser(photographer)}
+                              className="flex-1 text-gray-600 hover:text-gray-700 text-sm font-medium py-2 border border-gray-200 rounded-lg hover:bg-gray-50"
+                            >
                               Liên hệ
                             </button>
                           </div>
@@ -719,7 +873,10 @@ const AdminDashboard = () => {
                       <option>Tháng trước</option>
                       <option>3 tháng gần đây</option>
                     </select>
-                    <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 flex items-center space-x-2">
+                    <button
+                      onClick={() => handleExportReport('payments')}
+                      className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 flex items-center space-x-2"
+                    >
                       <Download className="h-4 w-4" />
                       <span>Xuất báo cáo</span>
                     </button>
@@ -879,10 +1036,16 @@ const AdminDashboard = () => {
                         <div className="flex space-x-2 ml-4">
                           {feedback.status === 'pending' && (
                             <>
-                              <button className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 text-sm">
+                              <button
+                                onClick={() => handleApproveFeedback(feedback.id)}
+                                className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 text-sm"
+                              >
                                 Duyệt
                               </button>
-                              <button className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 text-sm">
+                              <button
+                                onClick={() => handleRejectFeedback(feedback.id)}
+                                className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 text-sm"
+                              >
                                 Từ chối
                               </button>
                             </>
