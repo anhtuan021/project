@@ -1,243 +1,607 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Camera, ChevronDown, Sun, Moon, MessageCircle, HelpCircle } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { 
+  Camera, 
+  ChevronDown, 
+  Sun, 
+  Moon, 
+  MessageCircle, 
+  HelpCircle,
+  User,
+  Mail,
+  Phone,
+  Lock,
+  Globe,
+  Palette,
+  Save,
+  X,
+  CheckCircle,
+  Upload,
+  AlertCircle,
+  ArrowLeft
+} from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import { useAuth } from '../contexts/AuthContext';
 
 const EditProfilePage = () => {
-  const { t } = useLanguage();
+  const { t, language, setLanguage } = useLanguage();
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+  
   const [formData, setFormData] = useState({
-    fullName: 'Lily Emily',
-    email: 'Lily.Emily@example.com',
-    phone: '(555) 000-0000',
-    language: 'en',
-    theme: 'light'
+    fullName: user?.name || '',
+    email: user?.email || '',
+    phone: '+84 123 456 789',
+    bio: '',
+    location: 'Ho Chi Minh City',
+    website: '',
+    language: language,
+    theme: 'light',
+    avatar: user?.avatar || 'https://images.pexels.com/photos/3763188/pexels-photo-3763188.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop'
   });
+  
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const [showPasswordModal, setShowPasswordModal] = useState(false);
+  const [passwordData, setPasswordData] = useState({
+    currentPassword: '',
+    newPassword: '',
+    confirmPassword: ''
+  });
+  const [errors, setErrors] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  // Load user data when component mounts
+  useEffect(() => {
+    if (user) {
+      setFormData(prev => ({
+        ...prev,
+        fullName: user.name,
+        email: user.email,
+        avatar: user.avatar || prev.avatar
+      }));
+    }
+  }, [user]);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
       [name]: value
     }));
+    
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors(prev => ({ ...prev, [name]: '' }));
+    }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const validateForm = () => {
+    const newErrors: any = {};
+    
+    if (!formData.fullName.trim()) {
+      newErrors.fullName = 'Họ tên không được để trống';
+    }
+    
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email không được để trống';
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = 'Email không hợp lệ';
+    }
+    
+    if (formData.phone && !/^[\+]?[\d\s\-\(\)]{10,}$/.test(formData.phone)) {
+      newErrors.phone = 'Số điện thoại không hợp lệ';
+    }
+    
+    if (formData.website && !/^https?:\/\/.+/.test(formData.website)) {
+      newErrors.website = 'Website phải bắt đầu với http:// hoặc https://';
+    }
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log('Profile updated:', formData);
-    setShowSuccessMessage(true);
-    setTimeout(() => setShowSuccessMessage(false), 3000);
+    
+    if (!validateForm()) {
+      return;
+    }
+    
+    setIsLoading(true);
+    
+    try {
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      // Update user data in localStorage
+      const updatedUser = {
+        ...user,
+        name: formData.fullName,
+        email: formData.email,
+        avatar: formData.avatar
+      };
+      
+      localStorage.setItem('user', JSON.stringify(updatedUser));
+      
+      // Update language if changed
+      if (formData.language !== language) {
+        setLanguage(formData.language);
+      }
+      
+      setShowSuccessMessage(true);
+      setTimeout(() => {
+        setShowSuccessMessage(false);
+        navigate('/profile');
+      }, 2000);
+      
+    } catch (error) {
+      alert('Có lỗi xảy ra. Vui lòng thử lại!');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handlePhotoChange = () => {
-    // Handle photo upload
-    console.log('Photo change requested');
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/*';
+    input.onchange = (e: any) => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          setFormData(prev => ({
+            ...prev,
+            avatar: e.target?.result as string
+          }));
+        };
+        reader.readAsDataURL(file);
+      }
+    };
+    input.click();
   };
 
   const handlePasswordChange = () => {
-    // Handle password change
-    console.log('Password change requested');
+    setShowPasswordModal(true);
+  };
+
+  const handlePasswordSubmit = async () => {
+    if (passwordData.newPassword !== passwordData.confirmPassword) {
+      alert('Mật khẩu mới không khớp!');
+      return;
+    }
+    
+    if (passwordData.newPassword.length < 6) {
+      alert('Mật khẩu mới phải có ít nhất 6 ký tự!');
+      return;
+    }
+    
+    // Simulate password change
+    alert('Đã thay đổi mật khẩu thành công!');
+    setShowPasswordModal(false);
+    setPasswordData({ currentPassword: '', newPassword: '', confirmPassword: '' });
   };
 
   const handleCancel = () => {
-    // Reset form or navigate back
-    console.log('Cancel edit');
+    navigate(-1);
+  };
+
+  const handleDeleteAccount = () => {
+    const confirmed = window.confirm(
+      'Bạn có chắc chắn muốn xóa tài khoản? Hành động này không thể hoàn tác.'
+    );
+    
+    if (confirmed) {
+      const finalConfirm = window.confirm(
+        'Lần xác nhận cuối cùng: Tất cả dữ liệu của bạn sẽ bị xóa vĩnh viễn!'
+      );
+      
+      if (finalConfirm) {
+        logout();
+        localStorage.removeItem('userBookings');
+        localStorage.removeItem('savedPhotographers');
+        localStorage.removeItem('savedConcepts');
+        alert('Tài khoản đã được xóa thành công!');
+        navigate('/');
+      }
+    }
   };
 
   return (
     <div className="min-h-screen bg-gray-50">
-
-      {/* Main Content */}
-      <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="bg-white rounded-2xl shadow-sm p-8">
-          <h1 className="text-2xl font-bold text-gray-900 text-center mb-8">{t('editProfile.title')}</h1>
-
-          <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Profile Photo */}
-            <div className="flex flex-col items-center mb-8">
-              <div className="relative">
-                <img
-                  src="https://images.pexels.com/photos/3763188/pexels-photo-3763188.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop"
-                  alt="Profile"
-                  className="w-24 h-24 rounded-full object-cover"
-                />
-                <button
-                  type="button"
-                  onClick={handlePhotoChange}
-                  className="absolute bottom-0 right-0 bg-blue-600 text-white p-2 rounded-full hover:bg-blue-700 transition-colors"
-                >
-                  <Camera className="h-4 w-4" />
-                </button>
-              </div>
-              <button
-                type="button"
-                onClick={handlePhotoChange}
-                className="mt-3 text-blue-600 hover:text-blue-700 text-sm font-medium"
-              >
-                {t('editProfile.changePhoto')}
-              </button>
-            </div>
-
-            {/* Full Name */}
-            <div>
-              <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-2">
-                {t('editProfile.fullName')}
-              </label>
-              <input
-                id="fullName"
-                name="fullName"
-                type="text"
-                value={formData.fullName}
-                onChange={handleInputChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              />
-            </div>
-
-            {/* Email Address */}
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                {t('editProfile.email')}
-              </label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                value={formData.email}
-                onChange={handleInputChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              />
-            </div>
-
-            {/* Phone Number */}
-            <div>
-              <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
-                {t('editProfile.phone')}
-              </label>
-              <div className="flex">
-                <select className="px-3 py-3 border border-gray-300 rounded-l-lg bg-gray-50 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                  <option value="+1">+1</option>
-                  <option value="+84">+84</option>
-                  <option value="+44">+44</option>
-                </select>
-                <input
-                  id="phone"
-                  name="phone"
-                  type="tel"
-                  value={formData.phone}
-                  onChange={handleInputChange}
-                  className="flex-1 px-4 py-3 border border-l-0 border-gray-300 rounded-r-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="(555) 000-0000"
-                />
-              </div>
-            </div>
-
-            {/* Password */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                {t('editProfile.password')}
-              </label>
-              <button
-                type="button"
-                onClick={handlePasswordChange}
-                className="text-blue-600 hover:text-blue-700 text-sm font-medium"
-              >
-                {t('editProfile.changePassword')}
-              </button>
-            </div>
-
-            {/* Language */}
-            <div>
-              <label htmlFor="language" className="block text-sm font-medium text-gray-700 mb-2">
-                {t('editProfile.language')}
-              </label>
-              <div className="relative">
-                <select
-                  id="language"
-                  name="language"
-                  value={formData.language}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none"
-                >
-                  <option value="en">{t('editProfile.english')}</option>
-                  <option value="vi">{t('editProfile.vietnamese')}</option>
-                  <option value="es">{t('editProfile.spanish')}</option>
-                  <option value="fr">{t('editProfile.french')}</option>
-                </select>
-                <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400 pointer-events-none" />
-              </div>
-            </div>
-
-            {/* Theme */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-3">
-                {t('editProfile.theme')}
-              </label>
-              <div className="flex items-center justify-between p-4 border border-gray-300 rounded-lg">
-                <div className="flex items-center space-x-3">
-                  <Sun className="h-5 w-5 text-gray-600" />
-                  <span className="text-gray-900">{t('editProfile.light')}</span>
-                </div>
-                <label className="relative inline-flex items-center cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={isDarkMode}
-                    onChange={(e) => setIsDarkMode(e.target.checked)}
-                    className="sr-only peer"
-                  />
-                  <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
-                </label>
-              </div>
-            </div>
-
-            {/* Action Buttons */}
-            <div className="flex flex-col space-y-4 pt-6">
-              <button
-                type="submit"
-                className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 transition-colors font-medium"
-              >
-                {t('editProfile.saveChanges')}
-              </button>
-              <button
-                type="button"
-                onClick={handleCancel}
-                className="w-full bg-gray-100 text-gray-700 py-3 px-4 rounded-lg hover:bg-gray-200 transition-colors font-medium"
-              >
-                {t('editProfile.cancel')}
-              </button>
-            </div>
-          </form>
-
-          {/* Help Section */}
-          <div className="flex items-center justify-between mt-8 pt-6 border-t border-gray-200">
-            <div className="flex items-center space-x-2 text-gray-600">
-              <HelpCircle className="h-5 w-5" />
-              <span className="text-sm">{t('editProfile.needAssistance')}</span>
-            </div>
-            <button className="flex items-center space-x-2 text-blue-600 hover:text-blue-700 transition-colors">
-              <MessageCircle className="h-5 w-5" />
-              <span className="text-sm font-medium">{t('editProfile.chatSupport')}</span>
+      {/* Header */}
+      <div className="bg-white shadow-sm">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            <button
+              onClick={handleCancel}
+              className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition-colors"
+            >
+              <ArrowLeft className="h-5 w-5" />
+              <span>Quay lại</span>
             </button>
+            <h1 className="text-xl font-semibold text-gray-900">Chỉnh sửa hồ sơ</h1>
+            <div className="w-20"></div>
           </div>
-
-          {/* Success Message */}
-          {showSuccessMessage && (
-            <div className="fixed bottom-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg flex items-center space-x-2">
-              <div className="w-5 h-5 bg-white rounded-full flex items-center justify-center">
-                <span className="text-green-500 text-xs">✓</span>
-              </div>
-              <span>{t('editProfile.success')}</span>
-              <button
-                onClick={() => setShowSuccessMessage(false)}
-                className="ml-2 text-white hover:text-gray-200"
-              >
-                ×
-              </button>
-            </div>
-          )}
         </div>
       </div>
+
+      {/* Main Content */}
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          
+          {/* Profile Overview */}
+          <div className="lg:col-span-1">
+            <div className="bg-white rounded-xl shadow-sm p-6 sticky top-8">
+              <div className="text-center">
+                <div className="relative inline-block">
+                  <img
+                    src={formData.avatar}
+                    alt="Profile"
+                    className="w-24 h-24 rounded-full object-cover mx-auto border-4 border-gray-100"
+                  />
+                  <button
+                    type="button"
+                    onClick={handlePhotoChange}
+                    className="absolute bottom-0 right-0 bg-blue-600 text-white p-2 rounded-full hover:bg-blue-700 transition-colors shadow-lg"
+                  >
+                    <Camera className="h-4 w-4" />
+                  </button>
+                </div>
+                <h2 className="mt-4 text-xl font-semibold text-gray-900">{formData.fullName}</h2>
+                <p className="text-gray-600">{formData.email}</p>
+                <p className="text-sm text-gray-500 mt-1">Thành viên từ tháng 3/2024</p>
+              </div>
+              
+              <div className="mt-6 space-y-4">
+                <div className="flex items-center justify-between text-sm">
+                  <span className="text-gray-600">Tổng booking</span>
+                  <span className="font-medium">12</span>
+                </div>
+                <div className="flex items-center justify-between text-sm">
+                  <span className="text-gray-600">Điểm tích lũy</span>
+                  <span className="font-medium text-yellow-600">250 điểm</span>
+                </div>
+                <div className="flex items-center justify-between text-sm">
+                  <span className="text-gray-600">Trạng thái</span>
+                  <span className="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium">
+                    Đã xác thực
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Edit Form */}
+          <div className="lg:col-span-2">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              
+              {/* Personal Information */}
+              <div className="bg-white rounded-xl shadow-sm p-6">
+                <h3 className="text-lg font-semibold text-gray-900 mb-6 flex items-center">
+                  <User className="h-5 w-5 mr-2 text-blue-600" />
+                  Thông tin cá nhân
+                </h3>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-2">
+                      Họ và tên *
+                    </label>
+                    <input
+                      id="fullName"
+                      name="fullName"
+                      type="text"
+                      value={formData.fullName}
+                      onChange={handleInputChange}
+                      className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${
+                        errors.fullName ? 'border-red-300 bg-red-50' : 'border-gray-300'
+                      }`}
+                    />
+                    {errors.fullName && (
+                      <p className="mt-1 text-sm text-red-600 flex items-center">
+                        <AlertCircle className="h-4 w-4 mr-1" />
+                        {errors.fullName}
+                      </p>
+                    )}
+                  </div>
+
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                      Email *
+                    </label>
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${
+                        errors.email ? 'border-red-300 bg-red-50' : 'border-gray-300'
+                      }`}
+                    />
+                    {errors.email && (
+                      <p className="mt-1 text-sm text-red-600 flex items-center">
+                        <AlertCircle className="h-4 w-4 mr-1" />
+                        {errors.email}
+                      </p>
+                    )}
+                  </div>
+
+                  <div>
+                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                      Số điện thoại
+                    </label>
+                    <input
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${
+                        errors.phone ? 'border-red-300 bg-red-50' : 'border-gray-300'
+                      }`}
+                      placeholder="+84 123 456 789"
+                    />
+                    {errors.phone && (
+                      <p className="mt-1 text-sm text-red-600 flex items-center">
+                        <AlertCircle className="h-4 w-4 mr-1" />
+                        {errors.phone}
+                      </p>
+                    )}
+                  </div>
+
+                  <div>
+                    <label htmlFor="location" className="block text-sm font-medium text-gray-700 mb-2">
+                      Địa chỉ
+                    </label>
+                    <input
+                      id="location"
+                      name="location"
+                      type="text"
+                      value={formData.location}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      placeholder="TP. Hồ Chí Minh"
+                    />
+                  </div>
+
+                  <div className="md:col-span-2">
+                    <label htmlFor="bio" className="block text-sm font-medium text-gray-700 mb-2">
+                      Giới thiệu bản thân
+                    </label>
+                    <textarea
+                      id="bio"
+                      name="bio"
+                      rows={3}
+                      value={formData.bio}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                      placeholder="Viết vài dòng về bản thân..."
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="website" className="block text-sm font-medium text-gray-700 mb-2">
+                      Website
+                    </label>
+                    <input
+                      id="website"
+                      name="website"
+                      type="url"
+                      value={formData.website}
+                      onChange={handleInputChange}
+                      className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${
+                        errors.website ? 'border-red-300 bg-red-50' : 'border-gray-300'
+                      }`}
+                      placeholder="https://yourwebsite.com"
+                    />
+                    {errors.website && (
+                      <p className="mt-1 text-sm text-red-600 flex items-center">
+                        <AlertCircle className="h-4 w-4 mr-1" />
+                        {errors.website}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              {/* Security */}
+              <div className="bg-white rounded-xl shadow-sm p-6">
+                <h3 className="text-lg font-semibold text-gray-900 mb-6 flex items-center">
+                  <Lock className="h-5 w-5 mr-2 text-blue-600" />
+                  Bảo mật
+                </h3>
+                
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
+                    <div>
+                      <h4 className="font-medium text-gray-900">Mật khẩu</h4>
+                      <p className="text-sm text-gray-600">Thay đổi mật khẩu đăng nhập</p>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={handlePasswordChange}
+                      className="text-blue-600 hover:text-blue-700 text-sm font-medium"
+                    >
+                      Thay đổi
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Preferences */}
+              <div className="bg-white rounded-xl shadow-sm p-6">
+                <h3 className="text-lg font-semibold text-gray-900 mb-6 flex items-center">
+                  <Palette className="h-5 w-5 mr-2 text-blue-600" />
+                  Tùy chọn
+                </h3>
+                
+                <div className="space-y-6">
+                  <div>
+                    <label htmlFor="language" className="block text-sm font-medium text-gray-700 mb-2">
+                      Ngôn ngữ
+                    </label>
+                    <div className="relative">
+                      <select
+                        id="language"
+                        name="language"
+                        value={formData.language}
+                        onChange={handleInputChange}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none"
+                      >
+                        <option value="vi">Tiếng Việt</option>
+                        <option value="en">English</option>
+                        <option value="es">Español</option>
+                        <option value="fr">Français</option>
+                      </select>
+                      <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400 pointer-events-none" />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-3">
+                      Chế độ hiển thị
+                    </label>
+                    <div className="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
+                      <div className="flex items-center space-x-3">
+                        <Sun className="h-5 w-5 text-gray-600" />
+                        <span className="text-gray-900">Chế độ sáng</span>
+                      </div>
+                      <label className="relative inline-flex items-center cursor-pointer">
+                        <input
+                          type="checkbox"
+                          checked={isDarkMode}
+                          onChange={(e) => setIsDarkMode(e.target.checked)}
+                          className="sr-only peer"
+                        />
+                        <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="bg-white rounded-xl shadow-sm p-6">
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <button
+                    type="submit"
+                    disabled={isLoading}
+                    className="flex-1 bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium flex items-center justify-center"
+                  >
+                    {isLoading ? (
+                      <>
+                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                        Đang lưu...
+                      </>
+                    ) : (
+                      <>
+                        <Save className="h-4 w-4 mr-2" />
+                        Lưu thay đổi
+                      </>
+                    )}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleCancel}
+                    className="bg-gray-100 text-gray-700 py-3 px-6 rounded-lg hover:bg-gray-200 transition-colors font-medium flex items-center justify-center"
+                  >
+                    <X className="h-4 w-4 mr-2" />
+                    Hủy
+                  </button>
+                </div>
+                
+                {/* Danger Zone */}
+                <div className="mt-8 pt-6 border-t border-gray-200">
+                  <h4 className="text-sm font-medium text-red-600 mb-2">Vùng nguy hiểm</h4>
+                  <p className="text-sm text-gray-600 mb-4">
+                    Xóa tài khoản sẽ xóa vĩnh viễn tất cả dữ liệu của bạn
+                  </p>
+                  <button
+                    type="button"
+                    onClick={handleDeleteAccount}
+                    className="text-red-600 hover:text-red-700 text-sm font-medium"
+                  >
+                    Xóa tài khoản
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      {/* Password Change Modal */}
+      {showPasswordModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-xl p-6 max-w-md w-full">
+            <h3 className="text-lg font-semibold text-gray-900 mb-6">Thay đổi mật khẩu</h3>
+            
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Mật khẩu hiện tại
+                </label>
+                <input
+                  type="password"
+                  value={passwordData.currentPassword}
+                  onChange={(e) => setPasswordData(prev => ({ ...prev, currentPassword: e.target.value }))}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Mật khẩu mới
+                </label>
+                <input
+                  type="password"
+                  value={passwordData.newPassword}
+                  onChange={(e) => setPasswordData(prev => ({ ...prev, newPassword: e.target.value }))}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Xác nhận mật khẩu mới
+                </label>
+                <input
+                  type="password"
+                  value={passwordData.confirmPassword}
+                  onChange={(e) => setPasswordData(prev => ({ ...prev, confirmPassword: e.target.value }))}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              </div>
+            </div>
+            
+            <div className="flex space-x-4 mt-6">
+              <button
+                onClick={handlePasswordSubmit}
+                className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors"
+              >
+                Thay đổi
+              </button>
+              <button
+                onClick={() => setShowPasswordModal(false)}
+                className="bg-gray-100 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-200 transition-colors"
+              >
+                Hủy
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Success Message */}
+      {showSuccessMessage && (
+        <div className="fixed bottom-4 right-4 bg-green-500 text-white px-6 py-4 rounded-lg shadow-lg flex items-center space-x-3 z-50">
+          <CheckCircle className="h-5 w-5" />
+          <span>Đã cập nhật hồ sơ thành công!</span>
+        </div>
+      )}
     </div>
   );
 };
