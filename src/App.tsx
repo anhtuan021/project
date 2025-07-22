@@ -19,6 +19,7 @@ import PhotographerDashboard from "./pages/PhotographerDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminProfilePage from "./pages/AdminProfilePage";
 import PhotographerSettingsPage from "./pages/PhotographerSettingsPage";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
