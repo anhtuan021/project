@@ -519,22 +519,22 @@ const PersonalProfilePage = () => {
             {selectedTab === 'bookings' && (
               <div>
                 <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-xl font-bold text-gray-900">Lịch sử Booking</h2>
+                  <h2 className="text-xl font-bold text-gray-900">{t('profile.bookings.title')}</h2>
                   <div className="flex items-center space-x-4">
                     <div className="flex items-center space-x-2 text-sm text-gray-600">
                       <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                      <span>Đã xác nhận: {analytics.upcomingBookings}</span>
+                      <span>{t('profile.bookings.confirmed', { count: analytics.upcomingBookings })}</span>
                     </div>
                     <div className="flex items-center space-x-2 text-sm text-gray-600">
                       <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                      <span>Hoàn thành: {analytics.completedBookings}</span>
+                      <span>{t('profile.bookings.completed', { count: analytics.completedBookings })}</span>
                     </div>
                     <Link
                       to="/photographers"
                       className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center space-x-2"
                     >
                       <Plus className="h-4 w-4" />
-                      <span>Đặt mới</span>
+                      <span>{t('profile.bookings.bookNew')}</span>
                     </Link>
                   </div>
                 </div>
@@ -582,9 +582,9 @@ const PersonalProfilePage = () => {
                               
                               <div className="flex items-center justify-between">
                                 <div className="text-sm text-gray-500">
-                                  <span>Thời lượng: {booking.bookingDetails?.duration || 'N/A'} giờ</span>
+                                  <span>{t('profile.bookings.duration', { duration: booking.bookingDetails?.duration || 'N/A' })}</span>
                                   <span className="mx-2">•</span>
-                                  <span>Mã: {booking.reference}</span>
+                                  <span>{t('profile.bookings.reference', { ref: booking.reference })}</span>
                                 </div>
                                 <div className="text-lg font-bold text-blue-600">
                                   ${booking.totalCost || 0}
