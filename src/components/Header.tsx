@@ -127,6 +127,25 @@ const Header = () => {
 
                                     {isUserMenuOpen && (
                     <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-50">
+                      {/* Dashboard Link */}
+                      {(user?.userType === "photographer" || user?.userType === "admin") && (
+                        <Link
+                          to={
+                            user?.userType === "photographer"
+                              ? "/photographer-dashboard"
+                              : "/admin"
+                          }
+                          className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                          onClick={() => setIsUserMenuOpen(false)}
+                        >
+                          <Settings className="h-4 w-4 mr-2" />
+                          {user?.userType === "photographer"
+                            ? "Dashboard"
+                            : "Admin Dashboard"}
+                        </Link>
+                      )}
+
+                      {/* Profile Link */}
                       <Link
                         to={
                           user?.userType === "photographer"
@@ -145,6 +164,9 @@ const Header = () => {
                           ? "Admin Profile"
                           : t("header.profile")}
                       </Link>
+
+                      <div className="border-t border-gray-100 my-1"></div>
+
                       <button
                         onClick={handleLogout}
                         className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
