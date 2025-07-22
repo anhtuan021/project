@@ -20,6 +20,7 @@ import AdminDashboard from "./pages/AdminDashboard";
 import AdminProfilePage from "./pages/AdminProfilePage";
 import PhotographerSettingsPage from "./pages/PhotographerSettingsPage";
 import ProtectedRoute from "./components/ProtectedRoute";
+import DashboardRouter from "./components/DashboardRouter";
 
 function App() {
   return (
@@ -40,7 +41,7 @@ function App() {
                     <Header />
                     <main>
                       <Routes>
-                        <Route path="/" element={<HomePage />} />
+                        <Route path="/" element={<DashboardRouter />} />
                         <Route
                           path="/photographers"
                           element={<PhotographerListingPage />}
