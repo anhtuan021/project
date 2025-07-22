@@ -12,21 +12,21 @@ const AIToolsPage = () => {
   const tools = [
     {
       id: 'concept',
-      name: 'Concept Generator',
+      name: t('aiTools.conceptGenerator'),
       icon: Lightbulb,
-      description: 'Generate creative photography concepts from text',
+      description: t('aiTools.conceptDesc'),
     },
     {
       id: 'editor',
-      name: 'Auto-Editing Tool',
+      name: t('aiTools.autoEditing'),
       icon: Edit3,
-      description: 'AI-powered photo editing and enhancement',
+      description: t('aiTools.autoEditingDesc'),
     },
     {
       id: 'matcher',
-      name: 'Style Matcher',
+      name: t('aiTools.styleMatcher'),
       icon: Sparkles,
-      description: 'Find photographers with matching aesthetics',
+      description: t('aiTools.styleMatcherDesc'),
     },
   ];
 
