@@ -442,6 +442,14 @@ const AdminDashboard = () => {
                   <Clock className="h-5 w-5 mr-2" />
                   <span className="text-sm">Cập nhật lần cuối: {new Date().toLocaleTimeString('vi-VN')}</span>
                 </div>
+                <button
+                  onClick={loadAdminData}
+                  className="flex items-center text-sm bg-white/20 hover:bg-white/30 px-3 py-1 rounded transition-colors"
+                  disabled={isLoading}
+                >
+                  <RefreshCw className={`h-4 w-4 mr-1 ${isLoading ? 'animate-spin' : ''}`} />
+                  <span>Làm mới</span>
+                </button>
               </div>
             </div>
             <div className="text-right">
