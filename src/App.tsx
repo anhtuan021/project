@@ -17,6 +17,8 @@ import EditProfilePage from "./pages/EditProfilePage";
 import BookingInvoicePage from "./pages/BookingInvoicePage";
 import PhotographerDashboard from "./pages/PhotographerDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
+import AdminProfilePage from "./pages/AdminProfilePage";
+import PhotographerSettingsPage from "./pages/PhotographerSettingsPage";
 
 function App() {
   return (
