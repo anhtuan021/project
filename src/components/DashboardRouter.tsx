@@ -10,25 +10,19 @@ const DashboardRouter = () => {
 
 
 
-  // Nếu chưa đăng nhập, hiển thị HomePage
-  if (!isAuthenticated || !user) {
+  // Nếu chưa đăng nhập hoặc là customer, hiển thị HomePage
+  if (!isAuthenticated || !user || user.userType === 'customer') {
     return <HomePage />;
   }
 
   // Nếu là admin, hiển thị AdminDashboard
   if (user.userType === 'admin') {
-
     return <AdminDashboard />;
   }
 
   // Nếu là photographer, hiển thị PhotographerDashboard
   if (user.userType === 'photographer') {
     return <PhotographerDashboard />;
-  }
-
-  // Nếu là customer, hiển thị CustomerDashboard
-  if (user.userType === 'customer') {
-    return <CustomerDashboard />;
   }
 
   // Fallback về HomePage
