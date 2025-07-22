@@ -62,23 +62,43 @@ function App() {
                         />
                         <Route
                           path="/photographer-dashboard"
-                          element={<PhotographerDashboard />}
+                          element={
+                            <ProtectedRoute allowedUserTypes={['photographer']}>
+                              <PhotographerDashboard />
+                            </ProtectedRoute>
+                          }
                         />
                         <Route
                           path="/edit-profile"
-                          element={<EditProfilePage />}
+                          element={
+                            <ProtectedRoute>
+                              <EditProfilePage />
+                            </ProtectedRoute>
+                          }
                         />
                         <Route
                           path="/admin"
-                          element={<AdminDashboard />}
+                          element={
+                            <ProtectedRoute allowedUserTypes={['admin']}>
+                              <AdminDashboard />
+                            </ProtectedRoute>
+                          }
                         />
                         <Route
                           path="/admin-profile"
-                          element={<AdminProfilePage />}
+                          element={
+                            <ProtectedRoute allowedUserTypes={['admin']}>
+                              <AdminProfilePage />
+                            </ProtectedRoute>
+                          }
                         />
                         <Route
                           path="/photographer-settings"
-                          element={<PhotographerSettingsPage />}
+                          element={
+                            <ProtectedRoute allowedUserTypes={['photographer']}>
+                              <PhotographerSettingsPage />
+                            </ProtectedRoute>
+                          }
                         />
                       </Routes>
                     </main>
