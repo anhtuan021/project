@@ -235,14 +235,18 @@ const Header = () => {
                   <Link
                     to={
                       user?.userType === "photographer"
-                        ? "/photographer-dashboard"
+                        ? "/photographer-settings"
+                        : user?.userType === "admin"
+                        ? "/admin-profile"
                         : "/profile"
                     }
                     className="block text-gray-700 hover:text-blue-600 transition-colors"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {user?.userType === "photographer"
-                      ? "Dashboard"
+                      ? "Cài đặt Profile"
+                      : user?.userType === "admin"
+                      ? "Admin Profile"
                       : t("header.profile")}
                   </Link>
                   <button
