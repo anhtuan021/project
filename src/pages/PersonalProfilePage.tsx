@@ -125,24 +125,24 @@ const PersonalProfilePage = () => {
     {
       id: 1,
       type: 'booking_completed',
-      message: 'Bạn đã hoàn thành phiên chụp với Lily Emily',
-      time: '2 ngày trước',
+      message: t('profile.activities.bookingCompleted', { photographer: 'Lily Emily' }),
+      time: t('profile.activities.daysAgo', { days: 2 }),
       icon: Calendar,
       color: 'text-green-600 bg-green-100'
     },
     {
       id: 2,
       type: 'photographer_saved',
-      message: 'Đã lưu Michael Chen v��o danh sách yêu thích',
-      time: '1 tuần trước',
+      message: t('profile.activities.photographerSaved', { photographer: 'Michael Chen' }),
+      time: t('profile.activities.weeksAgo', { weeks: 1 }),
       icon: Heart,
       color: 'text-pink-600 bg-pink-100'
     },
     {
       id: 3,
       type: 'points_earned',
-      message: 'Nhận được 50 điểm loyalty từ booking gần nhất',
-      time: '2 tuần trước',
+      message: t('profile.activities.pointsEarned', { points: 50 }),
+      time: t('profile.activities.weeksAgo', { weeks: 2 }),
       icon: Gift,
       color: 'text-yellow-600 bg-yellow-100'
     }
