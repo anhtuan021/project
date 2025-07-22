@@ -29,7 +29,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 import { useAuth } from '../contexts/AuthContext';
 import { getPhotographerById } from '../data/photographers';
 
-const PhotographerProfilePage = () => {
+const PhotographerSettingsPage = () => {
   const [selectedTab, setSelectedTab] = useState('profile');
   const [isEditing, setIsEditing] = useState(false);
   const [profileData, setProfileData] = useState({
@@ -98,7 +98,7 @@ const PhotographerProfilePage = () => {
   const handleSaveProfile = () => {
     console.log('Saving photographer profile:', profileData);
     setIsEditing(false);
-    alert('Thông tin profile đã được cập nhật thành công!');
+    alert('Thông tin profile đã đ��ợc cập nhật thành công!');
   };
 
   const handleAddSpecialty = (specialty: string) => {
@@ -582,7 +582,7 @@ const PhotographerProfilePage = () => {
                           <span className="text-gray-600">Theo giờ</span>
                           <div className="flex items-center space-x-2">
                             <span className="text-lg font-semibold">${profileData.pricing.hourly}</span>
-                            <span className="text-sm text-gray-500">/giờ</span>
+                            <span className="text-sm text-gray-500">/gi���</span>
                           </div>
                         </div>
                         <div className="flex justify-between items-center">
