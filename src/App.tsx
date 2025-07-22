@@ -58,7 +58,11 @@ function App() {
                         <Route path="/support" element={<SupportPage />} />
                         <Route
                           path="/profile"
-                          element={<PersonalProfilePage />}
+                          element={
+                            <ProtectedRoute allowedUserTypes={['customer']}>
+                              <PersonalProfilePage />
+                            </ProtectedRoute>
+                          }
                         />
                         <Route
                           path="/photographer-dashboard"
