@@ -154,7 +154,7 @@ const PhotographerListingPage = () => {
               {/* Search */}
               <div className="mb-6">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Search
+                  {t('listing.search')}
                 </label>
                 <div className="relative">
                   <Search size={16} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
