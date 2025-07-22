@@ -408,6 +408,19 @@ const translations = {
     'profile.status.upcoming': 'Upcoming',
     'profile.status.cancelled': 'Cancelled',
 
+    // Photographer Dashboard
+    'photographerDashboard.conceptRequirements': 'Vintage wedding photography, warm tones. Want natural and romantic moments. Prefer golden hour lighting.',
+    'photographerDashboard.specialNotes': 'The bride may be allergic to some types of flowers. Please prepare backup location in case of bad weather.',
+    'photographerDashboard.bookingAccepted': 'Booking accepted successfully!',
+    'photographerDashboard.rejectionReason': 'Reason for rejection:',
+    'photographerDashboard.conceptTitle': 'Concept title:',
+    'photographerDashboard.conceptDescription': 'Concept description:',
+    'photographerDashboard.conceptAdded': 'New concept added successfully!',
+    'photographerDashboard.vintageWedding': 'Vintage Wedding Photography',
+    'photographerDashboard.vintageWeddingDesc': 'Classic romantic style with warm vintage tones and soft lighting',
+    'photographerDashboard.streetPortrait': 'Street Art Portrait',
+    'photographerDashboard.streetPortraitDesc': 'Combining urban style with natural lighting',
+
     // Common
     'common.loading': 'Loading...',
     'common.error': 'An error occurred. Please try again.',
@@ -750,7 +763,7 @@ const translations = {
     
     // Login Page
     'login.title': 'Chào mừng trở lại SnapMatch AI',
-    'login.subtitle': 'Đăng nh���p để tiếp tục vào tài khoản của bạn',
+    'login.subtitle': 'Đăng nhập để tiếp tục vào tài khoản của bạn',
     'login.email': 'Địa chỉ email',
     'login.password': 'Mật khẩu',
     'login.forgotPassword': 'Quên mật khẩu?',
@@ -903,7 +916,7 @@ const translations = {
     'booking.additionalNotes': 'Ghi Chú Thêm (Tùy chọn)',
     'booking.notesPlaceholder': 'Cho chúng tôi biết thêm về sự kiện hoặc yêu cầu cụ thể...',
     'booking.choosePhotographer': 'Chọn Nhiếp Ảnh Gia',
-    'booking.selected': 'Đã Ch���n',
+    'booking.selected': 'Đã Chọn',
     'booking.select': 'Chọn',
     'booking.reviewBooking': 'Xem Lại Đặt Lịch',
         'booking.totalCost': 'Tổng Chi Phí',
@@ -955,7 +968,7 @@ const translations = {
     'aiTools.enhancedPreview': 'Ảnh được nâng cấp sẽ xuất hiện ở đây',
     'aiTools.brightness': 'Độ Sáng',
     'aiTools.contrast': 'Độ Tương Phản',
-    'aiTools.saturation': 'Độ Bão Hòa',
+    'aiTools.saturation': 'Độ Bão H��a',
     'aiTools.autoEnhance': 'Nâng Cấp Tự Động',
     'aiTools.uploadReference': 'Tải ảnh tham khảo lên',
     'aiTools.matchedPhotographers': 'Nhiếp Ảnh Gia Phù Hợp',
@@ -1166,7 +1179,7 @@ const translations = {
     'bookingModal.close': 'Đóng',
 
     // Feedback Modal
-    'feedback.title': 'Đánh Giá Dịch Vụ',
+    'feedback.title': 'Đ��nh Giá Dịch Vụ',
     'feedback.rateQuality': 'Đánh giá chất lượng dịch vụ',
     'feedback.veryUnsatisfied': 'Rất không hài lòng',
     'feedback.unsatisfied': 'Không hài lòng',
@@ -1183,7 +1196,7 @@ const translations = {
     'notifications.markAllRead': 'Đánh dấu tất cả đã đọc',
     'notifications.markRead': 'Đánh dấu đã đọc',
     'notifications.delete': 'Xóa thông báo',
-    'notifications.empty': 'Không có thông b��o nào',
+    'notifications.empty': 'Không có thông báo nào',
     'notifications.viewAll': 'Xem tất cả thông báo',
     'notifications.newBooking': 'Booking mới',
     'notifications.newBookingDesc': 'Nguyễn Văn A đã đặt lịch chụp ảnh cưới vào ngày 15/02/2024',
