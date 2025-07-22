@@ -3,7 +3,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 interface LanguageContextType {
   language: 'en' | 'vi';
   setLanguage: (lang: 'en' | 'vi') => void;
-  t: (key: string) => string;
+  t: (key: string, variables?: Record<string, any>) => string;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -750,7 +750,7 @@ const translations = {
     
     // Login Page
     'login.title': 'Chào mừng trở lại SnapMatch AI',
-    'login.subtitle': 'Đăng nhập để tiếp tục vào tài khoản của bạn',
+    'login.subtitle': 'Đăng nh���p để tiếp tục vào tài khoản của bạn',
     'login.email': 'Địa chỉ email',
     'login.password': 'Mật khẩu',
     'login.forgotPassword': 'Quên mật khẩu?',
@@ -903,7 +903,7 @@ const translations = {
     'booking.additionalNotes': 'Ghi Chú Thêm (Tùy chọn)',
     'booking.notesPlaceholder': 'Cho chúng tôi biết thêm về sự kiện hoặc yêu cầu cụ thể...',
     'booking.choosePhotographer': 'Chọn Nhiếp Ảnh Gia',
-    'booking.selected': 'Đã Chọn',
+    'booking.selected': 'Đã Ch���n',
     'booking.select': 'Chọn',
     'booking.reviewBooking': 'Xem Lại Đặt Lịch',
         'booking.totalCost': 'Tổng Chi Phí',
@@ -1183,7 +1183,7 @@ const translations = {
     'notifications.markAllRead': 'Đánh dấu tất cả đã đọc',
     'notifications.markRead': 'Đánh dấu đã đọc',
     'notifications.delete': 'Xóa thông báo',
-    'notifications.empty': 'Không có thông báo nào',
+    'notifications.empty': 'Không có thông b��o nào',
     'notifications.viewAll': 'Xem tất cả thông báo',
     'notifications.newBooking': 'Booking mới',
     'notifications.newBookingDesc': 'Nguyễn Văn A đã đặt lịch chụp ảnh cưới vào ngày 15/02/2024',
