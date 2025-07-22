@@ -255,6 +255,25 @@ const Header = () => {
                       {t("header.welcome")}, {user?.name}
                     </span>
                   </div>
+
+                  {/* Dashboard Link for mobile */}
+                  {(user?.userType === "photographer" || user?.userType === "admin") && (
+                    <Link
+                      to={
+                        user?.userType === "photographer"
+                          ? "/photographer-dashboard"
+                          : "/admin"
+                      }
+                      className="block text-gray-700 hover:text-blue-600 transition-colors"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {user?.userType === "photographer"
+                        ? "Dashboard"
+                        : "Admin Dashboard"}
+                    </Link>
+                  )}
+
+                  {/* Profile Link for mobile */}
                   <Link
                     to={
                       user?.userType === "photographer"
