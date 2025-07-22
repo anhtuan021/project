@@ -203,11 +203,135 @@ const AdminDashboard = () => {
   };
 
   const handleUpdatePaymentStatus = (photographerId, status) => {
-    setPhotographers(prev => prev.map(p => 
-      p.id === photographerId 
+    setPhotographers(prev => prev.map(p =>
+      p.id === photographerId
         ? { ...p, status, lastPayment: status === 'active' ? new Date().toISOString().split('T')[0] : p.lastPayment }
         : p
     ));
+
+    // Lưu vào localStorage
+    const updatedPhotographers = photographers.map(p =>
+      p.id === photographerId
+        ? { ...p, status, lastPayment: status === 'active' ? new Date().toISOString().split('T')[0] : p.lastPayment }
+        : p
+    );
+    localStorage.setItem('adminPhotographers', JSON.stringify(updatedPhotographers));
+
+    // Show notification
+    alert(`Đã cập nhật trạng thái thanh toán của nhiếp ảnh gia thành "${status === 'active' ? 'Hoạt động' : status}"`);
+  };
+
+  const handleAddUser = () => {
+    const name = prompt('Nhập tên người dùng:');
+    const email = prompt('Nhập email:');
+    const userType = prompt('Nhập loại người dùng (customer/photographer):');
+
+    if (name && email && userType) {
+      const newUser = {
+        id: Date.now().toString(),
+        name,
+        email,
+        userType: userType === 'photographer' ? 'photographer' : 'customer',
+        joinDate: new Date().toISOString().split('T')[0],
+        totalBookings: 0,
+        totalSpent: 0,
+        status: 'active',
+        avatar: 'https://images.pexels.com/photos/3763188/pexels-photo-3763188.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop',
+        lastActive: new Date().toISOString().split('T')[0]
+      };
+
+      if (userType === 'photographer') {
+        const newPhotographer = {
+          ...newUser,
+          totalEarnings: 0,
+          monthlyFee: 50,
+          lastPayment: new Date().toISOString().split('T')[0],
+          rating: 0,
+          reviews: 0,
+          specialties: ['Photography'],
+          location: 'Vietnam'
+        };
+        setPhotographers(prev => [...prev, newPhotographer]);
+        localStorage.setItem('adminPhotographers', JSON.stringify([...photographers, newPhotographer]));
+      } else {
+        setUsers(prev => [...prev, newUser]);
+        localStorage.setItem('adminUsers', JSON.stringify([...users, newUser]));
+      }
+
+      alert('Đã thêm người dùng mới thành công!');
+    }
+  };
+
+  const handleExportReport = (type) => {
+    let data = [];
+    let filename = '';
+
+    switch(type) {
+      case 'photographers':
+        data = photographers;
+        filename = 'photographers_report.json';
+        break;
+      case 'users':
+        data = users;
+        filename = 'users_report.json';
+        break;
+      case 'payments':
+        data = photographers.map(p => ({
+          name: p.name,
+          email: p.email,
+          monthlyFee: p.monthlyFee,
+          totalEarnings: p.totalEarnings,
+          status: p.status,
+          lastPayment: p.lastPayment
+        }));
+        filename = 'payments_report.json';
+        break;
+      default:
+        return;
+    }
+
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    alert(`Đã xuất báo cáo ${filename} thành công!`);
+  };
+
+  const handleApproveFeedback = (feedbackId) => {
+    setFeedbacks(prev => prev.map(f =>
+      f.id === feedbackId ? { ...f, status: 'published' } : f
+    ));
+    localStorage.setItem('adminFeedbacks', JSON.stringify(
+      feedbacks.map(f => f.id === feedbackId ? { ...f, status: 'published' } : f)
+    ));
+    alert('Đã duyệt feedback thành công!');
+  };
+
+  const handleRejectFeedback = (feedbackId) => {
+    setFeedbacks(prev => prev.map(f =>
+      f.id === feedbackId ? { ...f, status: 'rejected' } : f
+    ));
+    localStorage.setItem('adminFeedbacks', JSON.stringify(
+      feedbacks.map(f => f.id === feedbackId ? { ...f, status: 'rejected' } : f)
+    ));
+    alert('Đã từ chối feedback!');
+  };
+
+  const handleViewUserDetails = (user) => {
+    alert(`Chi tiết người dùng:\nTên: ${user.name}\nEmail: ${user.email}\nLoại: ${user.userType}\nTổng booking: ${user.totalBookings}\nTổng chi tiêu: $${user.totalSpent}`);
+  };
+
+  const handleContactUser = (user) => {
+    const message = prompt(`Gửi tin nhắn tới ${user.name}:`);
+    if (message) {
+      alert(`Đã gửi tin nhắn "${message}" tới ${user.email}`);
+    }
   };
 
   const getStatusColor = (status) => {
