@@ -641,7 +641,10 @@ const AdminDashboard = () => {
                         className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       />
                     </div>
-                    <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center space-x-2">
+                    <button
+                      onClick={handleAddUser}
+                      className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center space-x-2"
+                    >
                       <Plus className="h-4 w-4" />
                       <span>Thêm người dùng</span>
                     </button>
@@ -711,7 +714,11 @@ const AdminDashboard = () => {
                               </span>
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
-                              <button className="text-blue-600 hover:text-blue-900 p-1 rounded">
+                              <button
+                                onClick={() => handleViewUserDetails(user)}
+                                className="text-blue-600 hover:text-blue-900 p-1 rounded"
+                                title="Xem chi tiết"
+                              >
                                 <Eye className="h-4 w-4" />
                               </button>
                               <button className="text-indigo-600 hover:text-indigo-900 p-1 rounded">
@@ -747,7 +754,10 @@ const AdminDashboard = () => {
                       <option>Chờ thanh toán</option>
                       <option>Tạm ngưng</option>
                     </select>
-                    <button className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors flex items-center space-x-2">
+                    <button
+                      onClick={() => handleExportReport('photographers')}
+                      className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors flex items-center space-x-2"
+                    >
                       <Download className="h-4 w-4" />
                       <span>Xuất báo cáo</span>
                     </button>
@@ -818,10 +828,16 @@ const AdminDashboard = () => {
                           </div>
                           
                           <div className="flex space-x-2">
-                            <button className="flex-1 text-blue-600 hover:text-blue-700 text-sm font-medium py-2 border border-blue-200 rounded-lg hover:bg-blue-50">
+                            <button
+                              onClick={() => handleViewUserDetails(photographer)}
+                              className="flex-1 text-blue-600 hover:text-blue-700 text-sm font-medium py-2 border border-blue-200 rounded-lg hover:bg-blue-50"
+                            >
                               Xem chi tiết
                             </button>
-                            <button className="flex-1 text-gray-600 hover:text-gray-700 text-sm font-medium py-2 border border-gray-200 rounded-lg hover:bg-gray-50">
+                            <button
+                              onClick={() => handleContactUser(photographer)}
+                              className="flex-1 text-gray-600 hover:text-gray-700 text-sm font-medium py-2 border border-gray-200 rounded-lg hover:bg-gray-50"
+                            >
                               Liên hệ
                             </button>
                           </div>
@@ -843,7 +859,10 @@ const AdminDashboard = () => {
                       <option>Tháng trước</option>
                       <option>3 tháng gần đây</option>
                     </select>
-                    <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 flex items-center space-x-2">
+                    <button
+                      onClick={() => handleExportReport('payments')}
+                      className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 flex items-center space-x-2"
+                    >
                       <Download className="h-4 w-4" />
                       <span>Xuất báo cáo</span>
                     </button>
@@ -1003,10 +1022,16 @@ const AdminDashboard = () => {
                         <div className="flex space-x-2 ml-4">
                           {feedback.status === 'pending' && (
                             <>
-                              <button className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 text-sm">
+                              <button
+                                onClick={() => handleApproveFeedback(feedback.id)}
+                                className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 text-sm"
+                              >
                                 Duyệt
                               </button>
-                              <button className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 text-sm">
+                              <button
+                                onClick={() => handleRejectFeedback(feedback.id)}
+                                className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 text-sm"
+                              >
                                 Từ chối
                               </button>
                             </>
