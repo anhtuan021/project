@@ -416,7 +416,7 @@ const PersonalProfilePage = () => {
                   <div className="bg-gradient-to-r from-green-50 to-green-100 rounded-xl p-6">
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-green-800 font-medium">Booking tuần này</p>
+                        <p className="text-green-800 font-medium">{t('profile.overview.weeklyBookings')}</p>
                         <p className="text-2xl font-bold text-green-900">2</p>
                       </div>
                       <Calendar className="h-8 w-8 text-green-600" />
@@ -426,7 +426,7 @@ const PersonalProfilePage = () => {
                   <div className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl p-6">
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-blue-800 font-medium">Nhiếp ảnh gia yêu thích</p>
+                        <p className="text-blue-800 font-medium">{t('profile.overview.favoritePhotographers')}</p>
                         <p className="text-2xl font-bold text-blue-900">{analytics.favoritePhotographers}</p>
                       </div>
                       <Users className="h-8 w-8 text-blue-600" />
@@ -436,7 +436,7 @@ const PersonalProfilePage = () => {
                   <div className="bg-gradient-to-r from-purple-50 to-purple-100 rounded-xl p-6">
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-purple-800 font-medium">Concept đã lưu</p>
+                        <p className="text-purple-800 font-medium">{t('profile.overview.savedConcepts')}</p>
                         <p className="text-2xl font-bold text-purple-900">{analytics.savedConcepts}</p>
                       </div>
                       <BookOpen className="h-8 w-8 text-purple-600" />
@@ -449,7 +449,7 @@ const PersonalProfilePage = () => {
                   <div>
                     <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
                       <Activity className="h-5 w-5 mr-2 text-blue-600" />
-                      Hoạt động gần đây
+                      {t('profile.overview.recentActivities')}
                     </h2>
                     <div className="space-y-4">
                       {recentActivities.map((activity) => (
@@ -470,7 +470,7 @@ const PersonalProfilePage = () => {
                   <div>
                     <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
                       <Clock className="h-5 w-5 mr-2 text-green-600" />
-                      Booking sắp tới
+                      {t('profile.overview.upcomingBookings')}
                     </h2>
                     {bookingHistory.filter(b => b.status === 'Confirmed').slice(0, 3).length > 0 ? (
                       <div className="space-y-4">
@@ -502,12 +502,12 @@ const PersonalProfilePage = () => {
                     ) : (
                       <div className="text-center py-8 text-gray-500">
                         <Calendar className="h-12 w-12 mx-auto mb-4 text-gray-300" />
-                        <p>Không có booking nào sắp tới</p>
+                        <p>{t('profile.overview.noUpcomingBookings')}</p>
                         <Link
                           to="/photographers"
                           className="text-blue-600 hover:text-blue-700 text-sm font-medium mt-2 inline-block"
                         >
-                          Đặt ngay →
+                          {t('profile.overview.bookNow')} →
                         </Link>
                       </div>
                     )}
