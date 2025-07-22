@@ -98,7 +98,7 @@ const PersonalProfilePage = () => {
     {
       id: 1,
       title: 'Ảnh cưới lãng mạn',
-      description: 'Phong cách cổ ��iển với ánh sáng golden hour',
+      description: 'Phong cách cổ điển với ánh sáng golden hour',
       image: 'https://images.pexels.com/photos/1616113/pexels-photo-1616113.jpeg?auto=compress&cs=tinysrgb&w=400&h=250&fit=crop',
       category: 'Wedding',
       matches: '95%'
@@ -266,20 +266,20 @@ const PersonalProfilePage = () => {
       localStorage.setItem('savedConcepts', JSON.stringify(savedConcepts));
       alert(t('profile.conceptSaved'));
     } else {
-      alert('Concept này đã có trong danh sách yêu thích!');
+      alert(t('profile.conceptAlreadySaved'));
     }
   };
 
   const handleFindPhotographerForConcept = (concept) => {
-    alert(`Tìm nhiếp ảnh gia cho concept "${concept.title}" trong danh mục ${concept.category}`);
+    alert(t('profile.findPhotographerForConcept', { title: concept.title, category: concept.category }));
     // In real app, navigate to photographers page with category filter
   };
 
   const handleRefreshSuggestions = () => {
-    alert('Đang làm mới gợi ý AI dựa trên sở thích và lịch sử của bạn...');
+    alert(t('profile.refreshingSuggestions'));
     // In real app, call API to get new AI suggestions
     setTimeout(() => {
-      alert('Đã cập nhật gợi ý mới!');
+      alert(t('profile.suggestionsUpdated'));
     }, 1000);
   };
 
@@ -638,7 +638,7 @@ const PersonalProfilePage = () => {
                       Chưa có booking nào
                     </h3>
                     <p className="text-gray-500 mb-6">
-                      Hãy tìm và đặt nhiếp ảnh gia đầu tiên của bạn
+                      Hãy tìm và đặt nhiếp ảnh gia đầu tiên của b���n
                     </p>
                     <Link
                       to="/photographers"
