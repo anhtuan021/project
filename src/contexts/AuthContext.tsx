@@ -5,7 +5,7 @@ interface User {
   name: string;
   email: string;
   avatar?: string;
-  userType: "customer" | "photographer";
+  userType: "customer" | "photographer" | "admin";
   photographerId?: string;
 }
 
@@ -60,7 +60,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
           name: 'Admin User',
           email: email,
           avatar: 'https://images.pexels.com/photos/3763188/pexels-photo-3763188.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop',
-          userType: 'admin' as any,
+          userType: 'admin',
         };
         
         setUser(adminData);
