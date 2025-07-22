@@ -97,7 +97,7 @@ const PersonalProfilePage = () => {
   const aiSuggestions = [
     {
       id: 1,
-      title: 'Ảnh cưới lãng m��n',
+      title: 'Ảnh cưới lãng mạn',
       description: 'Phong cách cổ điển với ánh sáng golden hour',
       image: 'https://images.pexels.com/photos/1616113/pexels-photo-1616113.jpeg?auto=compress&cs=tinysrgb&w=400&h=250&fit=crop',
       category: 'Wedding',
@@ -133,7 +133,7 @@ const PersonalProfilePage = () => {
     {
       id: 2,
       type: 'photographer_saved',
-      message: 'Đã lưu Michael Chen vào danh sách yêu thích',
+      message: 'Đã lưu Michael Chen v��o danh sách yêu thích',
       time: '1 tuần trước',
       icon: Heart,
       color: 'text-pink-600 bg-pink-100'
@@ -729,13 +729,13 @@ const PersonalProfilePage = () => {
             {selectedTab === 'suggestions' && (
               <div>
                 <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-xl font-bold text-gray-900">Gợi ý AI dành cho bạn</h2>
+                  <h2 className="text-xl font-bold text-gray-900">{t('profile.suggestions.title')}</h2>
                   <button
                     onClick={handleRefreshSuggestions}
                     className="text-blue-600 hover:text-blue-700 text-sm font-medium flex items-center space-x-1"
                   >
                     <Sparkles className="h-4 w-4" />
-                    <span>Làm mới gợi ý</span>
+                    <span>{t('profile.suggestions.refresh')}</span>
                   </button>
                 </div>
 
@@ -752,7 +752,7 @@ const PersonalProfilePage = () => {
                           {suggestion.category}
                         </div>
                         <div className="absolute top-2 right-2 bg-green-500 text-white px-2 py-1 rounded text-xs font-medium">
-                          {suggestion.matches} khớp
+                          {t('profile.suggestions.match', { percentage: suggestion.matches })}
                         </div>
                       </div>
                       <div className="p-6">
@@ -767,12 +767,12 @@ const PersonalProfilePage = () => {
                             onClick={() => handleFindPhotographerForConcept(suggestion)}
                             className="flex-1 bg-blue-600 text-white text-center py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
                           >
-                            Tìm nhiếp ảnh gia
+                            {t('profile.suggestions.findPhotographer')}
                           </button>
                           <button
                             onClick={() => handleSaveConcept(suggestion.id)}
                             className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-                            title="Lưu concept"
+                            title={t('profile.suggestions.saveConcept')}
                           >
                             <Heart className="h-4 w-4 text-gray-600" />
                           </button>
