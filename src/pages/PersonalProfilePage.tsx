@@ -212,7 +212,7 @@ const PersonalProfilePage = () => {
     const existingFeedbacks = JSON.parse(localStorage.getItem('feedbacks') || '[]');
     existingFeedbacks.push(feedback);
     localStorage.setItem('feedbacks', JSON.stringify(existingFeedbacks));
-    alert('Cảm ơn bạn đã đánh giá! Feedback của bạn đã được gửi thành công.');
+    alert(t('profile.feedbackSuccess'));
   };
 
   const handleSavePhotographer = (photographerId) => {
@@ -220,9 +220,9 @@ const PersonalProfilePage = () => {
     if (!savedPhotographers.includes(photographerId)) {
       savedPhotographers.push(photographerId);
       localStorage.setItem('savedPhotographers', JSON.stringify(savedPhotographers));
-      alert('Đã lưu nhiếp ảnh gia vào danh sách yêu thích!');
+      alert(t('profile.photographerSaved'));
     } else {
-      alert('Nhiếp ảnh gia này đã có trong danh sách yêu thích!');
+      alert(t('profile.photographerAlreadySaved'));
     }
   };
 
@@ -230,7 +230,7 @@ const PersonalProfilePage = () => {
     const savedPhotographers = JSON.parse(localStorage.getItem('savedPhotographers') || '[]');
     const updatedSaved = savedPhotographers.filter(id => id !== photographerId);
     localStorage.setItem('savedPhotographers', JSON.stringify(updatedSaved));
-    alert('Đã xóa khỏi danh sách yêu thích!');
+    alert(t('profile.photographerUnsaved'));
   };
 
   const handleMessagePhotographer = (photographer) => {
@@ -251,7 +251,7 @@ const PersonalProfilePage = () => {
 
     // Update localStorage
     localStorage.setItem('userBookings', JSON.stringify(updatedBookings));
-    alert('Đã hủy booking thành công!');
+    alert(t('profile.bookingCancelled'));
   };
 
   const handleRebookPhotographer = (photographer) => {
