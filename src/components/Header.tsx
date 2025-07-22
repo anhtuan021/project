@@ -130,9 +130,9 @@ const Header = () => {
                       <Link
                         to={
                           user?.userType === "photographer"
-                            ? "/photographer-dashboard"
+                            ? "/photographer-settings"
                             : user?.userType === "admin"
-                            ? "/admin"
+                            ? "/admin-profile"
                             : "/profile"
                         }
                         className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
@@ -140,9 +140,9 @@ const Header = () => {
                       >
                         <User className="h-4 w-4 mr-2" />
                         {user?.userType === "photographer"
-                          ? "Dashboard"
+                          ? "Cài đặt Profile"
                           : user?.userType === "admin"
-                          ? "Admin Dashboard"
+                          ? "Admin Profile"
                           : t("header.profile")}
                       </Link>
                       <button
