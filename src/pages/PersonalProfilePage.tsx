@@ -141,7 +141,7 @@ const PersonalProfilePage = () => {
     {
       id: 3,
       type: 'points_earned',
-      message: 'Nhận được 50 điểm loyalty từ booking gần nhất',
+      message: 'Nhận được 50 đi��m loyalty từ booking gần nhất',
       time: '2 tuần trước',
       icon: Gift,
       color: 'text-yellow-600 bg-yellow-100'
@@ -331,9 +331,9 @@ const PersonalProfilePage = () => {
           <div className="bg-white rounded-xl shadow-sm p-6 border-l-4 border-blue-500">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-500 mb-1">Tổng số booking</p>
+                <p className="text-sm text-gray-500 mb-1">{t('profile.totalBookings')}</p>
                 <p className="text-3xl font-bold text-gray-900">{analytics.totalBookings}</p>
-                <p className="text-sm text-green-600 mt-1">+{analytics.completedBookings} hoàn thành</p>
+                <p className="text-sm text-green-600 mt-1">{t('profile.completedBookings', { count: analytics.completedBookings })}</p>
               </div>
               <div className="bg-blue-100 p-4 rounded-full">
                 <Calendar className="h-8 w-8 text-blue-600" />
@@ -344,9 +344,9 @@ const PersonalProfilePage = () => {
           <div className="bg-white rounded-xl shadow-sm p-6 border-l-4 border-green-500">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-500 mb-1">Booking sắp tới</p>
+                <p className="text-sm text-gray-500 mb-1">{t('profile.upcomingBookings')}</p>
                 <p className="text-3xl font-bold text-gray-900">{analytics.upcomingBookings}</p>
-                <p className="text-sm text-blue-600 mt-1">Chuẩn bị sẵn sàng</p>
+                <p className="text-sm text-blue-600 mt-1">{t('profile.getReady')}</p>
               </div>
               <div className="bg-green-100 p-4 rounded-full">
                 <Clock className="h-8 w-8 text-green-600" />
@@ -357,9 +357,9 @@ const PersonalProfilePage = () => {
           <div className="bg-white rounded-xl shadow-sm p-6 border-l-4 border-purple-500">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-500 mb-1">Chi tiêu trung bình</p>
+                <p className="text-sm text-gray-500 mb-1">{t('profile.averageSpending')}</p>
                 <p className="text-3xl font-bold text-gray-900">${analytics.averageSpending}</p>
-                <p className="text-sm text-purple-600 mt-1">Mỗi phiên chụp</p>
+                <p className="text-sm text-purple-600 mt-1">{t('profile.perSession')}</p>
               </div>
               <div className="bg-purple-100 p-4 rounded-full">
                 <DollarSign className="h-8 w-8 text-purple-600" />
@@ -370,9 +370,9 @@ const PersonalProfilePage = () => {
           <div className="bg-white rounded-xl shadow-sm p-6 border-l-4 border-yellow-500">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-500 mb-1">Điểm tích lũy</p>
+                <p className="text-sm text-gray-500 mb-1">{t('profile.loyaltyPointsLabel')}</p>
                 <p className="text-3xl font-bold text-gray-900">{analytics.loyaltyPoints}</p>
-                <p className="text-sm text-yellow-600 mt-1">Có thể đổi quà</p>
+                <p className="text-sm text-yellow-600 mt-1">{t('profile.redeemable')}</p>
               </div>
               <div className="bg-yellow-100 p-4 rounded-full">
                 <Gift className="h-8 w-8 text-yellow-600" />
