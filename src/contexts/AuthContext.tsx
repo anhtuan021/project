@@ -35,16 +35,22 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
   // Kiểm tra localStorage khi component mount
   useEffect(() => {
+    console.log('AuthContext - Checking localStorage...');
     const savedUser = localStorage.getItem("user");
+    console.log('AuthContext - savedUser from localStorage:', savedUser);
     if (savedUser) {
       try {
         const userData = JSON.parse(savedUser);
+        console.log('AuthContext - Parsed userData:', userData);
         setUser(userData);
         setIsAuthenticated(true);
+        console.log('AuthContext - User authenticated from localStorage');
       } catch (error) {
         console.error("Error parsing saved user data:", error);
         localStorage.removeItem("user");
       }
+    } else {
+      console.log('AuthContext - No saved user found');
     }
   }, []);
 
