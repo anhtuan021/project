@@ -103,7 +103,12 @@ const PhotographerSettingsPage = () => {
       const updatedUserData = {
         name: profileData.name,
         email: profileData.email,
-        avatar: profileData.avatar
+        avatar: profileData.avatar,
+        location: profileData.location,
+        bio: profileData.bio,
+        phone: profileData.phone,
+        specialties: profileData.specialties,
+        equipment: profileData.equipment
       };
 
       updateUser(updatedUserData);
