@@ -277,11 +277,11 @@ const PhotographerDashboard = () => {
             <div className="flex items-center space-x-6">
               <img
                 src={
-                  photographerData?.image ||
                   user?.avatar ||
+                  photographerData?.image ||
                   "https://images.pexels.com/photos/3763188/pexels-photo-3763188.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop"
                 }
-                alt={photographerData?.name || user?.name}
+                alt={user?.name || photographerData?.name}
                 className="w-20 h-20 rounded-full object-cover"
               />
               <div>
