@@ -9,10 +9,8 @@ import {
   User,
   DollarSign,
   TrendingUp,
-  Edit,
   Eye,
   MessageSquare,
-  Settings,
   Plus,
   ChevronRight,
 } from "lucide-react";
@@ -228,7 +226,7 @@ const PhotographerDashboard = () => {
         );
         setConcepts(updatedConcepts);
         localStorage.setItem('photographerConcepts', JSON.stringify(updatedConcepts));
-        alert('Đã cập nhật concept thành công!');
+        alert('Đã cập nh���t concept thành công!');
       }
     }
   };
