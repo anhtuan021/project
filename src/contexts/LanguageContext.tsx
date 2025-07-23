@@ -186,6 +186,17 @@ const translations = {
     'listing.mapDescription': 'Interactive map with photographer locations',
     'listing.noResults': 'No photographers found',
     'listing.noResultsDesc': 'Try adjusting your search criteria or filters',
+    'listing.wedding': 'Wedding',
+    'listing.portrait': 'Portrait',
+    'listing.commercial': 'Commercial',
+    'listing.event': 'Event',
+    'listing.fashion': 'Fashion',
+    'listing.family': 'Family',
+    'listing.product': 'Product',
+    'listing.price0to50': '$0 - $50/hour',
+    'listing.price50to100': '$50 - $100/hour',
+    'listing.price100to200': '$100 - $200/hour',
+    'listing.price200plus': '$200+/hour',
     
     // Photographer Profile Page
     'photographerProfile.professional': 'Professional Photographer',
@@ -839,7 +850,7 @@ const translations = {
     'editProfile.saveChanges': 'Lưu Thay Đổi',
     'editProfile.cancel': 'Hủy',
     'editProfile.needAssistance': 'Cần hỗ trợ?',
-    'editProfile.chatSupport': 'Trò chuyện với AI Hỗ trợ',
+    'editProfile.chatSupport': 'Trò chuyện với AI Hỗ tr���',
     'editProfile.success': 'Cập nhật hồ sơ thành công!',
     
     // Photographer Listing Page
@@ -877,6 +888,17 @@ const translations = {
     'listing.mapDescription': 'Bản đồ tương tác với vị trí nhiếp ảnh gia',
     'listing.noResults': 'Không tìm thấy nhiếp ảnh gia',
     'listing.noResultsDesc': 'Thử điều chỉnh tiêu chí tìm kiếm hoặc bộ lọc',
+    'listing.wedding': 'Cưới',
+    'listing.portrait': 'Chân Dung',
+    'listing.commercial': 'Thương Mại',
+    'listing.event': 'Sự Kiện',
+    'listing.fashion': 'Thời Trang',
+    'listing.family': 'Gia Đình',
+    'listing.product': 'Sản Phẩm',
+    'listing.price0to50': '$0 - $50/giờ',
+    'listing.price50to100': '$50 - $100/giờ',
+    'listing.price100to200': '$100 - $200/giờ',
+    'listing.price200plus': '$200+/giờ',
     
     // Photographer Profile Page
     'photographerProfile.professional': 'Nhiếp Ảnh Gia Chuyên Nghiệp',
@@ -1014,7 +1036,7 @@ const translations = {
         'support.priceRange': 'Khoảng giá là bao nhiêu?',
         'support.aiMatching': 'AI ghép đôi hoạt động như thế nào?',
         'support.accountSetup': 'Trợ giúp thiết lập tài khoản',
-    'support.aiGreeting': 'Xin chào! Tôi là trợ lý AI SnapMatch của bạn. Tôi có thể giúp gì cho bạn hôm nay?',
+    'support.aiGreeting': 'Xin chào! Tôi là trợ lý AI SnapMatch của b��n. Tôi có thể giúp gì cho bạn hôm nay?',
     'support.userMessage': 'Tôi muốn biết thêm về quy trình ghép đôi AI.',
     
     // Common
@@ -1159,12 +1181,12 @@ const translations = {
     'bookingModal.cost': 'Chi Phí',
     'bookingModal.totalCost': 'Tổng Chi Ph��:',
     'bookingModal.hoursMultiplier': 'giờ ×',
-    'bookingModal.perHour': '/giờ',
+    'bookingModal.perHour': '/gi��',
     'bookingModal.customerInfo': 'Thông Tin Khách Hàng',
     'bookingModal.customer': 'Khách Hàng',
     'bookingModal.photographerInfo': 'Thông Tin Nhiếp Ảnh Gia',
     'bookingModal.photographer': 'Nhiếp Ảnh Gia',
-    'bookingModal.ratings': 'đánh giá',
+    'bookingModal.ratings': '��ánh giá',
     'bookingModal.conceptRequest': 'Concept Yêu Cầu',
     'bookingModal.notesReminders': 'Ghi Chú & Lưu Ý',
     'bookingModal.additionalServices': 'Dịch Vụ Bổ Sung',
@@ -1379,7 +1401,7 @@ const translations = {
     'profile.status.cancelled': 'Đã hủy',
 
     // Photographer Dashboard
-    'photographerDashboard.conceptRequirements': 'Chụp ảnh cưới phong cách vintage, tông màu ấm. Muốn có những khoảnh khắc tự nhiên và lãng mạn. Ưu tiên ánh sáng golden hour.',
+    'photographerDashboard.conceptRequirements': 'Chụp ảnh cưới phong cách vintage, tông màu ấm. Muốn có những khoảnh kh���c tự nhiên và lãng mạn. Ưu tiên ánh sáng golden hour.',
     'photographerDashboard.specialNotes': 'Cô dâu có thể bị dị ứng với một số loại hoa. Vui lòng chuẩn bị backup location trong trường hợp thời tiết xấu.',
     'photographerDashboard.bookingAccepted': 'Đã chấp nhận booking thành công!',
     'photographerDashboard.rejectionReason': 'Lý do từ chối booking:',
