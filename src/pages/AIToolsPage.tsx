@@ -343,10 +343,10 @@ const AIToolsPage = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                   {/* Reference Upload */}
                   <div>
-                    <h3 className="font-semibold text-gray-900 mb-4">Upload a reference photo</h3>
+                    <h3 className="font-semibold text-gray-900 mb-4">{t('aiTools.uploadReference')}</h3>
                     <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-gray-400 transition-colors">
                       <Palette className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                      <p className="text-gray-600 mb-4">Upload a reference photo</p>
+                      <p className="text-gray-600 mb-4">{t('aiTools.uploadReference')}</p>
                       <input
                         type="file"
                         accept="image/*"
@@ -357,14 +357,14 @@ const AIToolsPage = () => {
                         htmlFor="reference-upload"
                         className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors cursor-pointer"
                       >
-                        Browse Files
+                        {t('aiTools.browseFiles')}
                       </label>
                     </div>
                   </div>
 
                   {/* Matched Photographers */}
                   <div>
-                    <h3 className="font-semibold text-gray-900 mb-4">Matched Photographers</h3>
+                    <h3 className="font-semibold text-gray-900 mb-4">{t('aiTools.matchedPhotographers')}</h3>
                     <div className="space-y-4">
                       {matchedPhotographers.map((photographer) => (
                         <div key={photographer.id} className="flex items-center gap-4 p-4 border border-gray-200 rounded-lg">
@@ -392,9 +392,9 @@ const AIToolsPage = () => {
 
                     {/* Style Tags */}
                     <div className="mt-6">
-                      <h4 className="font-medium text-gray-900 mb-3">Detected Style Tags</h4>
+                      <h4 className="font-medium text-gray-900 mb-3">{t('aiTools.detectedTags')}</h4>
                       <div className="flex flex-wrap gap-2">
-                        {['#Wedding', '#Portrait', '#Fashion', '#Street', '#Nature'].map((tag, index) => (
+                        {[t('aiTools.tagWedding'), t('aiTools.tagPortrait'), t('aiTools.tagFashion'), t('aiTools.tagStreet'), t('aiTools.tagNature')].map((tag, index) => (
                           <span
                             key={index}
                             className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm"
@@ -413,28 +413,28 @@ const AIToolsPage = () => {
 
         {/* Get Started Section */}
         <div className="mt-16 bg-gradient-to-r from-blue-600 to-indigo-700 rounded-xl p-8 text-center text-white">
-          <h2 className="text-2xl font-bold mb-4">Get Started in Minutes</h2>
+          <h2 className="text-2xl font-bold mb-4">{t('aiTools.getStarted')}</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
             <div className="text-center">
               <div className="bg-white/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Lightbulb className="h-8 w-8" />
               </div>
-              <h3 className="font-semibold mb-2">Generate Ideas</h3>
-              <p className="text-blue-100">Create visual concepts from text descriptions</p>
+              <h3 className="font-semibold mb-2">{t('aiTools.generateIdeas')}</h3>
+              <p className="text-blue-100">{t('aiTools.generateIdeasDesc')}</p>
             </div>
             <div className="text-center">
               <div className="bg-white/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Edit3 className="h-8 w-8" />
               </div>
-              <h3 className="font-semibold mb-2">Edit Automatically</h3>
-              <p className="text-blue-100">Enhance your photos with AI-powered editing</p>
+              <h3 className="font-semibold mb-2">{t('aiTools.editAutomatically')}</h3>
+              <p className="text-blue-100">{t('aiTools.editAutomaticallyDesc')}</p>
             </div>
             <div className="text-center">
               <div className="bg-white/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Sparkles className="h-8 w-8" />
               </div>
-              <h3 className="font-semibold mb-2">Match Styles</h3>
-              <p className="text-blue-100">Find photographers with similar aesthetic</p>
+              <h3 className="font-semibold mb-2">{t('aiTools.matchStyles')}</h3>
+              <p className="text-blue-100">{t('aiTools.matchStylesDesc')}</p>
             </div>
           </div>
         </div>
