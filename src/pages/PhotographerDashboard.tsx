@@ -19,7 +19,6 @@ import { useLanguage } from "../contexts/LanguageContext";
 import { getPhotographerById } from "../data/photographers";
 import { initializeSampleData } from "../utils/sampleData";
 import BookingDetailsModal from "../components/BookingDetailsModal";
-import NotificationCenter from "../components/NotificationCenter";
 
 const PhotographerDashboard = () => {
   const [selectedTab, setSelectedTab] = useState("overview");
@@ -226,7 +225,7 @@ const PhotographerDashboard = () => {
         );
         setConcepts(updatedConcepts);
         localStorage.setItem('photographerConcepts', JSON.stringify(updatedConcepts));
-        alert('Đã cập nh���t concept thành công!');
+        alert('Đã cập nhật concept thành công!');
       }
     }
   };
