@@ -299,7 +299,7 @@ const PhotographerDashboard = () => {
                   <div className="flex items-center">
                     <MapPin className="h-4 w-4 mr-1" />
                     <span>
-                      {photographerData?.location || "Ho Chi Minh City"}
+                      {user?.location || photographerData?.location || "Ho Chi Minh City"}
                     </span>
                   </div>
                 </div>
