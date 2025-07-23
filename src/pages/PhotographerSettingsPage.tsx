@@ -98,24 +98,19 @@ const PhotographerSettingsPage = () => {
   const handleSaveProfile = () => {
     console.log('Saving photographer profile:', profileData);
 
-    // Update user in AuthContext if available
-    if (user && user.name !== profileData.name) {
-      const updatedUser = {
-        ...user,
+    // Update user in AuthContext
+    if (user && updateUser) {
+      const updatedUserData = {
         name: profileData.name,
         email: profileData.email,
         avatar: profileData.avatar
       };
 
-      // Update localStorage
-      localStorage.setItem('user', JSON.stringify(updatedUser));
-
-      // Note: In a real app, you would also call an API to update the backend
-      // and use updateUser from AuthContext if available
+      updateUser(updatedUserData);
     }
 
     setIsEditing(false);
-    alert('Thông tin profile đã được cập nhật thành công!');
+    alert(t('editProfile.success') || 'Thông tin profile đã được cập nhật thành công!');
   };
 
   const handleAddSpecialty = (specialty: string) => {
