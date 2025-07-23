@@ -289,7 +289,7 @@ const PhotographerDashboard = () => {
                   {t('dashboard.welcome')}{user?.name || photographerData?.name}!
                 </h1>
                 <p className="text-gray-600 mb-2">
-                  {photographerData?.specialties?.join(", ") || t('dashboard.photographer')}
+                  {user?.specialties?.join(", ") || photographerData?.specialties?.join(", ") || t('dashboard.photographer')}
                 </p>
                 <div className="flex items-center space-x-4 text-sm text-gray-500">
                   <div className="flex items-center">
