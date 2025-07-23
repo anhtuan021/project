@@ -253,7 +253,7 @@ const AIToolsPage = () => {
                         htmlFor="file-upload"
                         className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors cursor-pointer"
                       >
-                        Browse Files
+                        {t('aiTools.browseFiles')}
                       </label>
                     </div>
 
@@ -270,11 +270,11 @@ const AIToolsPage = () => {
 
                   {/* Preview Section */}
                   <div>
-                    <h3 className="font-semibold text-gray-900 mb-4">AI-Enhanced Preview</h3>
+                    <h3 className="font-semibold text-gray-900 mb-4">{t('aiTools.aiEnhanced')}</h3>
                     <div className="bg-gray-100 rounded-lg aspect-square flex items-center justify-center">
                       <div className="text-center text-gray-500">
                         <Eye className="h-12 w-12 mx-auto mb-2" />
-                        <p>Enhanced photo will appear here</p>
+                        <p>{t('aiTools.enhancedPreview')}</p>
                       </div>
                     </div>
 
@@ -282,7 +282,7 @@ const AIToolsPage = () => {
                     <div className="mt-6 space-y-4">
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
-                          Brightness
+                          {t('aiTools.brightness')}
                         </label>
                         <input
                           type="range"
@@ -294,7 +294,7 @@ const AIToolsPage = () => {
                       </div>
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
-                          Contrast
+                          {t('aiTools.contrast')}
                         </label>
                         <input
                           type="range"
@@ -306,7 +306,7 @@ const AIToolsPage = () => {
                       </div>
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
-                          Saturation
+                          {t('aiTools.saturation')}
                         </label>
                         <input
                           type="range"
@@ -320,7 +320,7 @@ const AIToolsPage = () => {
                       <div className="flex gap-2 mt-6">
                         <button className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center">
                           <Wand2 className="h-4 w-4 mr-2" />
-                          Auto Enhance
+                          {t('aiTools.autoEnhance')}
                         </button>
                         <button className="bg-gray-100 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-200 transition-colors">
                           <Download className="h-4 w-4" />
@@ -337,7 +337,7 @@ const AIToolsPage = () => {
               <div className="bg-white rounded-xl shadow-sm p-8">
                 <div className="flex items-center space-x-3 mb-6">
                   <Sparkles className="h-8 w-8 text-blue-600" />
-                  <h2 className="text-2xl font-bold text-gray-900">Style Matcher</h2>
+                  <h2 className="text-2xl font-bold text-gray-900">{t('aiTools.styleMatcher')}</h2>
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
