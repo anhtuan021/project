@@ -9,6 +9,7 @@ import {
   User,
   DollarSign,
   TrendingUp,
+  Edit,
   Eye,
   MessageSquare,
   Plus,
