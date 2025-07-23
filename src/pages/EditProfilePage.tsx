@@ -25,7 +25,7 @@ import { useAuth } from '../contexts/AuthContext';
 
 const EditProfilePage = () => {
   const { t, language, setLanguage } = useLanguage();
-  const { user, logout } = useAuth();
+  const { user, updateUser, logout } = useAuth();
   const navigate = useNavigate();
   
   const [formData, setFormData] = useState({
@@ -33,7 +33,7 @@ const EditProfilePage = () => {
     email: user?.email || '',
     phone: '+84 123 456 789',
     bio: '',
-    location: 'Ho Chi Minh City',
+    location: 'TP. Hồ Chí Minh',
     website: '',
     language: language,
     theme: 'light',
@@ -78,25 +78,25 @@ const EditProfilePage = () => {
 
   const validateForm = () => {
     const newErrors: any = {};
-    
+
     if (!formData.fullName.trim()) {
-      newErrors.fullName = 'Họ tên không được để trống';
+      newErrors.fullName = t('editProfile.errorFullNameRequired');
     }
-    
+
     if (!formData.email.trim()) {
-      newErrors.email = 'Email không được để trống';
+      newErrors.email = t('editProfile.errorEmailRequired');
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Email không hợp lệ';
+      newErrors.email = t('editProfile.errorEmailInvalid');
     }
-    
+
     if (formData.phone && !/^[\+]?[\d\s\-\(\)]{10,}$/.test(formData.phone)) {
-      newErrors.phone = 'Số điện thoại không hợp lệ';
+      newErrors.phone = t('editProfile.errorPhoneInvalid');
     }
-    
+
     if (formData.website && !/^https?:\/\/.+/.test(formData.website)) {
-      newErrors.website = 'Website phải bắt đầu với http:// hoặc https://';
+      newErrors.website = t('editProfile.errorWebsiteInvalid');
     }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -114,15 +114,14 @@ const EditProfilePage = () => {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1500));
       
-      // Update user data in localStorage
-      const updatedUser = {
-        ...user,
+      // Update user data using context method
+      const updatedUserData = {
         name: formData.fullName,
         email: formData.email,
         avatar: formData.avatar
       };
-      
-      localStorage.setItem('user', JSON.stringify(updatedUser));
+
+      updateUser(updatedUserData);
       
       // Update language if changed
       if (formData.language !== language) {
@@ -136,7 +135,7 @@ const EditProfilePage = () => {
       }, 2000);
       
     } catch (error) {
-      alert('Có lỗi xảy ra. Vui lòng thử lại!');
+      alert(t('editProfile.errorGeneral'));
     } finally {
       setIsLoading(false);
     }
@@ -168,17 +167,17 @@ const EditProfilePage = () => {
 
   const handlePasswordSubmit = async () => {
     if (passwordData.newPassword !== passwordData.confirmPassword) {
-      alert('Mật khẩu mới không khớp!');
+      alert(t('editProfile.errorPasswordMismatch'));
       return;
     }
-    
+
     if (passwordData.newPassword.length < 6) {
-      alert('Mật khẩu mới phải có ít nhất 6 ký tự!');
+      alert(t('editProfile.errorPasswordLength'));
       return;
     }
-    
+
     // Simulate password change
-    alert('Đã thay đổi mật khẩu thành công!');
+    alert(t('editProfile.passwordChangeSuccess'));
     setShowPasswordModal(false);
     setPasswordData({ currentPassword: '', newPassword: '', confirmPassword: '' });
   };
@@ -189,20 +188,20 @@ const EditProfilePage = () => {
 
   const handleDeleteAccount = () => {
     const confirmed = window.confirm(
-      'Bạn có chắc chắn muốn xóa tài khoản? Hành động này không thể hoàn tác.'
+      t('editProfile.deleteAccountConfirm')
     );
-    
+
     if (confirmed) {
       const finalConfirm = window.confirm(
-        'Lần xác nhận cuối cùng: Tất cả dữ liệu của bạn sẽ bị xóa vĩnh viễn!'
+        t('editProfile.deleteAccountFinalConfirm')
       );
-      
+
       if (finalConfirm) {
         logout();
         localStorage.removeItem('userBookings');
         localStorage.removeItem('savedPhotographers');
         localStorage.removeItem('savedConcepts');
-        alert('Tài khoản đã được xóa thành công!');
+        alert(t('editProfile.deleteAccountSuccess'));
         navigate('/');
       }
     }
@@ -219,9 +218,9 @@ const EditProfilePage = () => {
               className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition-colors"
             >
               <ArrowLeft className="h-5 w-5" />
-              <span>Quay lại</span>
+              <span>{t('common.back')}</span>
             </button>
-            <h1 className="text-xl font-semibold text-gray-900">Chỉnh sửa hồ sơ</h1>
+            <h1 className="text-xl font-semibold text-gray-900">{t('editProfile.title')}</h1>
             <div className="w-20"></div>
           </div>
         </div>
@@ -251,22 +250,22 @@ const EditProfilePage = () => {
                 </div>
                 <h2 className="mt-4 text-xl font-semibold text-gray-900">{formData.fullName}</h2>
                 <p className="text-gray-600">{formData.email}</p>
-                <p className="text-sm text-gray-500 mt-1">Thành viên từ tháng 3/2024</p>
+                <p className="text-sm text-gray-500 mt-1">{t('profile.memberSince', { date: 'tháng 3/2024' })}</p>
               </div>
               
               <div className="mt-6 space-y-4">
                 <div className="flex items-center justify-between text-sm">
-                  <span className="text-gray-600">Tổng booking</span>
+                  <span className="text-gray-600">{t('profile.totalBookings')}</span>
                   <span className="font-medium">12</span>
                 </div>
                 <div className="flex items-center justify-between text-sm">
-                  <span className="text-gray-600">Điểm tích lũy</span>
-                  <span className="font-medium text-yellow-600">250 điểm</span>
+                  <span className="text-gray-600">{t('profile.loyaltyPointsLabel')}</span>
+                  <span className="font-medium text-yellow-600">{t('profile.loyaltyPoints', { points: '250' })}</span>
                 </div>
                 <div className="flex items-center justify-between text-sm">
-                  <span className="text-gray-600">Trạng thái</span>
+                  <span className="text-gray-600">{t('editProfile.statusLabel')}</span>
                   <span className="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium">
-                    Đã xác thực
+                    {t('editProfile.statusVerified')}
                   </span>
                 </div>
               </div>
@@ -281,13 +280,13 @@ const EditProfilePage = () => {
               <div className="bg-white rounded-xl shadow-sm p-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-6 flex items-center">
                   <User className="h-5 w-5 mr-2 text-blue-600" />
-                  Thông tin cá nhân
+                  {t('editProfile.personalInfo')}
                 </h3>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-2">
-                      Họ và tên *
+                      {t('editProfile.fullName')}
                     </label>
                     <input
                       id="fullName"
@@ -309,7 +308,7 @@ const EditProfilePage = () => {
 
                   <div>
                     <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                      Email *
+                      {t('editProfile.email')}
                     </label>
                     <input
                       id="email"
@@ -331,7 +330,7 @@ const EditProfilePage = () => {
 
                   <div>
                     <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
-                      Số điện thoại
+                      {t('editProfile.phone')}
                     </label>
                     <input
                       id="phone"
@@ -354,7 +353,7 @@ const EditProfilePage = () => {
 
                   <div>
                     <label htmlFor="location" className="block text-sm font-medium text-gray-700 mb-2">
-                      Địa chỉ
+                      {t('editProfile.address')}
                     </label>
                     <input
                       id="location"
@@ -369,7 +368,7 @@ const EditProfilePage = () => {
 
                   <div className="md:col-span-2">
                     <label htmlFor="bio" className="block text-sm font-medium text-gray-700 mb-2">
-                      Giới thiệu bản thân
+                      {t('editProfile.bio')}
                     </label>
                     <textarea
                       id="bio"
@@ -378,13 +377,13 @@ const EditProfilePage = () => {
                       value={formData.bio}
                       onChange={handleInputChange}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
-                      placeholder="Viết vài dòng về bản thân..."
+                      placeholder={t('editProfile.bioPlaceholder')}
                     />
                   </div>
 
                   <div>
                     <label htmlFor="website" className="block text-sm font-medium text-gray-700 mb-2">
-                      Website
+                      {t('editProfile.website')}
                     </label>
                     <input
                       id="website"
@@ -411,21 +410,21 @@ const EditProfilePage = () => {
               <div className="bg-white rounded-xl shadow-sm p-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-6 flex items-center">
                   <Lock className="h-5 w-5 mr-2 text-blue-600" />
-                  Bảo mật
+                  {t('editProfile.security')}
                 </h3>
                 
                 <div className="space-y-4">
                   <div className="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
                     <div>
-                      <h4 className="font-medium text-gray-900">Mật khẩu</h4>
-                      <p className="text-sm text-gray-600">Thay đổi mật khẩu đăng nhập</p>
+                      <h4 className="font-medium text-gray-900">{t('editProfile.password')}</h4>
+                      <p className="text-sm text-gray-600">{t('editProfile.passwordDesc')}</p>
                     </div>
                     <button
                       type="button"
                       onClick={handlePasswordChange}
                       className="text-blue-600 hover:text-blue-700 text-sm font-medium"
                     >
-                      Thay đổi
+                      {t('editProfile.changePassword')}
                     </button>
                   </div>
                 </div>
@@ -435,13 +434,13 @@ const EditProfilePage = () => {
               <div className="bg-white rounded-xl shadow-sm p-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-6 flex items-center">
                   <Palette className="h-5 w-5 mr-2 text-blue-600" />
-                  Tùy chọn
+                  {t('editProfile.preferences')}
                 </h3>
                 
                 <div className="space-y-6">
                   <div>
                     <label htmlFor="language" className="block text-sm font-medium text-gray-700 mb-2">
-                      Ngôn ngữ
+                      {t('editProfile.language')}
                     </label>
                     <div className="relative">
                       <select
@@ -462,12 +461,12 @@ const EditProfilePage = () => {
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-3">
-                      Chế độ hiển thị
+                      {t('editProfile.theme')}
                     </label>
                     <div className="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
                       <div className="flex items-center space-x-3">
                         <Sun className="h-5 w-5 text-gray-600" />
-                        <span className="text-gray-900">Chế độ sáng</span>
+                        <span className="text-gray-900">{t('editProfile.light')}</span>
                       </div>
                       <label className="relative inline-flex items-center cursor-pointer">
                         <input
@@ -494,12 +493,12 @@ const EditProfilePage = () => {
                     {isLoading ? (
                       <>
                         <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                        Đang lưu...
+                        {t('editProfile.saving')}
                       </>
                     ) : (
                       <>
                         <Save className="h-4 w-4 mr-2" />
-                        Lưu thay đổi
+                        {t('editProfile.saveChanges')}
                       </>
                     )}
                   </button>
@@ -509,22 +508,22 @@ const EditProfilePage = () => {
                     className="bg-gray-100 text-gray-700 py-3 px-6 rounded-lg hover:bg-gray-200 transition-colors font-medium flex items-center justify-center"
                   >
                     <X className="h-4 w-4 mr-2" />
-                    Hủy
+                    {t('editProfile.cancel')}
                   </button>
                 </div>
                 
                 {/* Danger Zone */}
                 <div className="mt-8 pt-6 border-t border-gray-200">
-                  <h4 className="text-sm font-medium text-red-600 mb-2">Vùng nguy hiểm</h4>
+                  <h4 className="text-sm font-medium text-red-600 mb-2">{t('editProfile.dangerZone')}</h4>
                   <p className="text-sm text-gray-600 mb-4">
-                    Xóa tài khoản sẽ xóa vĩnh viễn tất cả dữ liệu của bạn
+                    {t('editProfile.dangerZoneDesc')}
                   </p>
                   <button
                     type="button"
                     onClick={handleDeleteAccount}
                     className="text-red-600 hover:text-red-700 text-sm font-medium"
                   >
-                    Xóa tài khoản
+                    {t('editProfile.deleteAccount')}
                   </button>
                 </div>
               </div>
@@ -537,12 +536,12 @@ const EditProfilePage = () => {
       {showPasswordModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-xl p-6 max-w-md w-full">
-            <h3 className="text-lg font-semibold text-gray-900 mb-6">Thay đổi mật khẩu</h3>
+            <h3 className="text-lg font-semibold text-gray-900 mb-6">{t('editProfile.changePassword')}</h3>
             
             <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Mật khẩu hiện tại
+                  {t('editProfile.currentPassword')}
                 </label>
                 <input
                   type="password"
@@ -554,7 +553,7 @@ const EditProfilePage = () => {
               
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Mật khẩu mới
+                  {t('editProfile.newPassword')}
                 </label>
                 <input
                   type="password"
@@ -566,7 +565,7 @@ const EditProfilePage = () => {
               
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Xác nhận mật khẩu mới
+                  {t('editProfile.confirmPassword')}
                 </label>
                 <input
                   type="password"
@@ -582,13 +581,13 @@ const EditProfilePage = () => {
                 onClick={handlePasswordSubmit}
                 className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors"
               >
-                Thay đổi
+                {t('editProfile.change')}
               </button>
               <button
                 onClick={() => setShowPasswordModal(false)}
                 className="bg-gray-100 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-200 transition-colors"
               >
-                Hủy
+                {t('common.cancel')}
               </button>
             </div>
           </div>
@@ -599,7 +598,7 @@ const EditProfilePage = () => {
       {showSuccessMessage && (
         <div className="fixed bottom-4 right-4 bg-green-500 text-white px-6 py-4 rounded-lg shadow-lg flex items-center space-x-3 z-50">
           <CheckCircle className="h-5 w-5" />
-          <span>Đã cập nhật hồ sơ thành công!</span>
+          <span>{t('editProfile.success')}</span>
         </div>
       )}
     </div>

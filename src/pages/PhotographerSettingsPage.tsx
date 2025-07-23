@@ -77,7 +77,7 @@ const PhotographerSettingsPage = () => {
   });
 
   const { t } = useLanguage();
-  const { user } = useAuth();
+  const { user, updateUser } = useAuth();
 
   useEffect(() => {
     if (user) {
@@ -97,8 +97,25 @@ const PhotographerSettingsPage = () => {
 
   const handleSaveProfile = () => {
     console.log('Saving photographer profile:', profileData);
+
+    // Update user in AuthContext
+    if (user && updateUser) {
+      const updatedUserData = {
+        name: profileData.name,
+        email: profileData.email,
+        avatar: profileData.avatar,
+        location: profileData.location,
+        bio: profileData.bio,
+        phone: profileData.phone,
+        specialties: profileData.specialties,
+        equipment: profileData.equipment
+      };
+
+      updateUser(updatedUserData);
+    }
+
     setIsEditing(false);
-    alert('Thông tin profile đã được cập nhật thành công!');
+    alert(t('editProfile.success') || 'Thông tin profile đã được cập nhật thành công!');
   };
 
   const handleAddSpecialty = (specialty: string) => {

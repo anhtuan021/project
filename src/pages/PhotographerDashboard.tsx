@@ -12,7 +12,6 @@ import {
   Edit,
   Eye,
   MessageSquare,
-  Settings,
   Plus,
   ChevronRight,
 } from "lucide-react";
@@ -21,7 +20,6 @@ import { useLanguage } from "../contexts/LanguageContext";
 import { getPhotographerById } from "../data/photographers";
 import { initializeSampleData } from "../utils/sampleData";
 import BookingDetailsModal from "../components/BookingDetailsModal";
-import NotificationCenter from "../components/NotificationCenter";
 
 const PhotographerDashboard = () => {
   const [selectedTab, setSelectedTab] = useState("overview");
@@ -279,19 +277,19 @@ const PhotographerDashboard = () => {
             <div className="flex items-center space-x-6">
               <img
                 src={
-                  photographerData?.image ||
                   user?.avatar ||
+                  photographerData?.image ||
                   "https://images.pexels.com/photos/3763188/pexels-photo-3763188.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop"
                 }
-                alt={photographerData?.name || user?.name}
+                alt={user?.name || photographerData?.name}
                 className="w-20 h-20 rounded-full object-cover"
               />
               <div>
                                 <h1 className="text-2xl font-bold text-gray-900 mb-1">
-                  {t('dashboard.welcome')}{photographerData?.name || user?.name}!
+                  {t('dashboard.welcome')}{user?.name || photographerData?.name}!
                 </h1>
                 <p className="text-gray-600 mb-2">
-                  {photographerData?.specialties?.join(", ") || t('dashboard.photographer')}
+                  {user?.specialties?.join(", ") || photographerData?.specialties?.join(", ") || t('dashboard.photographer')}
                 </p>
                 <div className="flex items-center space-x-4 text-sm text-gray-500">
                   <div className="flex items-center">
@@ -301,26 +299,13 @@ const PhotographerDashboard = () => {
                   <div className="flex items-center">
                     <MapPin className="h-4 w-4 mr-1" />
                     <span>
-                      {photographerData?.location || "Ho Chi Minh City"}
+                      {user?.location || photographerData?.location || "Ho Chi Minh City"}
                     </span>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="flex space-x-3">
-              <Link
-                to="/edit-profile"
-                className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center space-x-2"
-              >
-                <Edit className="h-4 w-4" />
-                                <span>{t('dashboard.editProfile')}</span>
-              </Link>
-              <NotificationCenter photographerId={user?.photographerId} />
-              <button className="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors flex items-center space-x-2">
-                <Settings className="h-4 w-4" />
-                                <span>{t('dashboard.settings')}</span>
-              </button>
-            </div>
+
           </div>
         </div>
 

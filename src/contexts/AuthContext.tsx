@@ -7,6 +7,11 @@ interface User {
   avatar?: string;
   userType: "customer" | "photographer" | "admin";
   photographerId?: string;
+  location?: string;
+  bio?: string;
+  phone?: string;
+  specialties?: string[];
+  equipment?: string[];
 }
 
 interface AuthContextType {
@@ -15,6 +20,7 @@ interface AuthContextType {
   login: (email: string, password: string) => Promise<boolean>;
   logout: () => void;
   signup: (userData: any) => Promise<boolean>;
+  updateUser: (userData: Partial<User>) => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -136,12 +142,21 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     localStorage.removeItem("user");
   };
 
+  const updateUser = (userData: Partial<User>) => {
+    if (user) {
+      const updatedUser = { ...user, ...userData };
+      setUser(updatedUser);
+      localStorage.setItem("user", JSON.stringify(updatedUser));
+    }
+  };
+
   const value = {
     user,
     isAuthenticated,
     login,
     logout,
     signup,
+    updateUser,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

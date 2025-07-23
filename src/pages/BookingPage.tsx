@@ -34,27 +34,27 @@ const BookingPage = () => {
   const photographyTypes = [
     {
       id: 'portrait',
-      name: 'Portrait Photography',
+      name: t('booking.portraitPhotography'),
       icon: User,
-      description: 'Professional headshots and personal portraits',
+      description: t('booking.portraitDesc'),
     },
     {
       id: 'event',
-      name: 'Event Photography',
+      name: t('booking.eventPhotography'),
       icon: Users,
-      description: 'Capture your special events and celebrations',
+      description: t('booking.eventDesc'),
     },
     {
       id: 'wedding',
-      name: 'Wedding Photography',
+      name: t('booking.weddingPhotography'),
       icon: Heart,
-      description: 'Document your most important day',
+      description: t('booking.weddingDesc'),
     },
     {
       id: 'fashion',
-      name: 'Fashion Photography',
+      name: t('booking.fashionPhotography'),
       icon: Shirt,
-      description: 'Professional fashion and lifestyle shoots',
+      description: t('booking.fashionDesc'),
     },
   ];
 
@@ -168,7 +168,7 @@ const BookingPage = () => {
             {preSelectedPhotographer && selectedPhotographer && (
               <div className="mb-8">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">
-                  Selected Photographer
+                  {t('booking.selectedPhotographer')}
                 </h3>
                 <div className="border border-blue-200 rounded-lg p-4 bg-blue-50">
                   <div className="flex items-center mb-3">
@@ -181,7 +181,7 @@ const BookingPage = () => {
                       <h4 className="font-medium text-gray-900">{selectedPhotographer.name}</h4>
                       <div className="flex items-center text-sm text-gray-600">
                         <span>★ {selectedPhotographer.rating}</span>
-                        <span className="ml-1">({selectedPhotographer.reviews} reviews)</span>
+                        <span className="ml-1">({selectedPhotographer.reviews} {t('common.reviews')})</span>
                       </div>
                     </div>
                   </div>
@@ -238,7 +238,7 @@ const BookingPage = () => {
         {currentStep === 2 && (
           <div className="bg-white rounded-xl shadow-sm p-8">
             <h2 className="text-2xl font-bold text-gray-900 mb-8">
-              When and where do you need photography?
+              {t('booking.whenWhere')}
             </h2>
             
             <div className="space-y-6">
@@ -246,7 +246,7 @@ const BookingPage = () => {
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     <Calendar className="inline h-4 w-4 mr-1" />
-                    Event Date
+                    {t('booking.eventDate')}
                   </label>
                   <input
                     type="date"
@@ -260,7 +260,7 @@ const BookingPage = () => {
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     <Clock className="inline h-4 w-4 mr-1" />
-                    Event Time
+                    {t('booking.eventTime')}
                   </label>
                   <input
                     type="time"
@@ -275,25 +275,25 @@ const BookingPage = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Duration (hours)
+                    {t('booking.duration')}
                   </label>
                   <select 
                     value={bookingDetails.duration}
                     onChange={(e) => handleBookingDetailsChange('duration', e.target.value)}
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   >
-                    <option value="1">1 hour</option>
-                    <option value="2">2 hours</option>
-                    <option value="3">3 hours</option>
-                    <option value="4">4 hours</option>
-                    <option value="5">5 hours</option>
-                    <option value="6">6 hours</option>
-                    <option value="8">8 hours</option>
+                    <option value="1">{t('booking.hours.1')}</option>
+                    <option value="2">{t('booking.hours.2')}</option>
+                    <option value="3">{t('booking.hours.3')}</option>
+                    <option value="4">{t('booking.hours.4')}</option>
+                    <option value="5">{t('booking.hours.5')}</option>
+                    <option value="6">{t('booking.hours.6')}</option>
+                    <option value="8">{t('booking.hours.8')}</option>
                   </select>
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Estimated Cost
+                    {t('booking.estimatedCost')}
                   </label>
                   <div className="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg">
                     <span className="text-2xl font-bold text-blue-600">
@@ -311,11 +311,11 @@ const BookingPage = () => {
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   <MapPin className="inline h-4 w-4 mr-1" />
-                  Event Location
+                  {t('booking.eventLocation')}
                 </label>
                 <input
                   type="text"
-                  placeholder="Enter the address or venue name"
+                  placeholder={t('booking.locationPlaceholder')}
                   value={bookingDetails.location}
                   onChange={(e) => handleBookingDetailsChange('location', e.target.value)}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -325,11 +325,11 @@ const BookingPage = () => {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Additional Notes (Optional)
+                  {t('booking.additionalNotes')}
                 </label>
                 <textarea
                   rows={4}
-                  placeholder="Tell us more about your event or specific requirements..."
+                  placeholder={t('booking.notesPlaceholder')}
                   value={bookingDetails.notes}
                   onChange={(e) => handleBookingDetailsChange('notes', e.target.value)}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -343,7 +343,7 @@ const BookingPage = () => {
         {currentStep === 3 && !preSelectedPhotographer && (
           <div className="bg-white rounded-xl shadow-sm p-8">
             <h2 className="text-2xl font-bold text-gray-900 mb-8">
-              Choose Your Photographer
+              {t('booking.choosePhotographer')}
             </h2>
             
             <div className="space-y-6">
@@ -371,7 +371,7 @@ const BookingPage = () => {
                           </h3>
                           <div className="flex items-center text-gray-600 mt-1">
                             <span>★ {photographer.rating}</span>
-                            <span className="ml-1">({photographer.reviews} reviews)</span>
+                            <span className="ml-1">({photographer.reviews} {t('common.reviews')})</span>
                           </div>
                         </div>
                         <div className="text-right">
@@ -408,7 +408,7 @@ const BookingPage = () => {
                             ? 'bg-green-600 text-white'
                             : 'bg-blue-600 text-white'
                         }`}>
-                          {selectedPhotographerId === photographer.id ? 'Selected' : 'Select'}
+                          {selectedPhotographerId === photographer.id ? t('booking.selected') : t('booking.select')}
                         </div>
                       </div>
                     </div>
@@ -423,36 +423,36 @@ const BookingPage = () => {
         {((currentStep === 3 && preSelectedPhotographer) || (currentStep === 4 && !preSelectedPhotographer)) && (
           <div className="bg-white rounded-xl shadow-sm p-8">
             <h2 className="text-2xl font-bold text-gray-900 mb-8">
-              Review Your Booking
+              {t('booking.reviewBooking')}
             </h2>
             
             <div className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-2">Photography Type</h3>
-                  <p className="text-gray-600 capitalize">{selectedPhotographyType} Photography</p>
+                  <h3 className="font-semibold text-gray-900 mb-2">{t('booking.photographyTypeLabel')}</h3>
+                  <p className="text-gray-600 capitalize">{selectedPhotographyType} {t('booking.photographyLabel')}</p>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-2">Date & Time</h3>
+                  <h3 className="font-semibold text-gray-900 mb-2">{t('booking.dateTime')}</h3>
                   <p className="text-gray-600">
-                    {bookingDetails.date} at {bookingDetails.time}
+                    {bookingDetails.date} {t('booking.at')} {bookingDetails.time}
                   </p>
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-2">Duration</h3>
-                  <p className="text-gray-600">{bookingDetails.duration} hours</p>
+                  <h3 className="font-semibold text-gray-900 mb-2">{t('booking.durationLabel')}</h3>
+                  <p className="text-gray-600">{bookingDetails.duration} {t('booking.hoursText')}</p>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-2">Location</h3>
+                  <h3 className="font-semibold text-gray-900 mb-2">{t('booking.locationLabel')}</h3>
                   <p className="text-gray-600">{bookingDetails.location}</p>
                 </div>
               </div>
               
               <div>
-                <h3 className="font-semibold text-gray-900 mb-2">Selected Photographer</h3>
+                <h3 className="font-semibold text-gray-900 mb-2">{t('booking.selectedPhotographer')}</h3>
                 {selectedPhotographer && (
                   <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
                     <img
@@ -471,11 +471,11 @@ const BookingPage = () => {
               
               <div className="border-t pt-6">
                 <div className="flex justify-between items-center mb-4">
-                  <span className="text-lg font-semibold text-gray-900">Total Cost</span>
+                  <span className="text-lg font-semibold text-gray-900">{t('booking.totalCost')}</span>
                   <span className="text-3xl font-bold text-blue-600">${calculateTotalCost()}</span>
                 </div>
                 <p className="text-gray-600 text-sm">
-                  {bookingDetails.duration} hours × {selectedPhotographer?.hourlyRate}
+                  {bookingDetails.duration} {t('booking.hoursMultiplier')} {selectedPhotographer?.hourlyRate}
                 </p>
               </div>
               
@@ -483,7 +483,7 @@ const BookingPage = () => {
                 onClick={handleConfirmBooking}
                 className="w-full bg-blue-600 text-white py-4 px-6 rounded-lg hover:bg-blue-700 transition-colors font-medium text-lg"
               >
-                Confirm Booking & Pay
+                {t('booking.confirmPay')}
               </button>
             </div>
           </div>
@@ -501,7 +501,7 @@ const BookingPage = () => {
             }`}
           >
             <ArrowLeft className="h-5 w-5 mr-2" />
-            Back
+            {t('booking.back')}
           </button>
           
           <button
@@ -521,7 +521,7 @@ const BookingPage = () => {
                 : 'bg-blue-600 text-white hover:bg-blue-700'
             }`}
           >
-            Continue
+            {t('booking.continue')}
             <ArrowRight className="h-5 w-5 ml-2" />
           </button>
         </div>
