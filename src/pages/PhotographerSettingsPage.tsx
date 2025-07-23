@@ -77,7 +77,7 @@ const PhotographerSettingsPage = () => {
   });
 
   const { t } = useLanguage();
-  const { user } = useAuth();
+  const { user, updateUser } = useAuth();
 
   useEffect(() => {
     if (user) {
