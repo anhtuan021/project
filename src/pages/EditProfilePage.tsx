@@ -33,7 +33,7 @@ const EditProfilePage = () => {
     email: user?.email || '',
     phone: '+84 123 456 789',
     bio: '',
-    location: 'Ho Chi Minh City',
+    location: 'TP. Hồ Chí Minh',
     website: '',
     language: language,
     theme: 'light',
