@@ -114,20 +114,14 @@ const EditProfilePage = () => {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1500));
       
-      // Update user data in localStorage and context
-      const updatedUser = {
-        ...user,
+      // Update user data using context method
+      const updatedUserData = {
         name: formData.fullName,
         email: formData.email,
         avatar: formData.avatar
       };
 
-      localStorage.setItem('user', JSON.stringify(updatedUser));
-
-      // Update user in context if updateUser exists
-      if (updateUser) {
-        updateUser(updatedUser);
-      }
+      updateUser(updatedUserData);
       
       // Update language if changed
       if (formData.language !== language) {
