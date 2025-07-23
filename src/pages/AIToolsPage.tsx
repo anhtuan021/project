@@ -31,62 +31,62 @@ const AIToolsPage = () => {
   ];
 
   const conceptCategories = [
-    { name: 'Nature', active: false },
-    { name: 'Portrait', active: true },
-    { name: 'Urban', active: false },
-    { name: 'Abstract', active: false },
+    { name: t('aiTools.categoryNature'), active: false },
+    { name: t('aiTools.categoryPortrait'), active: true },
+    { name: t('aiTools.categoryUrban'), active: false },
+    { name: t('aiTools.categoryAbstract'), active: false },
   ];
 
   const sampleConcepts = [
     {
       id: 1,
       image: 'https://images.pexels.com/photos/3763188/pexels-photo-3763188.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop',
-      title: 'Golden Hour Portrait',
-      description: 'Warm, natural lighting with soft shadows'
+      title: t('aiTools.conceptGoldenHour'),
+      description: t('aiTools.conceptGoldenHourDesc')
     },
     {
       id: 2,
       image: 'https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop',
-      title: 'Urban Portrait',
-      description: 'City backdrop with dramatic lighting'
+      title: t('aiTools.conceptUrban'),
+      description: t('aiTools.conceptUrbanDesc')
     },
     {
       id: 3,
       image: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop',
-      title: 'Studio Setup',
-      description: 'Professional studio with controlled lighting'
+      title: t('aiTools.conceptStudio'),
+      description: t('aiTools.conceptStudioDesc')
     },
     {
       id: 4,
       image: 'https://images.pexels.com/photos/3184639/pexels-photo-3184639.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop',
-      title: 'Natural Environment',
-      description: 'Outdoor setting with natural elements'
+      title: t('aiTools.conceptNatural'),
+      description: t('aiTools.conceptNaturalDesc')
     },
   ];
 
   const matchedPhotographers = [
     {
       id: 1,
-      name: 'Photographer 1',
-      specialty: 'Wedding',
-      tags: ['Portrait'],
-      match: '98% Match',
+      name: t('aiTools.photographer1'),
+      specialty: t('aiTools.specialtyWedding'),
+      tags: [t('aiTools.tagPortrait')],
+      match: t('aiTools.match98'),
       avatar: 'https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
     },
     {
       id: 2,
-      name: 'Photographer 2',
-      specialty: 'Wedding',
-      tags: ['Portrait'],
-      match: '96% Match',
+      name: t('aiTools.photographer2'),
+      specialty: t('aiTools.specialtyWedding'),
+      tags: [t('aiTools.tagPortrait')],
+      match: t('aiTools.match96'),
       avatar: 'https://images.pexels.com/photos/3763188/pexels-photo-3763188.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
     },
     {
       id: 3,
-      name: 'Photographer 3',
-      specialty: 'Wedding',
-      tags: ['Portrait'],
-      match: '94% Match',
+      name: t('aiTools.photographer3'),
+      specialty: t('aiTools.specialtyWedding'),
+      tags: [t('aiTools.tagPortrait')],
+      match: t('aiTools.match94'),
       avatar: 'https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
     },
   ];
