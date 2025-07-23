@@ -690,6 +690,10 @@ const translations = {
     'booking.at': 'at',
     'booking.hoursText': 'hours',
     'booking.hoursMultiplier': 'hours ×',
+    'booking.photographyTypeLabel': 'Photography Type',
+    'booking.photographyLabel': 'Photography',
+    'booking.durationLabel': 'Duration',
+    'booking.locationLabel': 'Location',
 
     
 
@@ -737,7 +741,7 @@ const translations = {
     'home.aiFeatures': 'Trải Nghiệm Chụp Ảnh Được Hỗ Trợ Bởi AI',
     'home.aiSubtitle': 'Biến đổi quy trình chụp ảnh của bạn với các công cụ thông minh được thiết kế để nâng cao mọi khía cạnh của quá trình sáng tạo',
     'home.cta.title': 'Sẵn Sàng Biến Đổi Trải Nghiệm Chụp Ảnh?',
-    'home.cta.subtitle': 'Tham gia cùng hàng nghìn khách hàng và nhiếp ảnh gia hài lòng tin tưởng SnapMatch AI',
+    'home.cta.subtitle': 'Tham gia cùng hàng nghìn kh��ch hàng và nhiếp ảnh gia hài lòng tin tưởng SnapMatch AI',
     'home.cta.findPhotographer': 'Tìm Nhiếp Ảnh Gia',
     'home.cta.joinPhotographer': 'Tham Gia Với Tư Cách Nhiếp Ảnh Gia',
     'home.hero.title': 'Tìm Nhiếp Ảnh Gia',
@@ -763,7 +767,7 @@ const translations = {
     'home.howItWorks.step3.description': 'Nhận những bức ảnh được chỉnh sửa chuyên nghi��p và nâng cấp bởi AI.',
     'home.testimonials.title': 'Khách Hàng Nói Gì Về Chúng Tôi',
     'home.testimonials.subtitle': 'Đừng chỉ tin lời chúng tôi. Đây là những gì khách hàng hài lòng nói về trải nghiệm của họ.',
-    'home.cta.finalTitle': 'Sẵn Sàng Ghi Lại Những Khoảnh Khắc?',
+    'home.cta.finalTitle': 'Sẵn Sàng Ghi Lại Những Kho���nh Khắc?',
     'home.cta.finalSubtitle': 'Tham gia cùng hàng nghìn khách hàng hài lòng đã tìm th���y nhiếp ảnh gia hoàn hảo thông qua nền tảng của chúng tôi.',
     'home.cta.findPhotographers': 'Tìm Nhiếp Ảnh Gia',
     'home.cta.joinAsPhotographer': 'Tham Gia Với Tư Cách Nhiếp Ảnh Gia',
@@ -786,7 +790,7 @@ const translations = {
     'login.emailPlaceholder': 'Nhập email của bạn',
     'login.passwordPlaceholder': 'Nhập mật khẩu của bạn',
     'login.loading': 'Đang đăng nhập...',
-    'login.error': 'Email hoặc mật khẩu không đúng',
+    'login.error': 'Email ho��c mật khẩu không đúng',
     
     // Sign Up Page
     'signup.title': 'Tạo Tài Khoản',
@@ -850,7 +854,7 @@ const translations = {
     'editProfile.saveChanges': 'Lưu Thay Đổi',
     'editProfile.cancel': 'Hủy',
     'editProfile.needAssistance': 'Cần hỗ trợ?',
-    'editProfile.chatSupport': 'Trò chuyện với AI Hỗ tr���',
+    'editProfile.chatSupport': 'Trò chuyện với AI Hỗ trợ',
     'editProfile.success': 'Cập nhật hồ sơ thành công!',
     
     // Photographer Listing Page
@@ -1036,7 +1040,7 @@ const translations = {
         'support.priceRange': 'Khoảng giá là bao nhiêu?',
         'support.aiMatching': 'AI ghép đôi hoạt động như thế nào?',
         'support.accountSetup': 'Trợ giúp thiết lập tài khoản',
-    'support.aiGreeting': 'Xin chào! Tôi là trợ lý AI SnapMatch của b��n. Tôi có thể giúp gì cho bạn hôm nay?',
+    'support.aiGreeting': 'Xin chào! Tôi là trợ lý AI SnapMatch của bạn. Tôi có thể giúp gì cho bạn hôm nay?',
     'support.userMessage': 'Tôi muốn biết thêm về quy trình ghép đôi AI.',
     
     // Common
@@ -1181,12 +1185,12 @@ const translations = {
     'bookingModal.cost': 'Chi Phí',
     'bookingModal.totalCost': 'Tổng Chi Ph��:',
     'bookingModal.hoursMultiplier': 'giờ ×',
-    'bookingModal.perHour': '/gi��',
+    'bookingModal.perHour': '/giờ',
     'bookingModal.customerInfo': 'Thông Tin Khách Hàng',
     'bookingModal.customer': 'Khách Hàng',
     'bookingModal.photographerInfo': 'Thông Tin Nhiếp Ảnh Gia',
     'bookingModal.photographer': 'Nhiếp Ảnh Gia',
-    'bookingModal.ratings': '��ánh giá',
+    'bookingModal.ratings': 'đánh giá',
     'bookingModal.conceptRequest': 'Concept Yêu Cầu',
     'bookingModal.notesReminders': 'Ghi Chú & Lưu Ý',
     'bookingModal.additionalServices': 'Dịch Vụ Bổ Sung',
@@ -1194,7 +1198,7 @@ const translations = {
     'bookingModal.included': 'Bao gồm',
     'bookingModal.onlineDelivery': 'Giao ảnh online',
     'bookingModal.printing': 'In ảnh (20 tấm)',
-    'bookingModal.reject': 'Từ Chối',
+    'bookingModal.reject': 'Từ Ch���i',
     'bookingModal.accept': 'Chấp Nhận',
     'bookingModal.contactCustomer': 'Liên Hệ Khách Hàng',
     'bookingModal.contactPhotographer': 'Liên Hệ Nhiếp Ảnh Gia',
@@ -1279,7 +1283,7 @@ const translations = {
 
     // Booking Page Additional
     'booking.photographyTypes.portrait': 'Chụp Ảnh Chân Dung',
-    'booking.photographyTypes.portraitDesc': 'Ảnh chân dung chuyên nghiệp và cá nhân',
+    'booking.photographyTypes.portraitDesc': '���nh chân dung chuyên nghiệp và cá nhân',
     'booking.photographyTypes.event': 'Chụp Ảnh Sự Kiện',
     'booking.photographyTypes.eventDesc': 'Ghi lại các sự kiện đặc biệt và lễ kỷ niệm',
     'booking.photographyTypes.wedding': 'Chụp Ảnh Cưới',
@@ -1297,6 +1301,10 @@ const translations = {
     'booking.at': 'vào lúc',
     'booking.hoursText': 'giờ',
     'booking.hoursMultiplier': 'giờ ×',
+    'booking.photographyTypeLabel': 'Loại Chụp Ảnh',
+    'booking.photographyLabel': 'Chụp Ảnh',
+    'booking.durationLabel': 'Thời Lượng',
+    'booking.locationLabel': 'Địa Điểm',
 
     
 
@@ -1330,7 +1338,7 @@ const translations = {
     'profile.photographerAlreadySaved': 'Nhiếp ảnh gia này đã có trong danh sách yêu thích!',
     'profile.photographerUnsaved': 'Đã xóa khỏi danh sách yêu thích!',
     'profile.sendMessagePrompt': 'Gửi tin nhắn tới {{name}}:',
-    'profile.messageSent': 'Đã gửi tin nhắn "{{message}}" tới {{name}}',
+    'profile.messageSent': '��ã gửi tin nhắn "{{message}}" tới {{name}}',
     'profile.cancelBookingPrompt': 'Lý do hủy booking (tùy chọn):',
     'profile.bookingCancelled': 'Đã hủy booking thành công!',
     'profile.rebookMessage': 'Chuyển hướng tới trang đặt chụp với {{name}}',
@@ -1401,7 +1409,7 @@ const translations = {
     'profile.status.cancelled': 'Đã hủy',
 
     // Photographer Dashboard
-    'photographerDashboard.conceptRequirements': 'Chụp ảnh cưới phong cách vintage, tông màu ấm. Muốn có những khoảnh kh���c tự nhiên và lãng mạn. Ưu tiên ánh sáng golden hour.',
+    'photographerDashboard.conceptRequirements': 'Chụp ảnh cưới phong cách vintage, tông màu ấm. Muốn có những khoảnh khắc tự nhiên và lãng mạn. Ưu tiên ánh sáng golden hour.',
     'photographerDashboard.specialNotes': 'Cô dâu có thể bị dị ứng với một số loại hoa. Vui lòng chuẩn bị backup location trong trường hợp thời tiết xấu.',
     'photographerDashboard.bookingAccepted': 'Đã chấp nhận booking thành công!',
     'photographerDashboard.rejectionReason': 'Lý do từ chối booking:',
