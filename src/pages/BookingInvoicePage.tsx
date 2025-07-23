@@ -64,50 +64,49 @@ const BookingInvoicePage = () => {
                   <div className="flex items-center text-gray-600 text-sm">
                     <span>★ {photographer.rating}</span>
                     <span className="mx-1">•</span>
-                    <span>({photographer.reviews} reviews)</span>
+                    <span>({photographer.reviews} {t('common.reviews')})</span>
                   </div>
                   <div className="flex items-center text-gray-600 text-sm mt-1">
-                    {/* icon MapPin */}
-                    <svg /* icon here */></svg>
+                    <MapPin className="h-4 w-4 mr-1" />
                     <span>{photographer.location}</span>
                   </div>
                 </div>
               </div>
               <div className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
-                Professional Photographer
+                {t('invoice.professionalPhotographer')}
               </div>
             </div>
           </div>
 
           {/* Booking details */}
           <div className="p-8">
-            <h3 className="text-xl font-semibold text-gray-900 mb-6">Booking Details</h3>
+            <h3 className="text-xl font-semibold text-gray-900 mb-6">{t('invoice.bookingDetails')}</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
               <div className="space-y-4">
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Date</span>
+                  <span className="text-gray-600">{t('invoice.date')}</span>
                   <span className="font-medium text-gray-900">{bookingDetails.date}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Time</span>
+                  <span className="text-gray-600">{t('invoice.time')}</span>
                   <span className="font-medium text-gray-900">{bookingDetails.time}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Duration</span>
-                  <span className="font-medium text-gray-900">{bookingDetails.duration} hours</span>
+                  <span className="text-gray-600">{t('invoice.duration')}</span>
+                  <span className="font-medium text-gray-900">{bookingDetails.duration} {t('common.hours')}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Type</span>
+                  <span className="text-gray-600">{t('invoice.type')}</span>
                   <span className="font-medium text-gray-900">{photographyType}</span>
                 </div>
               </div>
               <div className="space-y-4">
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Location</span>
+                  <span className="text-gray-600">{t('invoice.location')}</span>
                   <span className="font-medium text-gray-900">{bookingDetails.location}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Status</span>
+                  <span className="text-gray-600">{t('invoice.status')}</span>
                   <span className="bg-green-100 text-green-800 px-2 py-1 rounded text-sm font-medium">
                     {status}
                   </span>
@@ -118,7 +117,7 @@ const BookingInvoicePage = () => {
             {/* Total cost */}
             <div className="border-t border-gray-200 pt-4">
               <div className="flex justify-between text-lg font-semibold">
-                <span>Total Cost</span>
+                <span>{t('invoice.totalCost')}</span>
                 <span>${totalCost}</span>
               </div>
             </div>
@@ -130,7 +129,7 @@ const BookingInvoicePage = () => {
               to="/profile"
               className="bg-gray-100 px-6 py-3 rounded-lg text-gray-700 hover:bg-gray-200"
             >
-              Go back to My Bookings
+              {t('invoice.backToBookings')}
             </Link>
           </div>
         </div>
