@@ -171,49 +171,49 @@ const PhotographerListingPage = () => {
               {/* Specialty Filter */}
               <div className="mb-6">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Specialty
+                  {t('listing.specialty')}
                 </label>
                 <select
                   value={filters.specialty}
                   onChange={(e) => setFilters({...filters, specialty: e.target.value})}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 >
-                  <option value="">All Specialties</option>
-                  <option value="wedding">Wedding</option>
-                  <option value="portrait">Portrait</option>
-                  <option value="commercial">Commercial</option>
-                  <option value="event">Event</option>
-                  <option value="fashion">Fashion</option>
-                  <option value="family">Family</option>
-                  <option value="product">Product</option>
+                  <option value="">{t('listing.allSpecialties')}</option>
+                  <option value="wedding">{t('listing.wedding')}</option>
+                  <option value="portrait">{t('listing.portrait')}</option>
+                  <option value="commercial">{t('listing.commercial')}</option>
+                  <option value="event">{t('listing.event')}</option>
+                  <option value="fashion">{t('listing.fashion')}</option>
+                  <option value="family">{t('listing.family')}</option>
+                  <option value="product">{t('listing.product')}</option>
                 </select>
               </div>
 
               {/* Price Range Filter */}
               <div className="mb-6">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Price Range
+                  {t('listing.priceRange')}
                 </label>
                 <select
                   value={filters.priceRange}
                   onChange={(e) => setFilters({...filters, priceRange: e.target.value})}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 >
-                  <option value="">Any Price</option>
-                  <option value="0-50">$0 - $50/hour</option>
-                  <option value="50-100">$50 - $100/hour</option>
-                  <option value="100-200">$100 - $200/hour</option>
-                  <option value="200+">$200+/hour</option>
+                  <option value="">{t('listing.anyPrice')}</option>
+                  <option value="0-50">{t('listing.price0to50')}</option>
+                  <option value="50-100">{t('listing.price50to100')}</option>
+                  <option value="100-200">{t('listing.price100to200')}</option>
+                  <option value="200+">{t('listing.price200plus')}</option>
                 </select>
               </div>
               {/* Location Filter */}
               <div className="mb-6">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Location
+                  {t('listing.location')}
                 </label>
                 <input
                   type="text"
-                  placeholder="City or region..."
+                  placeholder={t('listing.locationPlaceholder')}
                   value={filters.location}
                   onChange={(e) => setFilters({...filters, location: e.target.value})}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
@@ -223,17 +223,17 @@ const PhotographerListingPage = () => {
               {/* Availability Filter */}
               <div className="mb-6">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Availability
+                  {t('listing.availability')}
                 </label>
                 <select
                   value={filters.availability}
                   onChange={(e) => setFilters({...filters, availability: e.target.value})}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 >
-                  <option value="">Any Time</option>
-                  <option value="Available Now">Available Now</option>
-                  <option value="Available Tomorrow">Available Tomorrow</option>
-                  <option value="Available Next Week">Available Next Week</option>
+                  <option value="">{t('listing.anyTime')}</option>
+                  <option value="Available Now">{t('listing.availableNow')}</option>
+                  <option value="Available Tomorrow">{t('listing.availableTomorrow')}</option>
+                  <option value="Available Next Week">{t('listing.availableNextWeek')}</option>
                 </select>
               </div>
 
@@ -242,7 +242,7 @@ const PhotographerListingPage = () => {
                 onClick={handleClearFilters}
                 className="w-full text-blue-600 hover:text-blue-700 font-medium py-2"
               >
-                Clear All Filters
+                {t('listing.clearFilters')}
               </button>
             </div>
           </div>
@@ -252,19 +252,19 @@ const PhotographerListingPage = () => {
             {/* Results Header */}
             <div className="flex items-center justify-between mb-6">
               <p className="text-gray-600">
-                {filteredPhotographers.length} photographer{filteredPhotographers.length !== 1 ? 's' : ''} found
+                {filteredPhotographers.length} {filteredPhotographers.length !== 1 ? t('listing.photographersFound') : t('listing.photographerFound')}
                {(searchParams.get('location') || searchParams.get('specialty') || searchParams.get('budget')) && (
                  <span className="ml-2 text-blue-600">
-                   (filtered from search)
+                   {t('listing.filteredFromSearch')}
                  </span>
                )}
               </p>
               <select className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                <option>Sort by: Relevance</option>
-                <option>Sort by: Rating</option>
-                <option>Sort by: Price (Low to High)</option>
-                <option>Sort by: Price (High to Low)</option>
-                <option>Sort by: Availability</option>
+                <option>{t('listing.sortBy')} {t('listing.relevance')}</option>
+                <option>{t('listing.sortBy')} {t('listing.rating')}</option>
+                <option>{t('listing.sortBy')} {t('listing.priceLowHigh')}</option>
+                <option>{t('listing.sortBy')} {t('listing.priceHighLow')}</option>
+                <option>{t('listing.sortBy')} {t('listing.availability')}</option>
               </select>
             </div>
 
@@ -284,7 +284,7 @@ const PhotographerListingPage = () => {
                       </button>
                       {photographer.verified && (
                         <div className="absolute top-3 left-3 bg-blue-600 text-white px-2 py-1 rounded-full text-xs font-medium">
-                          Verified
+                          {t('listing.verified')}
                         </div>
                       )}
                     </div>
@@ -333,13 +333,13 @@ const PhotographerListingPage = () => {
                           to={`/photographer/${photographer.id}`}
                           className="flex-1 bg-gray-100 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-200 transition-colors text-center font-medium"
                         >
-                          View Profile
+                          {t('listing.viewProfile')}
                         </Link>
                         <Link
                           to={`/booking?photographer=${photographer.id}`}
                           className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors text-center font-medium"
                         >
-                          Book Now
+                          {t('listing.bookNow')}
                         </Link>
                       </div>
                     </div>
@@ -354,8 +354,8 @@ const PhotographerListingPage = () => {
                 <div className="h-96 bg-gray-100 rounded-lg flex items-center justify-center">
                   <div className="text-center">
                     <Map size={48} className="text-gray-400 mx-auto mb-4" />
-                    <p className="text-gray-600">Map view coming soon</p>
-                    <p className="text-sm text-gray-500 mt-1">Interactive map with photographer locations</p>
+                    <p className="text-gray-600">{t('listing.mapComingSoon')}</p>
+                    <p className="text-sm text-gray-500 mt-1">{t('listing.mapDescription')}</p>
                   </div>
                 </div>
               </div>
@@ -365,13 +365,13 @@ const PhotographerListingPage = () => {
             {filteredPhotographers.length === 0 && (
               <div className="text-center py-12">
                 <Search size={48} className="text-gray-400 mx-auto mb-4" />
-                <h3 className="text-lg font-medium text-gray-900 mb-2">No photographers found</h3>
-                <p className="text-gray-600 mb-4">Try adjusting your search criteria or filters</p>
+                <h3 className="text-lg font-medium text-gray-900 mb-2">{t('listing.noResults')}</h3>
+                <p className="text-gray-600 mb-4">{t('listing.noResultsDesc')}</p>
                 <button
                   onClick={handleClearFilters}
                   className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
                 >
-                  Clear All Filters
+                  {t('listing.clearFilters')}
                 </button>
               </div>
             )}
