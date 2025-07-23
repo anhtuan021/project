@@ -286,7 +286,7 @@ const PhotographerDashboard = () => {
               />
               <div>
                                 <h1 className="text-2xl font-bold text-gray-900 mb-1">
-                  {t('dashboard.welcome')}{photographerData?.name || user?.name}!
+                  {t('dashboard.welcome')}{user?.name || photographerData?.name}!
                 </h1>
                 <p className="text-gray-600 mb-2">
                   {photographerData?.specialties?.join(", ") || t('dashboard.photographer')}
