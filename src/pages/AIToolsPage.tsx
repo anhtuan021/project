@@ -131,7 +131,7 @@ const AIToolsPage = () => {
           {/* Sidebar */}
           <div className="lg:w-1/4">
             <div className="bg-white rounded-xl shadow-sm p-6 sticky top-8">
-              <h3 className="font-semibold text-gray-900 mb-4">AI Tools</h3>
+              <h3 className="font-semibold text-gray-900 mb-4">{t('aiTools.aiToolsTitle')}</h3>
               <div className="space-y-2">
                 {tools.map((tool) => (
                   <button
@@ -165,26 +165,26 @@ const AIToolsPage = () => {
               <div className="bg-white rounded-xl shadow-sm p-8">
                 <div className="flex items-center space-x-3 mb-6">
                   <Lightbulb className="h-8 w-8 text-blue-600" />
-                  <h2 className="text-2xl font-bold text-gray-900">Concept Generator</h2>
+                  <h2 className="text-2xl font-bold text-gray-900">{t('aiTools.conceptGenerator')}</h2>
                 </div>
 
                 <div className="mb-6">
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Enter your theme or description
+                    {t('aiTools.enterTheme')}
                   </label>
                   <div className="flex gap-3">
                     <input
                       type="text"
                       value={conceptInput}
                       onChange={(e) => setConceptInput(e.target.value)}
-                      placeholder="e.g., romantic sunset wedding, modern urban portrait..."
+                      placeholder={t('aiTools.themePlaceholder')}
                       className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                     <button
                       onClick={generateConcepts}
                       className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
                     >
-                      Generate
+                      {t('aiTools.generate')}
                     </button>
                   </div>
                 </div>
@@ -228,19 +228,19 @@ const AIToolsPage = () => {
               <div className="bg-white rounded-xl shadow-sm p-8">
                 <div className="flex items-center space-x-3 mb-6">
                   <Edit3 className="h-8 w-8 text-blue-600" />
-                  <h2 className="text-2xl font-bold text-gray-900">Auto-Editing Tool</h2>
+                  <h2 className="text-2xl font-bold text-gray-900">{t('aiTools.autoEditing')}</h2>
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                   {/* Upload Section */}
                   <div>
-                    <h3 className="font-semibold text-gray-900 mb-4">Upload Your Photo</h3>
+                    <h3 className="font-semibold text-gray-900 mb-4">{t('aiTools.uploadPhoto')}</h3>
                     <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-gray-400 transition-colors">
                       <Upload className="h-12 w-12 text-gray-400 mx-auto mb-4" />
                       <p className="text-gray-600 mb-4">
-                        Drag and drop your photo here
+                        {t('aiTools.dragDrop')}
                         <br />
-                        <span className="text-sm">or browse files</span>
+                        <span className="text-sm">{t('aiTools.orBrowseFiles')}</span>
                       </p>
                       <input
                         type="file"
