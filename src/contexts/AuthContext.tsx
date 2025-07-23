@@ -7,6 +7,11 @@ interface User {
   avatar?: string;
   userType: "customer" | "photographer" | "admin";
   photographerId?: string;
+  location?: string;
+  bio?: string;
+  phone?: string;
+  specialties?: string[];
+  equipment?: string[];
 }
 
 interface AuthContextType {
