@@ -240,7 +240,7 @@ const PhotographerDashboard = () => {
             description:
               t('photographerDashboard.vintageWeddingDesc'),
             image:
-              "https://images.pexels.com/photos/1616113/pexels-photo-1616113.jpeg?auto=compress&cs=tinysrgb&w=300&h=200&fit=crop",
+              "https://plus.unsplash.com/premium_photo-1663076211121-36754a46de8d?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fHdlZGRpbmd8ZW58MHx8MHx8fDA%3D",
             category: "Wedding",
             likes: 24,
             views: 156,
@@ -250,7 +250,7 @@ const PhotographerDashboard = () => {
             title: t('photographerDashboard.streetPortrait'),
             description: t('photographerDashboard.streetPortraitDesc'),
             image:
-              "https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg?auto=compress&cs=tinysrgb&w=300&h=200&fit=crop",
+              "https://images.unsplash.com/photo-1521119989659-a83eee488004?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHBvcnRyYWl0fGVufDB8fDB8fHww",
             category: "Portrait",
             likes: 18,
             views: 89,
@@ -260,7 +260,7 @@ const PhotographerDashboard = () => {
             title: "Ảnh gia đình ngoài trời",
             description: "Tự nhiên và ấm áp trong môi trường công viên",
             image:
-              "https://images.pexels.com/photos/3184639/pexels-photo-3184639.jpeg?auto=compress&cs=tinysrgb&w=300&h=200&fit=crop",
+              "https://plus.unsplash.com/premium_photo-1661475916373-5aaaeb4a5393?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8ZmFtaWx5fGVufDB8fDB8fHww",
             category: "Family",
             likes: 31,
             views: 203,

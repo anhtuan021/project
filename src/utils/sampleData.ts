@@ -1,4 +1,3 @@
-// Sample booking data for photographer dashboard
 export const initializeSampleData = () => {
   const sampleBookings = [
     {

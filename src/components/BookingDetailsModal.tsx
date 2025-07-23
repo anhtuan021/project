@@ -55,8 +55,14 @@ const BookingDetailsModal: React.FC<BookingDetailsModalProps> = ({
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-200">
           <div>
-                        <h2 className="text-2xl font-bold text-gray-900">{t('bookingModal.title')}</h2>
-            <p className="text-gray-600">{t('bookingModal.code')}: {booking.reference}</p>
+                  <h2 className="text-2xl font-bold text-gray-900">{t('bookingModal.title')}</h2>
+<p className="text-sm text-gray-700">
+  {userType === 'photographer'
+    ? `${t('bookingModal.customer')}: ${booking.customerInfo?.name || t('bookingModal.customer')}`
+    : `${t('bookingModal.photographer')}: ${booking.photographer?.name || t('bookingModal.photographer')}`}
+</p>
+<p className="text-gray-600">{t('bookingModal.code')}: {booking.reference}</p>
+
           </div>
           <button
             onClick={onClose}

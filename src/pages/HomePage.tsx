@@ -87,24 +87,11 @@ const HomePage = () => {
                     className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none"
                   >
                     <option value="">{t('home.search.style')}</option>
-                                        <option value="portrait">{t('home.search.styles.portrait')}</option>
+                    <option value="portrait">{t('home.search.styles.portrait')}</option>
                     <option value="wedding">{t('home.search.styles.wedding')}</option>
                     <option value="landscape">{t('home.search.styles.landscape')}</option>
                     <option value="event">{t('home.search.styles.event')}</option>
-                  </select>
-                </div>
-                <div className="relative">
-                  <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm">$</span>
-                  <select
-                    value={searchBudget}
-                    onChange={(e) => setSearchBudget(e.target.value)}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none"
-                  >
-                    <option value="">{t('home.search.budget')}</option>
-                                        <option value="0-50">{t('home.search.budget.range1')}</option>
-                    <option value="50-100">{t('home.search.budget.range2')}</option>
-                    <option value="100-200">{t('home.search.budget.range3')}</option>
-                    <option value="200+">{t('home.search.budget.range4')}</option>
+                    <option value="other">{t('home.search.styles.other')}</option>
                   </select>
                 </div>
                 <button 
