@@ -307,20 +307,7 @@ const PhotographerDashboard = () => {
                 </div>
               </div>
             </div>
-            <div className="flex space-x-3">
-              <Link
-                to="/edit-profile"
-                className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center space-x-2"
-              >
-                <Edit className="h-4 w-4" />
-                                <span>{t('dashboard.editProfile')}</span>
-              </Link>
-              <NotificationCenter photographerId={user?.photographerId} />
-              <button className="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors flex items-center space-x-2">
-                <Settings className="h-4 w-4" />
-                                <span>{t('dashboard.settings')}</span>
-              </button>
-            </div>
+
           </div>
         </div>
 
