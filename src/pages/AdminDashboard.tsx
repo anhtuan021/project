@@ -29,7 +29,7 @@ import {
   Settings
 } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
-
+import BookingDetailsModal from '../components/BookingDetailsModal';
 const AdminDashboard = () => {
   const [selectedTab, setSelectedTab] = useState('overview');
   const [users, setUsers] = useState([]);
@@ -40,9 +40,78 @@ const AdminDashboard = () => {
   const [selectedUser, setSelectedUser] = useState(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
+  const [selectedBooking, setSelectedBooking] = useState(null);
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   const { t } = useLanguage();
 
+  const handleBlockUser = (userId, userType) => {
+    if (userType === 'photographer') {
+      setPhotographers(prev =>
+        prev.map(p =>
+          p.id === userId ? { ...p, status: 'suspended' } : p
+        )
+      );
+      localStorage.setItem(
+        'adminPhotographers',
+        JSON.stringify(
+          photographers.map(p =>
+            p.id === userId ? { ...p, status: 'suspended' } : p
+          )
+        )
+      );
+    } else {
+      setUsers(prev =>
+        prev.map(u =>
+          u.id === userId ? { ...u, status: 'suspended' } : u
+        )
+      );
+      localStorage.setItem(
+        'adminUsers',
+        JSON.stringify(
+          users.map(u =>
+            u.id === userId ? { ...u, status: 'suspended' } : u
+          )
+        )
+      );
+    }
+    alert('Đã chặn tài khoản thành công!');
+  };
+  const handleUnblockUser = (userId, userType) => {
+    if (userType === 'photographer') {
+      setPhotographers(prev =>
+        prev.map(p =>
+          p.id === userId ? { ...p, status: 'active' } : p
+        )
+      );
+      localStorage.setItem(
+        'adminPhotographers',
+        JSON.stringify(
+          photographers.map(p =>
+            p.id === userId ? { ...p, status: 'active' } : p
+          )
+        )
+      );
+    } else {
+      setUsers(prev =>
+        prev.map(u =>
+          u.id === userId ? { ...u, status: 'active' } : u
+        )
+      );
+      localStorage.setItem(
+        'adminUsers',
+        JSON.stringify(
+          users.map(u =>
+            u.id === userId ? { ...u, status: 'active' } : u
+          )
+        )
+      );
+    }
+    alert('Đã mở chặn tài khoản thành công!');
+  };
+  const handleViewBookingDetails = (booking) => {
+    setSelectedBooking(booking);
+    setIsBookingModalOpen(true);
+  };
   // Load data on component mount
   useEffect(() => {
     loadAdminData();
@@ -199,14 +268,20 @@ const AdminDashboard = () => {
   };
 
   const handleDeleteUser = (userId, userType) => {
-    if (userType === 'photographer') {
-      setPhotographers(prev => prev.filter(p => p.id !== userId));
-    } else {
-      setUsers(prev => prev.filter(u => u.id !== userId));
-    }
-    setShowDeleteModal(false);
-    setSelectedUser(null);
-  };
+  if (userType === 'photographer') {
+    setPhotographers(prev => prev.filter(p => p.id !== userId));
+    // Remove from localStorage
+    const updatedPhotographers = photographers.filter(p => p.id !== userId);
+    localStorage.setItem('adminPhotographers', JSON.stringify(updatedPhotographers));
+  } else {
+    setUsers(prev => prev.filter(u => u.id !== userId));
+    // Remove from localStorage
+    const updatedUsers = users.filter(u => u.id !== userId);
+    localStorage.setItem('adminUsers', JSON.stringify(updatedUsers));
+  }
+  setShowDeleteModal(false);
+  setSelectedUser(null);
+};
 
   const handleUpdatePaymentStatus = (photographerId, status) => {
     setPhotographers(prev => prev.map(p =>
@@ -747,6 +822,23 @@ const AdminDashboard = () => {
                               >
                                 <Trash2 className="h-4 w-4" />
                               </button>
+                              {user.status !== 'suspended' ? (
+                              <button
+                                onClick={() => handleBlockUser(user.id, user.userType)}
+                                className="text-yellow-600 hover:text-yellow-900 p-1 rounded"
+                                title="Chặn tài khoản"
+                              >
+                                <XCircle className="h-4 w-4" />
+                              </button>
+                            ) : (
+                              <button
+                                onClick={() => handleUnblockUser(user.id, user.userType)}
+                                className="text-green-600 hover:text-green-900 p-1 rounded"
+                                title="Mở chặn tài khoản"
+                              >
+                                <CheckCircle className="h-4 w-4" />
+                              </button>
+                            )}
                             </td>
                           </tr>
                         ))}
@@ -812,6 +904,19 @@ const AdminDashboard = () => {
                             <span className="text-gray-600">Bookings:</span>
                             <span className="font-medium">{photographer.totalBookings}</span>
                           </div>
+                          <div className="flex flex-wrap gap-2 mt-2">
+                        {bookings
+                          .filter((b) => b.photographer?.id === photographer.id)
+                          .map((booking) => (
+                            <button
+                              key={booking.id}
+                              onClick={() => handleViewBookingDetails(booking)}
+                              className="text-blue-600 hover:underline text-xs"
+                            >
+                              {booking.reference || booking.id}
+                            </button>
+                          ))}
+                      </div>
                           <div className="flex justify-between text-sm">
                             <span className="text-gray-600">Doanh thu:</span>
                             <span className="font-medium text-green-600">${photographer.totalEarnings}</span>
@@ -854,6 +959,31 @@ const AdminDashboard = () => {
                             >
                               Liên hệ
                             </button>
+                            {photographer.status !== 'suspended' ? (
+                          <button
+                            onClick={() => handleBlockUser(photographer.id, photographer.userType)}
+                            className="flex-1 text-yellow-600 hover:text-yellow-700 text-sm font-medium py-2 border border-yellow-200 rounded-lg hover:bg-yellow-50"
+                          >
+                            Chặn
+                          </button>
+                        ) : (
+                          <button
+                            onClick={() => handleUnblockUser(photographer.id, photographer.userType)}
+                            className="flex-1 text-green-600 hover:text-green-700 text-sm font-medium py-2 border border-green-200 rounded-lg hover:bg-green-50"
+                          >
+                            Mở chặn
+                          </button>
+                        )}
+                        <button
+                  onClick={() => {
+                    setSelectedUser(photographer);
+                    setShowDeleteModal(true);
+                  }}
+                  className="flex-1 text-red-600 hover:text-red-700 text-sm font-medium py-2 border border-red-200 rounded-lg hover:bg-red-50"
+                  title="Xóa tài khoản"
+                >
+                  Xóa
+                </button>
                           </div>
                         </div>
                       </div>
@@ -1095,6 +1225,12 @@ const AdminDashboard = () => {
           </div>
         </div>
       )}
+      <BookingDetailsModal
+        booking={selectedBooking}
+        isOpen={isBookingModalOpen}
+        onClose={() => setIsBookingModalOpen(false)}
+        userType="admin"
+      />
     </div>
   );
 };
