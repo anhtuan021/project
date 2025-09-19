@@ -89,12 +89,12 @@ const AdminProfilePage = () => {
   };
 
   const systemStats = {
-    totalUsers: 1250,
-    totalPhotographers: 85,
-    totalBookings: 3420,
-    monthlyRevenue: 8500,
+    totalUsers: 12,
+    totalPhotographers: 8,
+    totalBookings: 34,
+    monthlyRevenue: 85,
     systemUptime: 99.9,
-    activeSession: 127
+    activeSession: 12
   };
 
   return (

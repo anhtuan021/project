@@ -134,7 +134,7 @@ const AdminDashboard = () => {
         userType: 'customer',
         joinDate: '2024-01-15',
         totalBookings: 5,
-        totalSpent: 1200,
+        totalSpent: 3,
         status: 'active',
         avatar: 'https://images.pexels.com/photos/3763188/pexels-photo-3763188.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop',
         lastActive: '2024-01-20'
@@ -146,10 +146,10 @@ const AdminDashboard = () => {
         userType: 'customer',
         joinDate: '2024-02-01',
         totalBookings: 2,
-        totalSpent: 600,
+        totalSpent: 2,
         status: 'active',
         avatar: 'https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop',
-        lastActive: '2024-01-18'
+        lastActive: '2024-01-1'
       },
       {
         id: '3',
@@ -158,10 +158,10 @@ const AdminDashboard = () => {
         userType: 'customer',
         joinDate: '2024-01-10',
         totalBookings: 8,
-        totalSpent: 2400,
+        totalSpent: 5,
         status: 'active',
         avatar: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop',
-        lastActive: '2024-01-21'
+        lastActive: '2024-01-20'
       }
     ];
 
@@ -172,13 +172,13 @@ const AdminDashboard = () => {
         email: 'lily@photographer.com',
         userType: 'photographer',
         joinDate: '2023-12-01',
-        totalBookings: 45,
-        totalEarnings: 12000,
-        monthlyFee: 50,
+        totalBookings: 4,
+        totalEarnings: 60,
+        monthlyFee: 10,
         lastPayment: '2024-01-01',
         status: 'active',
         rating: 4.9,
-        reviews: 127,
+        reviews: 12,
         avatar: 'https://images.pexels.com/photos/3763188/pexels-photo-3763188.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop',
         specialties: ['Wedding', 'Portrait'],
         location: 'Ho Chi Minh City'
@@ -189,13 +189,13 @@ const AdminDashboard = () => {
         email: 'michael@photographer.com',
         userType: 'photographer',
         joinDate: '2024-01-10',
-        totalBookings: 23,
-        totalEarnings: 6900,
-        monthlyFee: 50,
+        totalBookings: 5,
+        totalEarnings: 60,
+        monthlyFee: 5,
         lastPayment: '2024-01-10',
         status: 'pending_payment',
         rating: 4.8,
-        reviews: 96,
+        reviews: 9,
         avatar: 'https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop',
         specialties: ['Commercial', 'Event'],
         location: 'San Francisco'
@@ -206,13 +206,13 @@ const AdminDashboard = () => {
         email: 'emma@photographer.com',
         userType: 'photographer',
         joinDate: '2023-11-15',
-        totalBookings: 67,
-        totalEarnings: 18500,
-        monthlyFee: 50,
+        totalBookings: 6,
+        totalEarnings: 70,
+        monthlyFee: 5,
         lastPayment: '2024-01-01',
         status: 'active',
         rating: 4.7,
-        reviews: 84,
+        reviews: 8,
         avatar: 'https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop',
         specialties: ['Fashion', 'Portrait'],
         location: 'Los Angeles'
@@ -264,7 +264,7 @@ const AdminDashboard = () => {
       setBookings(sampleBookings);
       setFeedbacks(savedFeedbacks ? JSON.parse(savedFeedbacks) : sampleFeedbacks);
       setIsLoading(false);
-    }, 1000);
+    }, 1);
   };
 
   const handleDeleteUser = (userId, userType) => {
@@ -325,7 +325,7 @@ const AdminDashboard = () => {
         const newPhotographer = {
           ...newUser,
           totalEarnings: 0,
-          monthlyFee: 50,
+          monthlyFee: 20,
           lastPayment: new Date().toISOString().split('T')[0],
           rating: 0,
           reviews: 0,
@@ -473,7 +473,7 @@ const AdminDashboard = () => {
     {
       id: 3,
       type: 'payment_received',
-      message: 'Nhận thanh toán $50 từ Lily Emily',
+      message: 'Nhận thanh toán $10 từ Lily Emily',
       time: '1 giờ trước',
       icon: DollarSign,
       color: 'text-yellow-600 bg-yellow-100'
@@ -630,7 +630,7 @@ const AdminDashboard = () => {
                     <div className="flex items-center justify-between">
                       <div>
                         <p className="text-green-800 font-medium">Doanh thu hôm nay</p>
-                        <p className="text-2xl font-bold text-green-900">$1,250</p>
+                        <p className="text-2xl font-bold text-green-900">$120</p>
                       </div>
                       <DollarSign className="h-8 w-8 text-green-600" />
                     </div>
@@ -1039,11 +1039,11 @@ const AdminDashboard = () => {
                       <div className="space-y-3">
                         <div className="flex justify-between">
                           <span className="text-gray-600">Tháng 1/2024</span>
-                          <span className="font-semibold">$150</span>
+                          <span className="font-semibold">$20</span>
                         </div>
                         <div className="flex justify-between">
                           <span className="text-gray-600">Tháng 2/2024</span>
-                          <span className="font-semibold">$100</span>
+                          <span className="font-semibold">$30</span>
                         </div>
                         <div className="flex justify-between border-t pt-3">
                           <span className="font-semibold">Tổng cộng</span>

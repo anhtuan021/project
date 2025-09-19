@@ -11,7 +11,7 @@ export const initializeSampleData = () => {
         location: "Saigon Opera House",
         duration: 6,
       },
-      totalCost: 800,
+      totalCost: 8,
       reference: "WED-001",
       customerInfo: {
         name: "Nguyễn Văn A",
@@ -32,7 +32,7 @@ export const initializeSampleData = () => {
         location: "District 1, Ho Chi Minh City",
         duration: 2,
       },
-      totalCost: 300,
+      totalCost: 4,
       reference: "POR-002",
       customerInfo: {
         name: "Trần Thị B",
@@ -53,7 +53,7 @@ export const initializeSampleData = () => {
         location: "Landmark 81",
         duration: 3,
       },
-      totalCost: 450,
+      totalCost: 5,
       reference: "FAM-003",
       customerInfo: {
         name: "Lê Văn C",
